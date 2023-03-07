@@ -6,65 +6,7 @@ const Home = () => {
         <Layout >
             <>
 
-                <section className="slider_section slider_s_four mb-60 mt-20">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="slider_area slider3_carousel owl-carousel">
-                                    <div className="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider12.jpg">
-                                        <div className="slider_content slider_c_four color_white">
-                                            <h3>new Arrivals</h3>
-                                            <h1>summer <br /> collection 2019 </h1>
-                                            <p>discount <span> -30% off</span> this week </p>
-                                            <a className="button" href="shop.html">DISCOVER NOW</a>
-                                        </div>
-                                    </div>
-                                    <div className="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider13.jpg">
-                                        <div className="slider_content slider_c_four color_white">
-                                            <h3>popular products</h3>
-                                            <h1>chellphone <br /> new model 2019 </h1>
-                                            <p>discount <span> -30% off</span> this week </p>
-                                            <a className="button" href="shop.html">DISCOVER NOW</a>
-                                        </div>
-                                    </div>
-                                    <div className="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider14.jpg">
-                                        <div className="slider_content slider_c_four">
-                                            <h3>big sale products</h3>
-                                            <h1>wooden minimalist <br /> chair 2019 </h1>
-                                            <p>discount <span> -30% off</span> this week </p>
-                                            <a className="button" href="shop.html">DISCOVER NOW</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3">
-                                <figure className="single_banner">
-                                    <div className="banner_thumb">
-                                        <a href="shop.html">
-                                            <img src="assets/img/bg/banner9.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                </figure>
-                            </div>
-                            <div className="col-lg-3">
-                                <figure className="single_banner mb-30">
-                                    <div className="banner_thumb">
-                                        <a href="shop.html">
-                                            <img src="assets/img/bg/banner10.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                </figure>
-                                <figure className="single_banner">
-                                    <div className="banner_thumb">
-                                        <a href="shop.html">
-                                            <img src="assets/img/bg/banner11.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
                 <div className="shipping_area mb-60">
                     <div className="container">
                         <div className="shipping_inner">

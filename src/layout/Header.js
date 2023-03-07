@@ -286,7 +286,7 @@ export const Header = () => {
                                 <div className="column1 col-lg-3 col-md-3 col-4">
                                     <div className="logo">
                                         <a href="index.html">
-                                            <img src="assets/img/logo/logo.png" alt="" />
+                                        <img src="http://127.0.0.1:8000/assets/img/logo/logo.svg" alt="" />
                                         </a>
                                     </div>
                                 </div>
