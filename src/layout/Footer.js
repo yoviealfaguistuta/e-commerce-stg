@@ -43,7 +43,7 @@ export const Footer = (params) => {
                             <div className="widgets_container contact_us">
                                 <h3>GET THE APP</h3>
                                 <div className="aff_content">
-                                    <p><strong>ANTOMI</strong> App is now available on Google Play &amp; App Store. Get it now.</p>
+                                    <p><strong>Microdata</strong> App is now available on Google Play &amp; App Store. Get it now.</p>
                                 </div>
                                 <div className="app_img">
                                     <figure className="app_img">
@@ -133,7 +133,7 @@ export const Footer = (params) => {
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-md-6">
                             <div className="copyright_area">
-                                <p>Copyright © 2020 <a href="index-4.html#">Antomi</a> All Right Reserved.</p>
+                                <p>Copyright © 2020 <a href="index-4.html#">Microdata Indonesia</a> All Right Reserved.</p>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">

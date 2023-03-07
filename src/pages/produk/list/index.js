@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import { Layout } from "../../../layout";
-import "../../../assets/css/style.css";
-import "../../../assets/css/plugins.css";
-import "../../../assets/css/custom.css";
+import kategoribanner from "../../../assets/img/product/kategori-banner.png";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 const List = () => {
   return (
@@ -27,7 +29,7 @@ const List = () => {
                   <div className="col-12">
                     <div className="container-breadcumb">
                       <img
-                        src="http://127.0.0.1:8000/assets/img/product/kategori-banner.png"
+                        src={kategoribanner}
                         alt="Snow"
                         className="image_breadcumb"
                       />
@@ -93,100 +95,407 @@ const List = () => {
                 ></div>
 
                 {/* List daftar produk */}
-                <div className="col-lg-3 col-md-4 col-12 ">
-                  <article className="single_product">
-                    <figure>
-                      <div className="product_thumb">
-                        <box className="shine" />
-                      </div>
-                      <div className="product_content grid_content">
-                        <div className="product_content_inner">
-                          <h4
-                            className="product_name"
-                            style={{ height: "10px" }}
-                          >
-                            <a href>
-                              <lines className="shine" />
-                            </a>
-                          </h4>
-                          <h4
-                            className="product_name"
-                            style={{ height: "10px" }}
-                          >
-                            <a href>
-                              <lines className="shine" />
-                            </a>
-                          </h4>
-                          <h4
-                            className="product_name"
-                            style={{ height: "30px" }}
-                          >
-                            <a href>
-                              <lines className="shine" />
-                            </a>
-                          </h4>
-                          <h4
-                            className="product_name"
-                            style={{ height: "10px" }}
-                          >
-                            <a href>
-                              <lines className="shine" />
-                            </a>
-                          </h4>
-                        </div>
-                      </div>
-                      <div className="product_content list_content">
-                        <h4 className="product_name">
-                          <a>
-                            <lines className="shine" />
-                          </a>
-                        </h4>
-                        <div className="price_box">
-                          <span className="current_price">
-                            <lines className="shine" />
-                          </span>
-                        </div>
-                        <div className="product_desc">
-                          <p>
-                            <lines className="shine" />
-                          </p>
-                          <ul>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <li className="wrapper-list-kategori">
-                                  <lines className="shine" />
-                                </li>
+                <Row xs={1} md={4} className="g-4 product_thumb row no-gutters shop_wrapper" id="generateBarang" >
+                  {Array.from({ length: 16 }).map((_, idx) => (
+                    <div className="col-lg-3 col-md-4 col-12 ">
+                      <Col >
+                        <Card className="product_thumb " >
+                          <Card.Img variant="top" src="https://p-id.ipricegroup.com/uploaded_1eac065bf9527832f5fd4ef2844e1a66.jpg" />
+                          <Card.Body>
+                            {/* <Card.Title className="product_content grid_content product_content_inner">Laptop</Card.Title> */}
+                            <div className="product_content grid_content">
+                              <div className="product_content_inner">
+                                <h4 className="product_name" style={{ height: '10px' }}>
+                                  <a href>Nama Barang</a>
+                                </h4>
                               </div>
-                              <div className="col-md-6">
-                                <li className="wrapper-list-kategori">
-                                  <lines className="shine" />
-                                </li>
+                              <div className="price_box">
+                                <span className="current_price">
+                                  <Card.Text>Harga</Card.Text>
+                                </span>
                               </div>
-                              <div className="col-md-6">
-                                <li className="wrapper-list-kategori">
-                                  <lines className="shine" />
-                                </li>
-                              </div>
-                              <div className="col-md-6">
-                                <li className="wrapper-list-kategori">
-                                  <lines className="shine" />
-                                </li>
+
+                              <div className="product_desc">
+                                <p>
+                                  descripsi
+                                </p>
+                                <ul>
+                                  <div className="row">
+                                    <div className="col-md-6">
+                                      <li className="wrapper-list-kategori">
+                                        <lines className="shine" />
+                                      </li>
+                                    </div>
+                                    <div className="col-md-6">
+                                      <li className="wrapper-list-kategori">
+                                        <lines className="shine" />
+                                      </li>
+                                    </div>
+                                    <div className="col-md-6">
+                                      <li className="wrapper-list-kategori">
+                                        <lines className="shine" />
+                                      </li>
+                                    </div>
+                                    <div className="col-md-6">
+                                      <li className="wrapper-list-kategori">
+                                        <lines className="shine" />
+                                      </li>
+                                    </div>
+                                  </div>
+                                  <ul />
+                                </ul>
                               </div>
                             </div>
-                            <ul />
-                          </ul>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </div>
+                  ))}
+
+                </Row>
+                {/* <div className="row no-gutters shop_wrapper" id="generateBarang"> 
+                  <div className="col-lg-3 col-md-4 col-12 ">
+                    <article className="single_product">
+                      <figure>
+                        <div className="product_thumb">
+                          <box className="shine" />
                         </div>
-                        <div className="add-cart-costum">
-                          <box className="shine" />
-                          <box className="shine" />
-                          <box className="shine" />
+                        <div className="product_content grid_content">
+                          <div className="product_content_inner">
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '30px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                          </div>
+                        </div>
+                        <div className="product_content list_content">
+                          <h4 className="product_name"><a>
+                            <lines className="shine" />
+                          </a></h4>
+                          <div className="price_box"><span className="current_price"><lines className="shine" /></span></div>
+                          <div className="product_desc">
+                            <p>
+                              <lines className="shine" />
+                            </p>
+                            <ul>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                              </div>
+                              <ul />
+                            </ul>
+                          </div>
+                          <div className="add-cart-costum">
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                          </div>
+                        </div>
+                      </figure>
+                    </article>
+                  </div>
+                  <div className="col-lg-3 col-md-4 col-12 ">
+                    <article className="single_product">
+                      <figure>
+                        <div className="product_thumb">
                           <box className="shine" />
                         </div>
-                      </div>
-                    </figure>
-                  </article>
-                </div>
+                        <div className="product_content grid_content">
+                          <div className="product_content_inner">
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '30px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                          </div>
+                        </div>
+                        <div className="product_content list_content">
+                          <h4 className="product_name"><a>
+                            <lines className="shine" />
+                          </a></h4>
+                          <div className="price_box"><span className="current_price"><lines className="shine" /></span></div>
+                          <div className="product_desc">
+                            <p>
+                              <lines className="shine" />
+                            </p>
+                            <ul>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                              </div>
+                              <ul />
+                            </ul>
+                          </div>
+                          <div className="add-cart-costum">
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                          </div>
+                        </div>
+                      </figure>
+                    </article>
+                  </div>
+                  <div className="col-lg-3 col-md-4 col-12 ">
+                    <article className="single_product">
+                      <figure>
+                        <div className="product_thumb">
+                          <box className="shine" />
+                        </div>
+                        <div className="product_content grid_content">
+                          <div className="product_content_inner">
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '30px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                          </div>
+                        </div>
+                        <div className="product_content list_content">
+                          <h4 className="product_name"><a>
+                            <lines className="shine" />
+                          </a></h4>
+                          <div className="price_box"><span className="current_price"><lines className="shine" /></span></div>
+                          <div className="product_desc">
+                            <p>
+                              <lines className="shine" />
+                            </p>
+                            <ul>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                              </div>
+                              <ul />
+                            </ul>
+                          </div>
+                          <div className="add-cart-costum">
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                          </div>
+                        </div>
+                      </figure>
+                    </article>
+                  </div>
+                  <div className="col-lg-3 col-md-4 col-12 ">
+                    <article className="single_product">
+                      <figure>
+                        <div className="product_thumb">
+                          <box className="shine" />
+                        </div>
+                        <div className="product_content grid_content">
+                          <div className="product_content_inner">
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '30px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                          </div>
+                        </div>
+                        <div className="product_content list_content">
+                          <h4 className="product_name"><a>
+                            <lines className="shine" />
+                          </a></h4>
+                          <div className="price_box"><span className="current_price"><lines className="shine" /></span></div>
+                          <div className="product_desc">
+                            <p>
+                              <lines className="shine" />
+                            </p>
+                            <ul>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                              </div>
+                              <ul />
+                            </ul>
+                          </div>
+                          <div className="add-cart-costum">
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                          </div>
+                        </div>
+                      </figure>
+                    </article>
+                  </div>
+                  <div className="col-lg-3 col-md-4 col-12 ">
+                    <article className="single_product">
+                      <figure>
+                        <div className="product_thumb">
+                          <box className="shine" />
+                        </div>
+                        <div className="product_content grid_content">
+                          <div className="product_content_inner">
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '30px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                            <h4 className="product_name" style={{ height: '10px' }}><a href>
+                              <lines className="shine" />
+                            </a></h4>
+                          </div>
+                        </div>
+                        <div className="product_content list_content">
+                          <h4 className="product_name"><a>
+                            <lines className="shine" />
+                          </a></h4>
+                          <div className="price_box"><span className="current_price"><lines className="shine" /></span></div>
+                          <div className="product_desc">
+                            <p>
+                              <lines className="shine" />
+                            </p>
+                            <ul>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                                <div className="col-md-6">
+                                  <li className="wrapper-list-kategori">
+                                    <lines className="shine" />
+                                  </li>
+                                </div>
+                              </div>
+                              <ul />
+                            </ul>
+                          </div>
+                          <div className="add-cart-costum">
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                            <box className="shine" />
+                          </div>
+                        </div>
+                      </figure>
+                    </article>
+                  </div>
+
+                 
+                </div> */}
+
               </div>
+
+              {/* Filter */}
               <div className="col-lg-3 col-md-12">
                 <aside className="sidebar_widget">
                   <div className="widget_list widget_categories">

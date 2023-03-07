@@ -3,7 +3,13 @@ import {
 } from "react-router-dom";
 import Home from "../pages/home";
 import List from "../pages/produk/list";
+import About from "../pages/produk/list/about";
+import Contact from "../pages/produk/list/contact";
 import Detail from "../pages/produk/detail";
+import Login from "../pages/produk/login/login";
+import Register from "../pages/produk/login/register";
+
+
 
 
 const router = createBrowserRouter([
@@ -18,6 +24,22 @@ const router = createBrowserRouter([
     {
         path: "/detail/:id_barang",
         element: <Detail />,
+    },
+    {
+        path: "/about",
+        element: <About />,
+    },
+    {
+        path: "/contact",
+        element: <Contact />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/register",
+        element: <Register />,
     },
 ]);
 
