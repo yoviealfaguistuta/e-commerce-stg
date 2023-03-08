@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
 import { Layout } from '../../layout';
 
-
 const Home = () => {
     return (
         <Layout >
-            <><div className="container">
+            <>
+                <section className="slider_section slider_s_four mb-30 mt-20">
+                    <div className="container">
                         <div className="row">
                             <div className="col-lg-6">
                                 <div className="slider_area slider3_carousel owl-carousel owl-loaded owl-drag">
