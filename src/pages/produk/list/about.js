@@ -21,7 +21,7 @@ function about() {
                                         <img src={gambar} alt="" />
                                     </div>
                                     <figcaption className="about_content">
-                                        <h1>We are a digital agency focused on delivering content and utility user-experiences.
+             ?                           <h1>We are a digital agency focused on delivering content and utility user-experiences.
                                         </h1>
                                         <p>Microdata Indonesia is one of the few IT system integration, professional service and
                                             software development companies based in Bandar lampung, Lampung - Indonesia that
