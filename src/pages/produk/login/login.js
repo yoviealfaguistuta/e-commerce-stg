@@ -6,6 +6,7 @@ import google from "../../../assets/img/logo/google.svg";
 import register from "./register";
 import UseGoogleAuth from './useGoogleAuth';
 import UseFacebookAuth from './useFacebookAuth';
+import { Link } from "react-router-dom";
 
 
 
@@ -95,7 +96,7 @@ function login() {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-lg-12 col-md-6 mt-3">
-                                                        <a href={register}>Register Here</a>
+                                                        <Link to='/register'>Register Here</Link>
                                                     </div>
                                                 </div>
                                             </form>

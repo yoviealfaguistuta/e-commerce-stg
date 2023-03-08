@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import { Layout } from '../../layout';
 
+
 const Home = () => {
     return (
         <Layout >
             <>
-
                 
                 <div className="shipping_area mb-60">
                     <div className="container">

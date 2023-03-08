@@ -1,3 +1,9 @@
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
+import "../assets/css/style.css";
+import "../assets/css/plugins.css";
+import "../assets/css/custom.css";
+
 export const Footer = (params) => {
     return (
         <footer className="footer_widgets">
@@ -59,14 +65,14 @@ export const Footer = (params) => {
                             <div className="widgets_container widget_menu">
                                 <h3>Information</h3>
                                 <div className="footer_menu">
-                                    <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="index-4.html#">Delivery Information</a></li>
-                                        <li><a href="index-4.html#">New products</a></li>
-                                        <li><a href="index-4.html#">Best sales</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="index-4.html#">Order History</a></li>
-                                    </ul>
+                                    <Nav>
+                                        <Nav.Link className="a"  style={{ color: 'black' }} href="index-4.html#">About Us</Nav.Link>
+                                        <Nav.Link href="index-4.html#">Delivery Information</Nav.Link>
+                                        <Nav.Link href="index-4.html#">New products</Nav.Link>
+                                        <Nav.Link href="index-4.html#">Best sales</Nav.Link>
+                                        <Nav.Link href="index-4.html#">My Account</Nav.Link>
+                                        <Nav.Link href="index-4.html#">Order History</Nav.Link>
+                                    </Nav>
                                 </div>
                             </div>
                         </div>
