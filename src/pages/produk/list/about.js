@@ -2,9 +2,7 @@ import React, { Fragment } from "react";
 import { Layout } from "../../../layout";
 import gambar from "../../../assets/img/logo/image.svg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../assets/css/style.css'
-import '../../../assets/css/custom.css'
-import '../../../assets/css/plugins.css'
+
 
 
 

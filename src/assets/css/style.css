@@ -11060,8 +11060,3 @@ body {
     --nt-size-large-l: 1.25rem;
 
 }
-
-.logo{
-  src: url(../img/logo/logo.svg);
-  width: auto;
-}
