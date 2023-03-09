@@ -7,19 +7,20 @@ const Detail = () => {
 
   const [DataUser, setUserData] = useState({
     backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/16')`,
-    backgroundPosition: '0% 0%'
+    backgroundPosition: '0% 0%',
+    backgroundSize: 800
   });
 
   const handleMouseMove = e => {
     const { left, top, width, height } = e.target.getBoundingClientRect()
-    const x = (e.pageX - left) / width * 100
-    const y = (e.pageY - top) / height * 100
-    setUserData({ backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/16')` })
+    const x = (e.pageX - left - 170) / width * 450
+    const y = (e.pageY - top - 490) / height * 450
+    setUserData({  backgroundSize: 800,  backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/16')` })
   }
 
   return (
     <Layout>
-       <div> 
+      <div>
         <div className="product_page_bg">
           <div className="container">
             <div className="product_details_wrapper mb-55">
@@ -27,17 +28,17 @@ const Detail = () => {
                 <div className="row">
                   <div className="col-lg-5 col-md-6">
                     <div className="product-details-tab">
-                      <div id="img-1" className="zoomWrapper single-zoom">
-                      <figure onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
-                      <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16"  />
-    </figure>
+                      {/* <div id="img-1" className="zoomWrapper single-zoom"> */}
+                        <figure onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
+                          <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" />
+                        </figure>
                         {/* <a href="#/" id="image-detail-main"></a> */}
-                      </div>
+                      {/* </div> */}
                       <div className="single-zoom-thumb">
                         <ul className="s-tab-zoom owl-carousel single-product-active owl-loaded owl-drag" id="gallery_01"><div className="owl-stage-outer"><div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', width: '391px' }}><div className="owl-item active" style={{ width: '185.5px', marginRight: '10px' }}><li><a href="#/" className="elevatezoom-gallery active" data-update data-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" data-zoom-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16"><img style={{ width: '110px', height: '110px' }} src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="zo-th-1" /></a></li></div><div className="owl-item active" style={{ width: '185.5px', marginRight: '10px' }}><li><a href="#/" className="elevatezoom-gallery active" data-update data-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" data-zoom-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17"><img style={{ width: '110px', height: '110px' }} src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="zo-th-1" /></a></li></div></div></div>
-                        <div className="owl-nav disabled"><div className="owl-prev"><i className="fa fa-angle-left" /></div>
-                        <div className="owl-next"><i className="fa fa-angle-right" /></div></div>
-                        <div className="owl-dots disabled" /></ul>
+                          <div className="owl-nav disabled"><div className="owl-prev"><i className="fa fa-angle-left" /></div>
+                            <div className="owl-next"><i className="fa fa-angle-right" /></div></div>
+                          <div className="owl-dots disabled" /></ul>
                       </div>
                     </div>
                   </div>
@@ -189,12 +190,12 @@ const Detail = () => {
             </section>
           </div>
         </div>
-      </div> 
+      </div>
       <div id="snackbar"><span>Beta Version - Development Purpose Only</span></div>
-        <a className='scrollUp' href="#top" style={{position: 'fixed', zIndex: 2147483647, display: 'none'}}><i className="fa fa-angle-double-up" /></a>
-        <div className="zoomContainer" style={{transform: 'translateZ(0px)', position: 'absolute', left: '43.6px', top: '429.925px', height: '500px', width: '500px', overflow: 'hidden'}}>
-          <div className="zoomLens" style={{backgroundPosition: '-71.748px -1.92791px', float: 'left', border: '4px solid rgb(35, 47, 62)', width: '200px', height: '200px', backgroundRepeat: 'no-repeat', position: 'absolute', backgroundImage: 'url("https://microdatastoreapi.cooljarsoft.com/image-barang/original/16")', left: '303px', top: '88px', display: 'none'}}>&nbsp;</div>\
-          <div className="zoomWindowContainer" style={{width: '400px'}}><div style={{zIndex: 999, top: '0px', left: '408px'}} className="zoomWindow">&nbsp;</div></div></div>
+      <a className='scrollUp' href="#top" style={{ position: 'fixed', zIndex: 2147483647, display: 'none' }}><i className="fa fa-angle-double-up" /></a>
+      {/* <div className="zoomContainer" style={{ transform: 'translateZ(0px)', position: 'absolute', left: '43.6px', top: '429.925px', height: '500px', width: '500px', overflow: 'hidden' }}>
+        <div className="zoomLens" style={{ backgroundPosition: '-71.748px -1.92791px', float: 'left', border: '4px solid rgb(35, 47, 62)', width: '200px', height: '200px', backgroundRepeat: 'no-repeat', position: 'absolute', backgroundImage: 'url("https://microdatastoreapi.cooljarsoft.com/image-barang/original/16")', left: '303px', top: '88px', display: 'none' }}>&nbsp;</div>\
+        <div className="zoomWindowContainer" style={{ width: '400px' }}><div style={{ zIndex: 999, top: '0px', left: '408px' }} className="zoomWindow">&nbsp;</div></div></div> */}
     </Layout>
   );
 };
