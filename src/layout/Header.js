@@ -336,15 +336,13 @@ export const Header = () => {
                                         <div className="header_wishlist">
                                             <a href="wishlist.html">
                                                 <i className="ion-android-favorite-outline" />
-                                                <span className="wishlist_count">3</span>
+                                                <span className="wishlist_count">0</span>
                                             </a>
                                         </div>
                                         <div className="mini_cart_wrapper">
                                             <a href="javascript:void(0)">
                                                 <i className="fa fa-shopping-bag" />
-                                                <span className="cart_price">$152.00 <i className="ion-ios-arrow-down" />
-                                                </span>
-                                                <span className="cart_count">2</span>
+                                                <span className="cart_count">0</span>
                                             </a>
                                             <div className="mini_cart">
                                                 <div className="cart_close">
