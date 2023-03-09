@@ -281,156 +281,178 @@ export const Header = () => {
                                     <li>Hotline: <a onClick={"tel:+628118880853"}>+62 8118 8808 53</a></li>
 
                                     <li>Quality Guarantee Of Products</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="header_middle header_middle_style4">
-                    <div className="row align-items-center">
-                        <div className="column1 col-lg-3 col-md-3 col-4">
-                            <div className="logo">
-                                <a href="/">
-                                <img src={logo} alt="" />
-                                
-                                </a>
-                            </div>
-                        </div>
-                        <div className="column2 col-lg-6 col-md-12">
-                            <div className="search_container">
-                                <form action="#">
-                                    <div className="search_box">
-                                        <input placeholder="Search product..." type="text" />
-                                        <button type="submit">Search</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div className="column3 col-lg-3 col-md-7 col-6">
-                            <div className="header_configure_area header_configure_four">
-                                <div className="header_wishlist">
-                                    <a href="wishlist.html">
-                                        <i className="ion-android-favorite-outline" />
-                                        <span className="wishlist_count">0</span>
-                                    </a>
-                                </div>
-                                <div className="mini_cart_wrapper">
-                                    <a href="javascript:void(0)">
-                                        <i className="fa fa-shopping-bag" />
-                                        <span className="cart_count">0</span>
-                                    </a>
-                                    <div className="mini_cart">
-                                        <div className="cart_close">
-                                            <div className="cart_text">
-                                                <h3>cart</h3>
-                                            </div>
-                                            <div className="mini_cart_close">
-                                                <a href="javascript:void(0)">
-                                                    <i className="ion-android-close" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="cart_item">
-                                            <div className="cart_img">
-                                                <a href="index-4.html#">
-                                                    <img src="assets/img/s-product/product.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div className="cart_info">
-                                                <a href="index-4.html#">Primis In Faucibus</a>
-                                                <p>Qty: 1 X <span> $60.00 </span>
-                                                </p>
-                                            </div>
-                                            <div className="cart_remove">
-                                                <a href="index-4.html#">
-                                                    <i className="ion-android-close" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="cart_item">
-                                            <div className="cart_img">
-                                                <a href="index-4.html#">
-                                                    <img src="assets/img/s-product/product2.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div className="cart_info">
-                                                <a href="index-4.html#">Letraset Sheets</a>
-                                                <p>Qty: 1 X <span> $60.00 </span>
-                                                </p>
-                                            </div>
-                                            <div className="cart_remove">
-                                                <a href="index-4.html#">
-                                                    <i className="ion-android-close" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="mini_cart_table">
-                                            <div className="cart_total">
-                                                <span>Sub total:</span>
-                                                <span className="price">$138.00</span>
-                                            </div>
-                                            <div className="cart_total mt-10">
-                                                <span>total:</span>
-                                                <span className="price">$138.00</span>
-                                            </div>
-                                        </div>
-                                        <div className="mini_cart_footer">
-                                            <div className="cart_button">
-                                                <a href="cart.html">View cart</a>
-                                            </div>
-                                            <div className="cart_button">
-                                                <a className="active" href="checkout.html">Checkout</a>
-                                            </div>
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="header_middle sticky_header_four sticky-header">
-<div className="row align-items-center">
-<div className="col-lg-3 col-md-6">
-<div className="logo-sticky-main">
-<a href="{{ url('/') }}"><img className="logo-dark-main-login" src="{{ url('assets/img') }}/logo/logo-dark.svg" alt="" /></a>
-</div>
-</div>
-<div className="col-lg-6 col-md-12">
-<div className="main_menu menu_position text-center">
-<nav>
-  <ul>
-    <li><a href="http://microdataindonesia.co.id/" target="__blank">MICRODATA
-        INDONESIA</a></li>
-    <li className="mega_items"><a href="shop.html">all kategories<i className="fa fa-angle-down" /></a>
-      <div className="mega_menu">
-        <ul className="mega_menu_inner" id="generateJenisBarangHover">
-        </ul>
+                        <div className="header_middle header_middle_style4">
+                            <div className="row align-items-center">
+                                <div className="column1 col-lg-3 col-md-3 col-4">
+                                    <div className="logo">
+                                        <a href="/">
+                                        <img src={logo} alt="" />
+                                        
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="column2 col-lg-6 col-md-12">
+                                    <div className="search_container">
+                                        <form action="#">
+                                            <div className="hover_category">
+                                                <select className="select_option" name="select" id="categori2">
+                                                    <option selected value={1}>All Categories</option>
+                                                    <option value={2}>Accessories</option>
+                                                    <option value={3}>Accessories &amp; More</option>
+                                                    <option value={4}>Butters &amp; Eggs</option>
+                                                    <option value={5}>Camera &amp; Video </option>
+                                                    <option value={6}>Mornitors</option>
+                                                    <option value={7}>Tablets</option>
+                                                    <option value={8}>Laptops</option>
+                                                    <option value={9}>Handbags</option>
+                                                    <option value={10}>Headphone &amp; Speaker</option>
+                                                    <option value={11}>Herbs &amp; botanicals</option>
+                                                    <option value={12}>Vegetables</option>
+                                                    <option value={13}>Shop</option>
+                                                    <option value={14}>Laptops &amp; Desktops</option>
+                                                    <option value={15}>Watchs</option>
+                                                    <option value={16}>Electronic</option>
+                                                </select>
+                                            </div>
+                                            <div className="search_box">
+                                                <input placeholder="Search product..." type="text" />
+                                                <button type="submit">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div className="column3 col-lg-3 col-md-7 col-6">
+                                    <div className="header_configure_area header_configure_four">
+                                        <div className="header_wishlist">
+                                            <a href="wishlist.html">
+                                                <i className="ion-android-favorite-outline" />
+                                                <span className="wishlist_count">3</span>
+                                            </a>
+                                        </div>
+                                        <div className="mini_cart_wrapper">
+                                            <a href="javascript:void(0)">
+                                                <i className="fa fa-shopping-bag" />
+                                                <span className="cart_price">$152.00 <i className="ion-ios-arrow-down" />
+                                                </span>
+                                                <span className="cart_count">2</span>
+                                            </a>
+                                            <div className="mini_cart">
+                                                <div className="cart_close">
+                                                    <div className="cart_text">
+                                                        <h3>cart</h3>
+                                                    </div>
+                                                    <div className="mini_cart_close">
+                                                        <a href="javascript:void(0)">
+                                                            <i className="ion-android-close" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="cart_item">
+                                                    <div className="cart_img">
+                                                        <a href="index-4.html#">
+                                                            <img src="assets/img/s-product/product.jpg" alt="" />
+                                                        </a>
+                                                    </div>
+                                                    <div className="cart_info">
+                                                        <a href="index-4.html#">Primis In Faucibus</a>
+                                                        <p>Qty: 1 X <span> $60.00 </span>
+                                                        </p>
+                                                    </div>
+                                                    <div className="cart_remove">
+                                                        <a href="index-4.html#">
+                                                            <i className="ion-android-close" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="cart_item">
+                                                    <div className="cart_img">
+                                                        <a href="index-4.html#">
+                                                            <img src="assets/img/s-product/product2.jpg" alt="" />
+                                                        </a>
+                                                    </div>
+                                                    <div className="cart_info">
+                                                        <a href="index-4.html#">Letraset Sheets</a>
+                                                        <p>Qty: 1 X <span> $60.00 </span>
+                                                        </p>
+                                                    </div>
+                                                    <div className="cart_remove">
+                                                        <a href="index-4.html#">
+                                                            <i className="ion-android-close" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="mini_cart_table">
+                                                    <div className="cart_total">
+                                                        <span>Sub total:</span>
+                                                        <span className="price">$138.00</span>
+                                                    </div>
+                                                    <div className="cart_total mt-10">
+                                                        <span>total:</span>
+                                                        <span className="price">$138.00</span>
+                                                    </div>
+                                                </div>
+                                                <div className="mini_cart_footer">
+                                                    <div className="cart_button">
+                                                        <a href="cart.html">View cart</a>
+                                                    </div>
+                                                    <div className="cart_button">
+                                                        <a className="active" href="checkout.html">Checkout</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="header_middle sticky_header_four sticky-header">
+  <div className="row align-items-center">
+    <div className="col-lg-3 col-md-6">
+      <div className="logo-sticky-main">
+        <a href="{{ url('/') }}"><img className="logo-dark-main-login" src="{{ url('assets/img') }}/logo/logo-dark.svg" alt="" /></a>
       </div>
-    </li>
-    <li><a href="{{ url('/login') }}">LOGIN</a></li>
-    <li><a href="{{ url('/about') }}">About Us</a></li>
-    <li><a href="{{ url('/contact') }}"> Contact Us</a></li>
-  </ul>
-</nav>
-</div>
-</div>
-<div className="col-lg-3">
-<div className="header_configure_area">
-<div className="header_wishlist">
-  <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
-    <span className="wishlist_count" id="favorite-count-second">0</span>
-  </a>
-</div>
-<div className="mini_cart_wrapper">
-  <a onclick="opencartItem()">
-    <i className="fa fa-shopping-bag" />
-    <span className="cart_price"> </span>
-    <span className="cart_count" id="cart-count-second">0</span>
-  </a>
-</div>
-</div>
-</div>
-</div>
+    </div>
+    <div className="col-lg-6 col-md-12">
+      <div className="main_menu menu_position text-center">
+        <nav>
+          <ul>
+            <li><a href="http://microdataindonesia.co.id/" target="__blank">MICRODATA
+                INDONESIA</a></li>
+            <li className="mega_items"><a href="shop.html">all kategories<i className="fa fa-angle-down" /></a>
+              <div className="mega_menu">
+                <ul className="mega_menu_inner" id="generateJenisBarangHover">
+                </ul>
+              </div>
+            </li>
+            <li><a href="{{ url('/login') }}">LOGIN</a></li>
+            <li><a href="{{ url('/about') }}">About Us</a></li>
+            <li><a href="{{ url('/contact') }}"> Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div className="col-lg-3">
+      <div className="header_configure_area">
+        <div className="header_wishlist">
+          <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
+            <span className="wishlist_count" id="favorite-count-second">0</span>
+          </a>
+        </div>
+        <div className="mini_cart_wrapper">
+          <a onclick="opencartItem()">
+            <i className="fa fa-shopping-bag" />
+            <span className="cart_price"> </span>
+            <span className="cart_count" id="cart-count-second">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
                 <div className="header_bottom">

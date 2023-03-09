@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/css/style.css';
 import './assets/css/plugins.css';
+<<<<<<< HEAD
 import './assets/css/custom.css';
 import './App.css';
 
 
+=======
+import './App.css';
+>>>>>>> cc95be3fb363e236efcc84e0bf570dca210a12cd
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
