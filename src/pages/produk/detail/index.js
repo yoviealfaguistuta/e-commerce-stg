@@ -28,12 +28,12 @@ const Detail = () => {
                 <div className="row">
                   <div className="col-lg-5 col-md-6">
                     <div className="product-details-tab">
-                      {/* <div id="img-1" className="zoomWrapper single-zoom"> */}
+                      <div id="img-1" className="zoomWrapper single-zoom">
                         <figure onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
                           <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" />
                         </figure>
-                        {/* <a href="#/" id="image-detail-main"></a> */}
-                      {/* </div> */}
+                        <a href="#/" id="image-detail-main"></a>
+                      </div>
                       <div className="single-zoom-thumb">
                         <ul className="s-tab-zoom owl-carousel single-product-active owl-loaded owl-drag" id="gallery_01"><div className="owl-stage-outer"><div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', width: '391px' }}><div className="owl-item active" style={{ width: '185.5px', marginRight: '10px' }}><li><a href="#/" className="elevatezoom-gallery active" data-update data-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" data-zoom-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16"><img style={{ width: '110px', height: '110px' }} src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="zo-th-1" /></a></li></div><div className="owl-item active" style={{ width: '185.5px', marginRight: '10px' }}><li><a href="#/" className="elevatezoom-gallery active" data-update data-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" data-zoom-image="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17"><img style={{ width: '110px', height: '110px' }} src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="zo-th-1" /></a></li></div></div></div>
                           <div className="owl-nav disabled"><div className="owl-prev"><i className="fa fa-angle-left" /></div>
