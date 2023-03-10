@@ -1,9 +1,26 @@
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo/logo.svg";
-import Login from "../pages/produk/login/login.js";
+import React, { useState, useEffect } from 'react';
+
+
 
 
 export const Header = () => {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrollPosition(window.scrollY);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const showHeader = scrollPosition <= 0;
+  const hideHeader = scrollPosition > 0;
+
     return (
         <>
             <div className="Offcanvas_menu">
@@ -259,7 +276,7 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-            <header>
+            <header className="header">
                 <div className="main_header header_four">
                     <div className="container">
                         <div className="header_top">
@@ -290,9 +307,9 @@ export const Header = () => {
                             <div className="row align-items-center">
                                 <div className="column1 col-lg-3 col-md-3 col-4">
                                     <div className="logo">
-                                        <a href="index.html">
-                                        <img src={logo} alt="" />
-                                        
+                                        <a href="/">
+                                            <img src={logo} alt="" />
+
                                         </a>
                                     </div>
                                 </div>
@@ -300,24 +317,6 @@ export const Header = () => {
                                     <div className="search_container">
                                         <form action="#">
                                             <div className="hover_category">
-                                                <select className="select_option" name="select" id="categori2">
-                                                    <option selected value={1}>All Categories</option>
-                                                    <option value={2}>Accessories</option>
-                                                    <option value={3}>Accessories &amp; More</option>
-                                                    <option value={4}>Butters &amp; Eggs</option>
-                                                    <option value={5}>Camera &amp; Video </option>
-                                                    <option value={6}>Mornitors</option>
-                                                    <option value={7}>Tablets</option>
-                                                    <option value={8}>Laptops</option>
-                                                    <option value={9}>Handbags</option>
-                                                    <option value={10}>Headphone &amp; Speaker</option>
-                                                    <option value={11}>Herbs &amp; botanicals</option>
-                                                    <option value={12}>Vegetables</option>
-                                                    <option value={13}>Shop</option>
-                                                    <option value={14}>Laptops &amp; Desktops</option>
-                                                    <option value={15}>Watchs</option>
-                                                    <option value={16}>Electronic</option>
-                                                </select>
                                             </div>
                                             <div className="search_box">
                                                 <input placeholder="Search product..." type="text" />
@@ -331,15 +330,13 @@ export const Header = () => {
                                         <div className="header_wishlist">
                                             <a href="wishlist.html">
                                                 <i className="ion-android-favorite-outline" />
-                                                <span className="wishlist_count">3</span>
+                                                <span className="wishlist_count">0</span>
                                             </a>
                                         </div>
                                         <div className="mini_cart_wrapper">
                                             <a href="javascript:void(0)">
                                                 <i className="fa fa-shopping-bag" />
-                                                <span className="cart_price">$152.00 <i className="ion-ios-arrow-down" />
-                                                </span>
-                                                <span className="cart_count">2</span>
+                                                <span className="cart_count">0</span>
                                             </a>
                                             <div className="mini_cart">
                                                 <div className="cart_close">
@@ -410,168 +407,83 @@ export const Header = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="header_middle sticky_header_four sticky-header">
+
+                        {/* Sticki */}
+                        <div className={`sticky-header ${hideHeader? 'show' : ''} ${showHeader ? 'hide' : ''}`}>
                             <div className="row align-items-center">
-                                <div className="col-lg-2 col-md-6">
-                                    <div className="logo">
-                                        <a href="index.html">
-                                            <img src="assets/img/logo/logo.png" alt="" />
-                                        </a>
+                                <div className="col-lg-3 col-md-6">
+                                    <div className="logo-sticky-main">
+                                        <a href="http://onlinestore.microdataindonesia.co.id"><img className="logo-dark-main-login" src="http://onlinestore.microdataindonesia.co.id/assets/img/logo/logo-dark.svg" alt="" /></a>
                                     </div>
                                 </div>
-                                <div className="col-lg-7 col-md-12">
+                                <div className="col-lg-6 col-md-12">
                                     <div className="main_menu menu_position text-center">
                                         <nav>
                                             <ul>
-                                                <li>
-                                                    <a className="active" href="index.html">home <i className="fa fa-angle-down" />
-                                                    </a>
-                                                    <ul className="sub_menu">
-                                                        <li>
-                                                            <a href="index.html">Home shop 1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-2.html">Home shop 2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-3.html">Home shop 3</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-4.html">Home shop 4</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-5.html">Home shop 5</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-6.html">Home shop 6</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-7.html">Home shop 7</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega_items">
-                                                    <a href="shop.html">shop <i className="fa fa-angle-down" />
-                                                    </a>
+                                                <li><a href="http://microdataindonesia.co.id/" target="__blank">MICRODATA
+                                                    INDONESIA</a></li>
+                                                <li className="mega_items"><a href="shop.html">all kategories<i className="fa fa-angle-down" /></a>
                                                     <div className="mega_menu">
-                                                        <ul className="mega_menu_inner">
+                                                        <ul className="mega_menu_inner" id="generateJenisBarangHover"><li><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/empty">Digital Product</a>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/1">Pulsa Prabayar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/2">Paket Data</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
                                                             <li>
-                                                                <a href="index-4.html#">Shop Layouts</a>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/empty">Office Supplies</a>
                                                                 <ul>
                                                                     <li>
-                                                                        <a href="shop-fullwidth.html">Full Width</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/3">Printer</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="shop-fullwidth-list.html">Full Width list</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-right-sidebar.html">Right Sidebar </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-right-sidebar-list.html"> Right Sidebar list</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-list.html">List View</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/4">Scanner</a>
                                                                     </li>
                                                                 </ul>
                                                             </li>
                                                             <li>
-                                                                <a href="index-4.html#">other Pages</a>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/empty">Gadget</a>
                                                                 <ul>
                                                                     <li>
-                                                                        <a href="cart.html">cart</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/5">External Storage</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="wishlist.html">Wishlist</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="checkout.html">Checkout</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="my-account.html">my account</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="404.html">Error 404</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/6">Monitor</a>
                                                                     </li>
                                                                 </ul>
                                                             </li>
                                                             <li>
-                                                                <a href="index-4.html#">Product Types</a>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/empty">Elektronik</a>
                                                                 <ul>
                                                                     <li>
-                                                                        <a href="product-details.html">product details</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/7">Audio Video</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="product-sidebar.html">product sidebar</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/8">Televisi</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty">Kosmetik</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/9">Facial Wash</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="product-grouped.html">product grouped</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="variable-product.html">product variable</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="product-countdown.html">product countdown</a>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/10">Facial Cleanser</a>
                                                                     </li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <a href="blog.html">blog <i className="fa fa-angle-down" />
-                                                    </a>
-                                                    <ul className="sub_menu pages">
-                                                        <li>
-                                                            <a href="blog-details.html">blog details</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-fullwidth.html">blog fullwidth</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-sidebar.html">blog sidebar</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-no-sidebar.html">blog no sidebar</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="index-4.html#">pages <i className="fa fa-angle-down" />
-                                                    </a>
-                                                    <ul className="sub_menu pages">
-                                                        <li>
-                                                            <a href="about.html">About Us</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="faq.html">Frequently Questions</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="privacy-policy.html">privacy policy</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="contact.html">contact</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="login.html">login</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="404.html">Error 404</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="compare.html">compare</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="coming-soon.html">coming soon</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="about.html">About Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="contact.html"> Contact Us</a>
-                                                </li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/login">LOGIN</a></li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/about">About Us</a></li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/contact"> Contact Us</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -579,23 +491,23 @@ export const Header = () => {
                                 <div className="col-lg-3">
                                     <div className="header_configure_area">
                                         <div className="header_wishlist">
-                                            <a href="wishlist.html">
-                                                <i className="ion-android-favorite-outline" />
-                                                <span className="wishlist_count">3</span>
+                                            <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
+                                                <span className="wishlist_count" id="favorite-count-second">0</span>
                                             </a>
                                         </div>
                                         <div className="mini_cart_wrapper">
-                                            <a href="javascript:void(0)">
+                                            <a onclick="opencartItem()">
                                                 <i className="fa fa-shopping-bag" />
-                                                <span className="cart_price">$152.00 <i className="ion-ios-arrow-down" />
-                                                </span>
-                                                <span className="cart_count">2</span>
+                                                <span className="cart_price"> </span>
+                                                <span className="cart_count" id="cart-count-second">0</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                         <div className="header_bottom">
                             <div className="row align-items-center">
                                 <div className="column1 col-lg-3 col-md-6">
@@ -853,27 +765,27 @@ export const Header = () => {
                                         <nav>
                                             <ul>
                                                 <li>
-                                                <a onClick="http://microdataindonesia.co.id/" className="" target="__blank">MICRODATA INDONESIA</a>
+                                                    <a href="http://microdataindonesia.co.id/" className="" target="__blank">MICRODATA INDONESIA</a>
                                                 </li>
 
                                                 <li>
-                                               <a onClick={() => Login} className="">LOGIN</a>
+                                                    <Link to="/login" className="">LOGIN</Link>
                                                 </li>
 
                                                 <li>
-                                                <a onClick="#" target="__blank" className="">ABOUT US</a>
+                                                    <Link to="/about" className="">ABOUT US</Link>
                                                 </li>
 
                                                 <li>
-                                                <a onClick="#" target="__blank" className="">CONTACT US</a>
+                                                    <Link to="/contact" className="">CONTACT US</Link>
                                                 </li>
                                             </ul>
                                         </nav>
                                     </div>
                                 </div>
                                 <div className="column3 col-lg-3 col-md-6">
-                                    <div className="header_bigsale h_bigsale_four">
-                                        <a href="index-4.html#">BIG SALE BLACK FRIDAY</a>
+                                    <div className="bigsale">
+                                        <a >BIG SALE BLACK FRIDAY</a>
                                     </div>
                                 </div>
                             </div>

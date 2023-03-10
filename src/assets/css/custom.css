@@ -48,6 +48,7 @@
     height: 100%;
 }
 
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .container_login_wrapper {
         padding: 0px 10px !important;
@@ -890,7 +891,8 @@ photo {
 .image_breadcumb {
     width: 100%;
     position: absolute;
-    height: 228px;
+    height: 250px;
+    padding-bottom: 20px;
 }
 
 .select_costum_kategori {
@@ -1013,4 +1015,11 @@ photo {
         bottom: 0;
         opacity: 0;
     }
+}
+
+a, button {
+    color: inherit;
+    line-height: inherit;
+    text-decoration: none !important;
+    cursor: pointer;
 }

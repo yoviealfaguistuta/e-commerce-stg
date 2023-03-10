@@ -2,9 +2,7 @@ import React, { Fragment } from "react";
 import { Layout } from "../../../layout";
 import gambar from "../../../assets/img/logo/image.svg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../assets/css/style.css'
-import '../../../assets/css/custom.css'
-import '../../../assets/css/plugins.css'
+
 
 
 
@@ -21,7 +19,7 @@ function about() {
                                         <img src={gambar} alt="" />
                                     </div>
                                     <figcaption className="about_content">
-                                        <h1>We are a digital agency focused on delivering content and utility user-experiences.
+             ?                           <h1>We are a digital agency focused on delivering content and utility user-experiences.
                                         </h1>
                                         <p>Microdata Indonesia is one of the few IT system integration, professional service and
                                             software development companies based in Bandar lampung, Lampung - Indonesia that

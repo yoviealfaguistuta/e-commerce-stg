@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
+import '../assets/css/style.css'
+
 export const Footer = (params) => {
     return (
         <footer className="footer_widgets">
@@ -60,11 +64,11 @@ export const Footer = (params) => {
                                 <h3>Information</h3>
                                 <div className="footer_menu">
                                     <ul>
-                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="index-4.html#">Delivery Information</a></li>
                                         <li><a href="index-4.html#">Delivery Information</a></li>
                                         <li><a href="index-4.html#">New products</a></li>
                                         <li><a href="index-4.html#">Best sales</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li><a href="index-4.html#">My Account</a></li>
                                         <li><a href="index-4.html#">Order History</a></li>
                                     </ul>
                                 </div>
@@ -133,7 +137,7 @@ export const Footer = (params) => {
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-md-6">
                             <div className="copyright_area">
-                                <p>Copyright © 2020 <a href="index-4.html#">Microdata Indonesia</a> All Right Reserved.</p>
+                                <p><span style={{ color: 'red', fontWeight: 'bolder' }}>Beta</span> Version - Copyright © 2021 <a href="http://microdataindonesia.co.id/">Microdata Indonesia</a> All Right Reserved.</p>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
