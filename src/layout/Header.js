@@ -1,9 +1,26 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo/logo.svg";
+import React, { useState, useEffect } from 'react';
+
 
 
 
 export const Header = () => {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrollPosition(window.scrollY);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const showHeader = scrollPosition <= 0;
+  const hideHeader = scrollPosition > 0;
+
     return (
         <>
             <div className="Offcanvas_menu">
@@ -392,7 +409,7 @@ export const Header = () => {
                         </div>
 
                         {/* Sticki */}
-                        <div className="header_middle sticky_header_four sticky-header sticky">
+                        <div className={`sticky-header ${hideHeader? 'show' : ''} ${showHeader ? 'hide' : ''}`}>
                             <div className="row align-items-center">
                                 <div className="col-lg-3 col-md-6">
                                     <div className="logo-sticky-main">
