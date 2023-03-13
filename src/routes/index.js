@@ -3,6 +3,10 @@ import {
 } from "react-router-dom";
 import Home from "../pages/home";
 import List from "../pages/produk/list";
+import Keranjang from "../pages/produk/keranjang";
+import Profile from "../pages/produk/profile";
+
+
 import About from "../pages/produk/list/about";
 import Contact from "../pages/produk/list/contact";
 import Detail from "../pages/produk/detail";
@@ -25,6 +29,15 @@ const router = createBrowserRouter([
         path: "/detail/:id_barang",
         element: <Detail />,
     },
+    {
+        path: "/keranjang",
+        element: <Keranjang />,
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
+    },
+    
     {
         path: "/about",
         element: <About />,

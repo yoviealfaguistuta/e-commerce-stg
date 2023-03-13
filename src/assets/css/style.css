@@ -5743,8 +5743,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .widget_list.widget_filter form button {
-  height: 30px;
-  width: 70px;
+  height: 35px;
   line-height: 30px;
   text-transform: capitalize;
   color: #ffffff;
@@ -5756,6 +5755,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .widget_list.widget_filter form button:hover {
   background: #1764E4;
+}
+.btn-filter{
+  margin-top:-200px!important;
+  width: 95px;
+  padding-bottom: 10px;
 }
 
 .recent_product_container {
@@ -11263,19 +11267,17 @@ body {
 }
 
 .filter{
-  padding-left: 200px;
+  padding-left: 100px;
   background: none;
     border: none;
     font-size: 14px;
-    font-weight: 200,bold;
+    font-weight: 300,bold;
     float: right;
     text-align: right;
     line-height: 31px;
 }
 
-.btn-filter{
-  margin-top: -400px !important;
-}
+
 
 .col-lg-5.col-md-12{
   margin-top: 10px;
