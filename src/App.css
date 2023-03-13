@@ -55,3 +55,23 @@ scrollUp{background: #1764E4 none repeat scroll 0 0;
     -webkit-transition: .3s;
     transition: .3s;
 }
+
+
+
+/* //  */
+figure {
+  width: 100%;
+  /* height: 100%; */
+  /* height: 600px; */
+  background-repeat: no-repeat;
+}
+
+figure:hover img {
+  opacity: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
