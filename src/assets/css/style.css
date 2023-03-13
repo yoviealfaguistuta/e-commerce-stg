@@ -54,18 +54,7 @@
 html, body {
   height: 100%;
 }
-img {
-  max-width: 100% !important;
-  height: auto !important;
-}
-.slider_s_four .col-lg-6 {
-  flex: 0 0 58% !important;
-  max-width: 58% !important;
-}
-.col-10 {
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
+
 body {
   line-height: 24px;
   font-size: 14px;
@@ -118,7 +107,7 @@ p:last-child {
 }
 
 a, button {
-  color: inherit !important;
+  color: inherit;
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -151,8 +140,8 @@ button, input[type="submit"] {
 }
 
 img {
-  max-width: 100% !important;
-  height: auto !important;
+  max-width: 100%;
+  height: auto;
 }
 
 ul {
@@ -555,7 +544,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .button {
   background: #1764E4;
   box-shadow: none;
-  color: #ffffff !important;
+  color: #ffffff;
   display: inline-block;
   height: 45px;
   line-height: 45px;
@@ -568,7 +557,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /* 2. Home 1 Header css here */
 /* 01. header css here */
 .off_canvars_overlay {
-  width: 100% ;
+  width: 100%;
   height: 100%;
   position: fixed;
   z-index: 999;
@@ -11219,24 +11208,6 @@ body {
 
 
 /* sticky navbar */
-
-figure {
-  width: 100%;
-  /* height: 100%; */
-  /* height: 600px; */
-  background-repeat: no-repeat;
-}
-
-figure:hover img {
-  opacity: 0;
-}
-
-img {
-
-  display: block;
-  width: 100%;
-  pointer-events: none;
-}
 
 .sticky-header {
   position: fixed;
