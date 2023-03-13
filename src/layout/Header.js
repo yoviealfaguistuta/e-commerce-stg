@@ -9,17 +9,48 @@ export const Header = () => {
 
     const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    function handleScroll() {
-      setScrollPosition(window.scrollY);
-    }
+    useEffect(() => {
+        function handleScroll() {
+            setScrollPosition(window.scrollY);
+        }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-  const showHeader = scrollPosition <= 0;
-  const hideHeader = scrollPosition > 0;
+    const showHeader = scrollPosition <= 0;
+    const hideHeader = scrollPosition > 0;
+
+    // bar
+    const [visible, setVisible] = useState(false);
+    const [visibleWish, setVisibleWish] = useState(false);
+    const [visibleCart, setVisibleCart] = useState(false);
+
+
+
+
+    const toggleVisibility = () => {
+        setVisible(!visible);
+    };
+
+    ///wish
+    const toggleVisibilityWish = () => {
+        setVisibleWish(!visibleWish);
+
+    };
+    const handleCloseModalWish = () => {
+        setVisibleWish(false);
+    };
+
+    ///cart
+    const toggleVisibilityCart = () => {
+        setVisibleCart(!visibleCart);
+
+    };
+    const handleCloseModalCart = () => {
+        setVisibleCart(false);
+    };
+
 
     return (
         <>
@@ -44,16 +75,17 @@ export const Header = () => {
                                 <div className="header_top_settings text-right">
                                     <ul>
                                         <li>
-                                            <a href="index-4.html#">Store Locations</a>
+                                            <a href="https://www.google.co.id/maps/place/PT.MICRODATA+INDONESIA+%7C+SOFTWARE+DEVELOPER/@-5.3832723,105.2941434,17z/data=!3m1!4b1!4m5!3m4!1s0x2e40dac03d097843:0x6bb59f4ba9a84e8c!8m2!3d-5.3832723!4d105.2963321" target="__blank">Store Locations</a>
                                         </li>
                                         <li>
-                                            <a href="index-4.html#">Track Your Order</a>
+                                            <a href="https://www.jne.co.id/en/tracking/trace" target="__blank">Track Your Order</a>
                                         </li>
-                                        <li>Hotline: <a href="tel:+(012)800456789">(012) 800 456 789 </a>
+                                        <li>Hotline: <a href="tel:+628118880853">+62 8118 8808 53</a>
                                         </li>
                                         <li>Quality Guarantee Of Products</li>
                                     </ul>
                                 </div>
+
                                 <div className="search_container">
                                     <form action="#">
                                         <div className="hover_category">
@@ -287,16 +319,16 @@ export const Header = () => {
                                     </div>
                                 </div>
                                 <div className="col-lg-8 col-md-7">
-                                    <div className="header_top_settings text-right">
+                                    <div class="header_top_settings text-right">
                                         <ul>
                                             <li>
-                                                <a onClick="index-4.html#">Store Locations</a>
+                                                <a style={{ color: "white" }} href="https://www.google.co.id/maps/place/PT.MICRODATA+INDONESIA+%7C+SOFTWARE+DEVELOPER/@-5.3832723,105.2941434,17z/data=!3m1!4b1!4m5!3m4!1s0x2e40dac03d097843:0x6bb59f4ba9a84e8c!8m2!3d-5.3832723!4d105.2963321" target="__blank">Store Locations</a>
                                             </li>
                                             <li>
-                                                <a onClick="index-4.html#">Track Your Order</a>
+                                                <a style={{ color: "white" }} href="https://www.jne.co.id/en/tracking/trace" target="__blank">Track Your Order</a>
                                             </li>
-                                            <li>Hotline: <a onClick={"tel:+628118880853"}>+62 8118 8808 53</a></li>
-
+                                            <li>Hotline: <a style={{ color: "white" }} href="tel:+628118880853">+62 8118 8808 53</a>
+                                            </li>
                                             <li>Quality Guarantee Of Products</li>
                                         </ul>
                                     </div>
@@ -327,13 +359,13 @@ export const Header = () => {
                                 </div>
                                 <div className="column3 col-lg-3 col-md-7 col-6">
                                     <div className="header_configure_area header_configure_four">
-                                        <div className="header_wishlist">
-                                            <a href="wishlist.html">
+                                        <div onClick={toggleVisibilityWish} className="header_wishlist">
+                                            <a href="javascript:void(0)">
                                                 <i className="ion-android-favorite-outline" />
                                                 <span className="wishlist_count">0</span>
                                             </a>
                                         </div>
-                                        <div className="mini_cart_wrapper">
+                                        <div onClick={toggleVisibilityCart} className="mini_cart_wrapper">
                                             <a href="javascript:void(0)">
                                                 <i className="fa fa-shopping-bag" />
                                                 <span className="cart_count">0</span>
@@ -409,7 +441,7 @@ export const Header = () => {
                         </div>
 
                         {/* Sticki */}
-                        <div className={`sticky-header ${hideHeader? 'show' : ''} ${showHeader ? 'hide' : ''}`}>
+                        <div className={`sticky-header ${hideHeader ? 'show' : ''} ${showHeader ? 'hide' : ''}`}>
                             <div className="row align-items-center">
                                 <div className="col-lg-3 col-md-6">
                                     <div className="logo-sticky-main">
@@ -490,16 +522,16 @@ export const Header = () => {
                                 </div>
                                 <div className="col-lg-3">
                                     <div className="header_configure_area">
-                                        <div className="header_wishlist">
+                                        <div onClick={toggleVisibilityWish} className="header_wishlist">
                                             <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
                                                 <span className="wishlist_count" id="favorite-count-second">0</span>
                                             </a>
                                         </div>
-                                        <div className="mini_cart_wrapper">
+                                        <div onClick={toggleVisibilityCart} className="mini_cart_wrapper">
                                             <a onclick="opencartItem()">
                                                 <i className="fa fa-shopping-bag" />
                                                 <span className="cart_price"> </span>
-                                                <span className="cart_count" id="cart-count-second">0</span>
+                                                <span className="cart_count_sticky" id="cart-count-second">0</span>
                                             </a>
                                         </div>
                                     </div>
@@ -510,7 +542,7 @@ export const Header = () => {
 
                         <div className="header_bottom">
                             <div className="row align-items-center">
-                                <div className="column1 col-lg-3 col-md-6">
+                                {/* <div className="column1 col-lg-3 col-md-6">
                                     <div className="categories_menu categories_four">
                                         <div className="categories_title">
                                             <h2 className="categori_toggle">SEMUA JENIS BARANG</h2>
@@ -759,7 +791,95 @@ export const Header = () => {
                                             </ul>
                                         </div>
                                     </div>
+                                </div> */}
+
+                                <div className="column1 col-lg-3 col-md-6">
+                                    <div className="categories_menu categories_four">
+                                        <div className="categories_title active">
+                                            <h2 onClick={toggleVisibility} className="categori_toggle">SEMUA JENIS BARANG</h2>
+                                        </div>
+                                        {visible && <div className="categories_menu_toggle" style={{ display: 'block' }} >
+                                            <ul id="generateJenisBarang">
+                                                <li className="menu_item_children">
+                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/empty"><img className="image-jenis-barang" src="https://microdatastoreapi.cooljarsoft.com/image-jenis/thumb/1" alt="" />Digital Product <i className="fa fa-angle-right" /></a>
+                                                    <ul className="categories_mega_menu column_3">
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/1" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/1">Pulsa Prabayar</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/2" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/2">Paket Data</a>
+                                                            </li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                                <li className="menu_item_children">
+                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/empty"><img className="image-jenis-barang" src="https://microdatastoreapi.cooljarsoft.com/image-jenis/thumb/2" alt="" />Office Supplies <i className="fa fa-angle-right" /></a>
+                                                    <ul className="categories_mega_menu column_3">
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/3" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/3">Printer</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/4" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/4">Scanner</a>
+                                                            </li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                                <li className="menu_item_children">
+                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/empty"><img className="image-jenis-barang" src="https://microdatastoreapi.cooljarsoft.com/image-jenis/thumb/3" alt="" />Gadget <i className="fa fa-angle-right" /></a>
+                                                    <ul className="categories_mega_menu column_3">
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/5" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/5">External Storage</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/6" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/6">Monitor</a>
+                                                            </li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                                <li className="menu_item_children">
+                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/empty"><img className="image-jenis-barang" src="https://microdatastoreapi.cooljarsoft.com/image-jenis/thumb/4" alt="" />Elektronik <i className="fa fa-angle-right" /></a>
+                                                    <ul className="categories_mega_menu column_3">
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/7" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/7">Audio Video</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/8" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/8">Televisi</a>
+                                                            </li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                                <li className="menu_item_children">
+                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty"><img className="image-jenis-barang" src="https://microdatastoreapi.cooljarsoft.com/image-jenis/thumb/10" alt="" />Kosmetik <i className="fa fa-angle-right" /></a>
+                                                    <ul className="categories_mega_menu column_3">
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/9" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/9">Facial Wash</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul className="categorie_sub_menu">
+                                                            <li className="wrapper-kategori-child">
+                                                                <img className="image-kategori-hover" src="https://microdatastoreapi.cooljarsoft.com/image-kategori/thumb/10" alt="" /><a className="link-kategori-hover" href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/10">Facial Cleanser</a>
+                                                            </li>
+                                                        </ul>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>}
+                                    </div>
                                 </div>
+
                                 <div className="column2 col-lg-6 ">
                                     <div className="main_menu menu_four menu_position text-center">
                                         <nav>
@@ -793,6 +913,67 @@ export const Header = () => {
                     </div>
                 </div>
             </header>
+
+            {/* wish */}
+            {visibleWish && <div className="modal fade show" id="modal_favorite_item" tabIndex={-1} role="dialog" style={{ paddingLeft: '160px', paddingRight: '17px', display: 'block' }} aria-modal="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <button onClick={handleCloseModalWish} type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <div className="modal_body">
+                            <div className="container">
+                                <span>Daftar Wishlist</span>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-7 col-sm-12">
+                                        <div className="modal_right" id="generateFavorite">
+                                            <div className="container_not_found">
+                                                <img className="not_found_item" src="http://onlinestore.microdataindonesia.co.id/assets/img/notfound/notfound.svg" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>}
+
+            {/* cart */}
+            {visibleCart && <div class="mini_cart active" id="mini_cart">
+                <div class="cart_close">
+                    <div class="cart_text">
+                        <h3>cart</h3>
+                    </div>
+                    <div onClick={handleCloseModalCart} class="mini_cart_close">
+                        <a href="javascript:void(0)">
+                            <i class="ion-android-close"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="generateCartItems">
+                    <div class="container_not_found">
+                        <img class="not_found_item" src="http://onlinestore.microdataindonesia.co.id/assets/img/notfound/notfound.svg" alt="" />
+                    </div>
+                </div>
+                <div class="mini_cart_table">
+                    <div class="cart_total mt-10">
+                        <span>total:</span>
+                        <span class="price" id="totalCartFirst"></span>
+                    </div>
+                </div>
+                <div class="mini_cart_footer">
+                    <div class="cart_button">
+                        <a href="cart.html">View cart</a>
+                    </div>
+                    <div class="cart_button">
+                        <a class="active" href="checkout.html">Checkout</a>
+                    </div>
+                </div>
+            </div>}
+
+
+
         </>
     )
 };
