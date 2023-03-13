@@ -7,6 +7,13 @@ import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
 
 
+import '../../../App.css';
+import '../../../assets/css/style.css';
+import '../../../assets/css/plugins.css';
+
+
+
+
 const Detail = () => {
 
   const [DataUser, setUserData] = useState({
