@@ -511,7 +511,7 @@ const Home = () => {
                     </div>
                 </div >
                 <div className='owl-item firstActiveItem active test-row'>
-                <article className="single_product">
+                    <article className="single_product">
                         <figure>
                             <div className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" /></a>
                                 <div className="label_product"><span className="label_sale">Sale</span></div>
@@ -557,24 +557,43 @@ const Home = () => {
                                 <div className="add_to_cart"><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty" title="Checkout">Checkout</a></div>
                             </div>
                         </figure>
-                </article>
-                <article className="single_product">
+                    </article>
+                    <article className="single_product">
                         <figure>
-                            <div className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" /></a>
-                                <div className="label_product"><span className="label_sale">Sale</span></div>
+                            <div className="product_thumb">
+                                <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/8">
+                                    <img  style={{ width: 805 }}src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/15" alt="" />
+                                </a>
+                                <div className="label_product">
+                                    <span className="label_sale">Sale
+                                    </span>
+                                </div>
                                 <div className="action_links">
                                     <ul>
-                                        <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites"><img className="icon-item-costum-like-home image-favorite-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" /></a></li>
-                                        <li className="compare"><a><img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                        <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} /><a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart"><img className="icon-item-costum-cart-home image-cart-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" /></a></li>
+                                        <li className="wishlist">
+                                            <input value="8" id="data-favorite-7344" type="hidden" name="7344" />
+                                            <a id="click-favorite-7344" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img className="icon-item-costum-like-home image-favorite-7344" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
+                                        <li className="compare">
+                                            <a>
+                                                <img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                        </li>
+                                        <li className="quick_button">
+                                            <input value="8" id="data-cart-7344" type="hidden" name="7344" />
+                                            <a id="click-cart-7344" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img className="icon-item-costum-cart-home image-cart-7344" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="product_content">
                                 <div className="product_content_inner">
-                                    <h4 className="product_name" style={{ height: '50px' }} >MSI Optix MPG341CQR Monitor 34 Inch</h4>
-                                    <div className="price_box"><span className="old_price">Rp. 18.164.000</span><span className="current_price">Rp.
-                                        18.064.000</span></div>
+                                    <h4 className="product_name" style={{ height: '50px' }} >Wardah - Facial Wash</h4>
+                                    <div className="price_box"><span className="old_price">Rp. 41.500</span><span className="current_price">Rp. 58.500</span></div>
                                     <div className="countdown_text">
                                         <p><span>Hurry Up!</span> Offers ends in: </p>
                                     </div>
@@ -601,27 +620,117 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="add_to_cart"><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty" title="Checkout">Checkout</a></div>
                             </div>
                         </figure>
-                </article>
-                <article className="single_product">
-                <figure>
-                            <div className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" /></a>
-                                <div className="label_product"><span className="label_sale">Sale</span></div>
+                    </article>
+                    <article className="single_product">
+                        <figure>
+                            <div className="product_thumb">
+                                <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                    <img style={{ width: 800 }}src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="" />
+                                </a>
+                                <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                    <img style={{ width: 800 }}src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="" />
+                                </a>
+                                <div className="label_product">
+                                    <span className="label_sale">Sale
+                                    </span>
+                                </div>
                                 <div className="action_links">
                                     <ul>
-                                        <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites"><img className="icon-item-costum-like-home image-favorite-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" /></a></li>
-                                        <li className="compare"><a><img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                        <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} /><a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart"><img className="icon-item-costum-cart-home image-cart-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" /></a></li>
+                                        <li className="wishlist">
+                                            <input value="9" id="data-favorite-2795" type="hidden" name="2795" />
+                                            <a id="click-favorite-2795" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img className="icon-item-costum-like-home image-favorite-2795" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
+                                        <li className="compare">
+                                            <a>
+                                                <img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                        </li>
+                                        <li className="quick_button">
+                                            <input value="9" id="data-cart-2795" type="hidden" name="2795" />
+                                            <a id="click-cart-2795" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img className="icon-item-costum-cart-home image-cart-2795" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
+                            <div className="product_content">
+                                <div className="product_content_inner">
+                                    <h4 className="product_name" style={{ height: '50px' }} >Wardah - Facial Cleanshe</h4>
+                                    <div className="price_box"><span className="old_price">Rp. 31.500</span><span className="current_price">Rp. 68.500</span></div>
+                                    <div className="countdown_text">
+                                        <p><span>Hurry Up!</span> Offers ends in: </p>
+                                    </div>
+                                    <div className="product_timing">
+                                        <div data-countdown="2021/12/15">
+                                            <div className="countdown_area">
+                                                <div className="single_countdown">
+                                                    <div className="countdown_number">00</div>
+                                                    <div className="countdown_title">days</div>
+                                                </div>
+                                                <div className="single_countdown">
+                                                    <div className="countdown_number">00</div>
+                                                    <div className="countdown_title">hours</div>
+                                                </div>
+                                                <div className="single_countdown">
+                                                    <div className="countdown_number">00</div>
+                                                    <div className="countdown_title">mins</div>
+                                                </div>
+                                                <div className="single_countdown">
+                                                    <div className="countdown_number">00</div>
+                                                    <div className="countdown_title">secs</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </article>
+                    <article className="single_product">
+                        <figure>
+                            <div className="product_thumb">
+                                <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
+                                    <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" />
+                                </a>
+                                <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
+                                    <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" />
+                                </a>
+                                <div className="label_product">
+                                    <span className="label_sale">Sale
+                                    </span>
+                                </div>
+                                <div className="action_links">
+                                    <ul>
+                                        <li className="wishlist">
+                                            <input value="7" id="data-favorite-6138" type="hidden" name="6138" />
+                                            <a id="click-favorite-6138" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img className="icon-item-costum-like-home image-favorite-6138" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
+                                        <li className="compare">
+                                            <a>
+                                                <img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                        </li>
+                                        <li className="quick_button">
+                                            <input value="7" id="data-cart-6138" type="hidden" name="6138" />
+                                            <a id="click-cart-6138" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img className="icon-item-costum-cart-home image-cart-6138" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
                             <div className="product_content">
                                 <div className="product_content_inner">
                                     <h4 className="product_name" style={{ height: '50px' }} >MSI Optix MPG341CQR Monitor 34 Inch</h4>
-                                    <div className="price_box"><span className="old_price">Rp. 18.164.000</span><span className="current_price">Rp.
-                                        18.064.000</span></div>
+                                    <div className="price_box"><span className="old_price">Rp. 18.164.000</span><span className="current_price">Rp. 18.064.000</span></div>
                                     <div className="countdown_text">
                                         <p><span>Hurry Up!</span> Offers ends in: </p>
                                     </div>
@@ -648,27 +757,45 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="add_to_cart"><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty" title="Checkout">Checkout</a></div>
                             </div>
-                </figure>
-                </article>
-                <article className="single_product">
-                <figure>
-                            <div className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" /></a>
-                                <div className="label_product"><span className="label_sale">Sale</span></div>
+                        </figure>
+                    </article>
+                    <article className="single_product">
+                    <figure>
+                            <div className="product_thumb">
+                                <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/8">
+                                    <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/15" alt="" />
+                                </a>
+                                <div className="label_product">
+                                    <span className="label_sale">Sale
+                                    </span>
+                                </div>
                                 <div className="action_links">
                                     <ul>
-                                        <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites"><img className="icon-item-costum-like-home image-favorite-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" /></a></li>
-                                        <li className="compare"><a><img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                        <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} /><a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart"><img className="icon-item-costum-cart-home image-cart-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" /></a></li>
+                                        <li className="wishlist">
+                                            <input value="8" id="data-favorite-224" type="hidden" name="224" />
+                                            <a id="click-favorite-224" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img className="icon-item-costum-like-home image-favorite-224" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
+                                        <li className="compare">
+                                            <a>
+                                                <img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                        </li>
+                                        <li className="quick_button">
+                                            <input value="8" id="data-cart-224" type="hidden" name="224" />
+                                            <a id="click-cart-224" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img className="icon-item-costum-cart-home image-cart-224" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="product_content">
                                 <div className="product_content_inner">
-                                    <h4 className="product_name" style={{ height: '50px' }} >MSI Optix MPG341CQR Monitor 34 Inch</h4>
-                                    <div className="price_box"><span className="old_price">Rp. 18.164.000</span><span className="current_price">Rp.
-                                        18.064.000</span></div>
+                                    <h4 className="product_name" style={{ height: '50px' }} >Wardah - Facial Wash</h4>
+                                    <div className="price_box"><span className="old_price">Rp. 41.500</span><span className="current_price">Rp. 58.500</span></div>
                                     <div className="countdown_text">
                                         <p><span>Hurry Up!</span> Offers ends in: </p>
                                     </div>
@@ -695,63 +822,15 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="add_to_cart"><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty" title="Checkout">Checkout</a></div>
                             </div>
-                </figure>
-                </article>
-                <article className="single_product">
-                <figure>
-                            <div className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/11" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/12" alt="" /></a>
-                                <div className="label_product"><span className="label_sale">Sale</span></div>
-                                <div className="action_links">
-                                    <ul>
-                                        <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites"><img className="icon-item-costum-like-home image-favorite-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" /></a></li>
-                                        <li className="compare"><a><img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                        <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} /><a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart"><img className="icon-item-costum-cart-home image-cart-6252" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" /></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="product_content">
-                                <div className="product_content_inner">
-                                    <h4 className="product_name" style={{ height: '50px' }} >MSI Optix </h4>
-                                    <div className="price_box"><span className="old_price">Rp. 18.164.000</span><span className="current_price">Rp.
-                                        18.064.000</span></div>
-                                    <div className="countdown_text">
-                                        <p><span>Hurry Up!</span> Offers ends in: </p>
-                                    </div>
-                                    <div className="product_timing">
-                                        <div data-countdown="2021/12/15">
-                                            <div className="countdown_area">
-                                                <div className="single_countdown">
-                                                    <div className="countdown_number">00</div>
-                                                    <div className="countdown_title">days</div>
-                                                </div>
-                                                <div className="single_countdown">
-                                                    <div className="countdown_number">00</div>
-                                                    <div className="countdown_title">hours</div>
-                                                </div>
-                                                <div className="single_countdown">
-                                                    <div className="countdown_number">00</div>
-                                                    <div className="countdown_title">mins</div>
-                                                </div>
-                                                <div className="single_countdown">
-                                                    <div className="countdown_number">00</div>
-                                                    <div className="countdown_title">secs</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="add_to_cart"><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty" title="Checkout">Checkout</a></div>
-                            </div>
-                </figure>
-                </article>
+                    </figure>
+                    </article>
                 </div>
                 <div className="col-10">
                     <figure className="single_banner mb-20">
                         <div className="banner_thumb">
                             <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty">
-                                <img src="http://onlinestore.microdataindonesia.co.id/assets/img/flashsale.svg" alt />
+                                <img style={{ width: 3000 }}src="http://onlinestore.microdataindonesia.co.id/assets/img/flashsale.svg" alt />
                             </a>
                         </div>
                     </figure>
