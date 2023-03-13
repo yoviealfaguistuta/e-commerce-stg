@@ -5,6 +5,8 @@ import Home from "../pages/home";
 import List from "../pages/produk/list";
 import Keranjang from "../pages/produk/keranjang";
 import Profile from "../pages/produk/profile";
+import Checkout from "../pages/produk/checkout";
+
 
 
 import About from "../pages/produk/list/about";
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
     {
         path: "/keranjang",
         element: <Keranjang />,
+    },
+    {
+        path: "/checkout",
+        element: <Checkout />,
     },
     {
         path: "/profile",
