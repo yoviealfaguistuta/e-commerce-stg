@@ -193,7 +193,7 @@ const Detail = () => {
                             <ul>
                               <li className="wishlist">
                                 <input defaultValue={9} id="data-cart-301" type="hidden" name={301} />
-                                <a id="click-cart-301" onclick="card(this)" data="[object Object]" className="click-wilshit">
+                                <a id="click-cart-30" onclick="cawil(this)" data="[object Object]" className="click-wilshit">
                                   {/* <img src={gambar} onClick={() => setGambar(like)} alt="gambar" /> */}
                                   <img src={images[imageIndex]} alt="gambar" onClick={handleClick} />
                                 </a>
