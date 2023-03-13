@@ -11205,6 +11205,24 @@ body {
 
 /* sticky navbar */
 
+figure {
+  width: 100%;
+  /* height: 100%; */
+  /* height: 600px; */
+  background-repeat: no-repeat;
+}
+
+figure:hover img {
+  opacity: 0;
+}
+
+img {
+
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
 .sticky-header {
   position: fixed;
   top: 0;
