@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo/logo.svg";
-import "../assets/css/style.css";
-import "../assets/css/plugins.css";
-import "../assets/css/custom.css";
-
+import React, { useState, useEffect } from 'react';
 
 
 
 
 export const Header = () => {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrollPosition(window.scrollY);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const showHeader = scrollPosition <= 0;
+  const hideHeader = scrollPosition > 0;
+
     return (
         <>
             <div className="Offcanvas_menu">
@@ -264,7 +276,7 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-            <header>
+            <header className="header">
                 <div className="main_header header_four">
                     <div className="container">
                         <div className="header_top">
@@ -296,8 +308,8 @@ export const Header = () => {
                                 <div className="column1 col-lg-3 col-md-3 col-4">
                                     <div className="logo">
                                         <a href="/">
-                                        <img src={logo} alt="" />
-                                        
+                                            <img src={logo} alt="" />
+
                                         </a>
                                     </div>
                                 </div>
@@ -305,24 +317,6 @@ export const Header = () => {
                                     <div className="search_container">
                                         <form action="#">
                                             <div className="hover_category">
-                                                <select className="select_option" name="select" id="categori2">
-                                                    <option selected value={1}>All Categories</option>
-                                                    <option value={2}>Accessories</option>
-                                                    <option value={3}>Accessories &amp; More</option>
-                                                    <option value={4}>Butters &amp; Eggs</option>
-                                                    <option value={5}>Camera &amp; Video </option>
-                                                    <option value={6}>Mornitors</option>
-                                                    <option value={7}>Tablets</option>
-                                                    <option value={8}>Laptops</option>
-                                                    <option value={9}>Handbags</option>
-                                                    <option value={10}>Headphone &amp; Speaker</option>
-                                                    <option value={11}>Herbs &amp; botanicals</option>
-                                                    <option value={12}>Vegetables</option>
-                                                    <option value={13}>Shop</option>
-                                                    <option value={14}>Laptops &amp; Desktops</option>
-                                                    <option value={15}>Watchs</option>
-                                                    <option value={16}>Electronic</option>
-                                                </select>
                                             </div>
                                             <div className="search_box">
                                                 <input placeholder="Search product..." type="text" />
@@ -413,50 +407,106 @@ export const Header = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="header_middle sticky_header_four sticky-header">
-  <div className="row align-items-center">
-    <div className="col-lg-3 col-md-6">
-      <div className="logo-sticky-main">
-        <a href="{{ url('/') }}"><img className="logo-dark-main-login" src="{{ url('assets/img') }}/logo/logo-dark.svg" alt="" /></a>
-      </div>
-    </div>
-    <div className="col-lg-6 col-md-12">
-      <div className="main_menu menu_position text-center">
-        <nav>
-          <ul>
-            <li><a href="http://microdataindonesia.co.id/" target="__blank">MICRODATA
-                INDONESIA</a></li>
-            <li className="mega_items"><a href="shop.html">all kategories<i className="fa fa-angle-down" /></a>
-              <div className="mega_menu">
-                <ul className="mega_menu_inner" id="generateJenisBarangHover">
-                </ul>
-              </div>
-            </li>
-            <li><a href="{{ url('/login') }}">LOGIN</a></li>
-            <li><a href="{{ url('/about') }}">About Us</a></li>
-            <li><a href="{{ url('/contact') }}"> Contact Us</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div className="col-lg-3">
-      <div className="header_configure_area">
-        <div className="header_wishlist">
-          <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
-            <span className="wishlist_count" id="favorite-count-second">0</span>
-          </a>
-        </div>
-        <div className="mini_cart_wrapper">
-          <a onclick="opencartItem()">
-            <i className="fa fa-shopping-bag" />
-            <span className="cart_price"> </span>
-            <span className="cart_count" id="cart-count-second">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+                        {/* Sticki */}
+                        <div className={`sticky-header ${hideHeader? 'show' : ''} ${showHeader ? 'hide' : ''}`}>
+                            <div className="row align-items-center">
+                                <div className="col-lg-3 col-md-6">
+                                    <div className="logo-sticky-main">
+                                        <a href="http://onlinestore.microdataindonesia.co.id"><img className="logo-dark-main-login" src="http://onlinestore.microdataindonesia.co.id/assets/img/logo/logo-dark.svg" alt="" /></a>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-md-12">
+                                    <div className="main_menu menu_position text-center">
+                                        <nav>
+                                            <ul>
+                                                <li><a href="http://microdataindonesia.co.id/" target="__blank">MICRODATA
+                                                    INDONESIA</a></li>
+                                                <li className="mega_items"><a href="shop.html">all kategories<i className="fa fa-angle-down" /></a>
+                                                    <div className="mega_menu">
+                                                        <ul className="mega_menu_inner" id="generateJenisBarangHover"><li><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/empty">Digital Product</a>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/1">Pulsa Prabayar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/2">Paket Data</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                            <li>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/empty">Office Supplies</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/3">Printer</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/4">Scanner</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/empty">Gadget</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/5">External Storage</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/6">Monitor</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/empty">Elektronik</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/7">Audio Video</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/8">Televisi</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty">Kosmetik</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/9">Facial Wash</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/10">Facial Cleanser</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/login">LOGIN</a></li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/about">About Us</a></li>
+                                                <li><a href="http://onlinestore.microdataindonesia.co.id/contact"> Contact Us</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div className="col-lg-3">
+                                    <div className="header_configure_area">
+                                        <div className="header_wishlist">
+                                            <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
+                                                <span className="wishlist_count" id="favorite-count-second">0</span>
+                                            </a>
+                                        </div>
+                                        <div className="mini_cart_wrapper">
+                                            <a onclick="opencartItem()">
+                                                <i className="fa fa-shopping-bag" />
+                                                <span className="cart_price"> </span>
+                                                <span className="cart_count" id="cart-count-second">0</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div className="header_bottom">
                             <div className="row align-items-center">
@@ -715,27 +765,27 @@ export const Header = () => {
                                         <nav>
                                             <ul>
                                                 <li>
-                                                <a href="http://microdataindonesia.co.id/" className="" target="__blank">MICRODATA INDONESIA</a>
+                                                    <a href="http://microdataindonesia.co.id/" className="" target="__blank">MICRODATA INDONESIA</a>
                                                 </li>
 
                                                 <li>
-                                               <Link to="/login" className="">LOGIN</Link>
+                                                    <Link to="/login" className="">LOGIN</Link>
                                                 </li>
 
                                                 <li>
-                                                <Link to="/about" className="">ABOUT US</Link>
+                                                    <Link to="/about" className="">ABOUT US</Link>
                                                 </li>
 
                                                 <li>
-                                                <Link to="/contact" className="">CONTACT US</Link>
+                                                    <Link to="/contact" className="">CONTACT US</Link>
                                                 </li>
                                             </ul>
                                         </nav>
                                     </div>
                                 </div>
                                 <div className="column3 col-lg-3 col-md-6">
-                                    <div className="header_bigsale h_bigsale_four">
-                                        <a href="index-4.html#">BIG SALE BLACK FRIDAY</a>
+                                    <div className="bigsale">
+                                        <a >BIG SALE BLACK FRIDAY</a>
                                     </div>
                                 </div>
                             </div>
