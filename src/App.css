@@ -59,19 +59,23 @@ scrollUp{background: #1764E4 none repeat scroll 0 0;
 
 
 /* //  */
-figure {
+.figure-img {
   width: 100%;
   /* height: 100%; */
   /* height: 600px; */
   background-repeat: no-repeat;
 }
 
-figure:hover img {
+.figure-img:hover img {
   opacity: 0;
 }
 
-img {
+.img1 {
   display: block;
   width: 100%;
   pointer-events: none;
+}
+
+.wishlist{
+  padding-right: 100px;
 }

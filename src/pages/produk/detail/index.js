@@ -63,8 +63,8 @@ const Detail = () => {
                 <div className="col-lg-5 col-md-6">
                   <div className="product-details-tab">
                     <div id="img-1" className="zoomWrapper single-zoom">
-                      <figure onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
-                        <img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" />
+                      <figure className='figure-img' onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
+                        <img className='img1' src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" />
                       </figure>
                       <a href="#/" id="image-detail-main"></a>
                     </div>
@@ -200,7 +200,7 @@ const Detail = () => {
                             <ul>
                               <li className="wishlist">
                                 <input defaultValue={9} id="data-cart-301" type="hidden" name={301} />
-                                <a id="click-cart-30" onclick="cawil(this)" data="[object Object]" className="click-wilshit">
+                                <a className='click-favorite-8621' id="click-cart-30" onclick="cawil(this)" data="[object Object]" className="click-wilshit">
                                   {/* <img src={gambar} onClick={() => setGambar(like)} alt="gambar" /> */}
                                   <img src={images[imageIndex]} alt="gambar" onClick={handleClick} />
                                 </a>
