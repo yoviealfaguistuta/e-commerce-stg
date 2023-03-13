@@ -1,20 +1,3 @@
-figure{
-    width: 100%;
-    /* height: 100%; */
-    /* height: 600px; */
-    background-repeat: no-repeat;
-  }
-  
-  figure:hover img {
-    opacity: 0;
-  }
-  
-  img {
-    display: block;
-    width: 100%;
-    pointer-events: none;
-  }
-  
 .image-kategori-hover {
     width: 25px;
     height: 25px;
@@ -1041,3 +1024,12 @@ a, button {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+.test-row {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+>>>>>>> fda4c62c9c5e99d14da44ffe9c647ab2bbd05e4a
