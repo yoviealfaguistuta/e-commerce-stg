@@ -5,12 +5,12 @@ import like from "../../../assets/img/logo/like-click.svg"
 import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
-import { BsDot } from 'react-icons/bs';
+// import { BsDot } from 'react-icons/bs';
 
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
-import Slider from '@mui/material/Slider';
+// import Slider from '@mui/material/Slider';
 
 
 
