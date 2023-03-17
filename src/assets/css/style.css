@@ -51,6 +51,14 @@
   box-sizing: border-box;
 }
 
+.col-lg-2{
+  flex: 0 0 auto;
+    width: 20% !important;
+    padding-right: 20px !important;
+   
+}
+
+
 html, body {
   height: 100%;
 }
@@ -335,6 +343,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     padding: 60px 0;
   }
 }
+
+ .home_selection_bg{
+  margin-top: 40px;
+  padding-left: 60px;
+ }
 
 .section-pt {
   padding-top: 100px;
