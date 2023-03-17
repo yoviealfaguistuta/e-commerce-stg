@@ -6,6 +6,7 @@ import Ovo from '../../../assets/img/icon/ovo.png';
 import Profil from '../../../assets/img/icon/profil.svg';
 import Search from '../../../assets/img/icon/search1.png';
 import Location from '../../../assets/img/icon/location.png';
+import Kode from '../../../assets/img/icon/kode.svg';
 import Share from '../../../assets/img/icon/share.svg';
 import Sms from '../../../assets/img/icon/SMS.png';
 import Modal from 'react-bootstrap/Modal';
@@ -148,8 +149,59 @@ const Profile = (props) => {
     const ubahAlamat = () => setEditAlamat(true);
     const closeEdit = () => setEditAlamat(false);
 
+    ///Request
+    const [request, setRequest] = useState(false);
 
+    const closeRequest = () => setRequest(false);
+    const openRequest = () => setRequest(true);
 
+    ///Ubah sandi
+    const [sandi, setSandi] = useState(false);
+    const closeSandi = () => setSandi(false);
+    const openSandi = () => setSandi(true);
+
+    ///verivikasi kode 
+    const [code, setCode] = useState(false);
+    const closeCode = () => setCode(false);
+    const openCode = () => setCode(true);
+
+    const codeRef1 = useRef(null);
+    const codeRef2 = useRef(null);
+    const codeRef3 = useRef(null);
+    const codeRef4 = useRef(null);
+
+    const handleChange = (e, index) => {
+        const newCode = [...code];
+        newCode[index] = e.target.value;
+        setCode(newCode);
+
+        // Move focus to the next input field
+        if (index < 3 && e.target.value !== '') {
+            switch (index) {
+                case 0:
+                    codeRef2.current.focus();
+                    break;
+                case 1:
+                    codeRef3.current.focus();
+                    break;
+                case 2:
+                    codeRef4.current.focus();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('Text');
+        const pastedCode = pastedData.split('').slice(0, 4);
+        setCode(pastedCode);
+
+        // Move focus to the last input field after pasting
+        codeRef4.current.focus();
+    };
 
 
 
@@ -259,11 +311,22 @@ const Profile = (props) => {
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Card>
-                                            <Card style={{ width: '18rem' }}>
+                                            <Card style={{ width: '18rem', marginBottom: 20 }}>
                                                 <Card.Body>
                                                     <Card.Text style={{ textAlign: "center" }}>
-                                                        <button className="my-button" style={{ fontWeight: 'bold' }}>Ubah Kata Sandi </button>
+                                                        <button className="my-button" onClick={openSandi} style={{ fontWeight: 'bold' }}>Ubah Kata Sandi </button>
                                                     </Card.Text>
+
+                                                </Card.Body>
+                                            </Card>
+                                            <Card style={{ width: '18rem' }}>
+
+                                                <Card.Body>
+                                                    {/* <img src={Kode} style={{ marginRight: 30 }}></img> */}
+                                                    <Card.Text style={{ textAlign: "center" }}>
+                                                        <button onClick={openCode} className="my-button" style={{ fontWeight: 'bold', paddingTop: -100 }}>Pin </button>
+                                                    </Card.Text>
+
                                                 </Card.Body>
                                             </Card>
                                         </div>
@@ -339,14 +402,14 @@ const Profile = (props) => {
                                         <Card className="card-alamat">
                                             <Card.Body>
                                                 <ul className="alamat">
-                                                    <li style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }} ><b> Rumah</b><span style={{background:'#0d6efd', color:'#6D7588', fontSize:16}}>Utama</span></li>
+                                                    <li style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }} ><b> Rumah</b><span style={{ background: '#0d6efd', color: '#6D7588', fontSize: 16 }}>Utama</span></li>
                                                     <li style={{ paddingBottom: 8 }}><b> Fadil Ainuddin</b></li>
                                                     <li style={{ paddingBottom: 8 }}> 0895616710043 </li>
                                                     <li style={{ paddingBottom: 12 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
                                                     <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li>
 
                                                     <Nav className="me-auto">
-                                                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features">Share</Nav.Link>
+                                                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link>
                                                         <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
                                                     </Nav>
                                                 </ul>
@@ -366,7 +429,7 @@ const Profile = (props) => {
                                                 </div>
 
                                                 <div style={{ paddingLeft: 950, marginTop: -45 }}>
-                                                    <Button>Request</Button>
+                                                    <Button onClick={openRequest}>Request</Button>
                                                 </div>
                                             </Card.Body>
                                         </Card>
@@ -573,20 +636,122 @@ const Profile = (props) => {
                                     Warna rumah, patokan, pesan khusus, dll.
                                 </Form.Text>
                             </div>
-                            
+
                             <div>
-                            <Form><Form.Check type="checkbox" id="" label="Jadikan Alamat utama" /> </Form>
+                                <Form><Form.Check type="checkbox" id="" label="Jadikan Alamat utama" /> </Form>
                             </div>
-                            <div style={{textAlign:'center'}}>
+                            <div style={{ textAlign: 'center' }}>
                                 <Form.Text id="passwordHelpBlock" muted>
                                     Dengan klik “Simpan”, kamu menyetujui <a variant='primary'>Syarat & Ketentuan.</a>
                                 </Form.Text>
                             </div>
-                            <div style={{textAlign:'center'}}>
-                            <Button >Simpan</Button>
+                            <div style={{ textAlign: 'center' }}>
+                                <Button >Simpan</Button>
                             </div>
                         </Card.Body>
                     </Card>
+                </Modal>
+
+                {/* Request */}
+                <Modal show={request} onHide={closeRequest} animation={false}>
+                    <Card >
+                        <Card.Body>
+                            <div onClick={closeRequest} className="mini_cart_close" style={{ paddingLeft: 750 }}>
+                                <a href="javascript:void(0)">
+                                    <i class="ion-android-close"></i>
+                                </a>
+                            </div>
+
+                            <Card.Title style={{ paddingBottom: 20, marginTop: -25, fontSize: 25, fontWeight: 600 }}>Minta alamat ke teman kamu</Card.Title>
+                            <Card.Text>
+                                <Card.Body>
+                                    <Form.Control type="text" id="inputPassword5" placeholder="Email/Nomor HP" aria-describedby="passwordHelpBlock" />
+
+                                    <div style={{ paddingTop: 40, fontSize: 20, }} >
+                                        <Form.Text id="passwordHelpBlock" muted>
+                                            Dengan klik Minta Alamat, kamu setuju menggunakan kontak teman kamu untuk dimintakan alamat.
+                                        </Form.Text>
+                                    </div>
+                                    <div style={{ textAlign: 'center' }}>
+                                        <Button  >Minta Alamat</Button>
+                                    </div>
+                                </Card.Body>
+                            </Card.Text>
+
+                        </Card.Body>
+
+                    </Card>
+                </Modal>
+
+                {/* Sandi */}
+                <Modal show={sandi} onHide={closeSandi} animation={false}>
+                    <Card >
+                        <Card.Body>
+                            <div onClick={closeSandi} className="mini_cart_close" style={{ paddingLeft: 750 }}>
+                                <a href="javascript:void(0)">
+                                    <i class="ion-android-close"></i>
+                                </a>
+                            </div>
+
+                            <Card.Title style={{ paddingBottom: 20, marginTop: -25, fontSize: 25, fontWeight: 600 }}>Ubah Email</Card.Title>
+                            <Card.Text>
+                                <ul>
+                                    <li style={{ color: '#31353B', textAlign: 'center', fontWeight: 'bold', fontSize: '1.14286rem' }}>Pilih Metode Verifikasi</li>
+                                    <li style={{ color: '#31353B', textAlign: 'center', lineHeight: 1.5 }}>Pilih salah satu metode dibawah ini untuk mendapatkan kode verifikasi.</li>
+                                </ul>
+                            </Card.Text>
+
+                            <div style={{ paddingBottom: 50, paddingLeft: 135 }}>
+                                <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
+                                    <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+                                    <b style={{ color: '#31353B', paddingLeft: 20 }}>SMS Ke</b>
+                                    <div>
+                                        <a style={{ color: '#31353B', paddingLeft: 70, fontSize: 13 }}>0895-6167-100-43</a>
+
+                                    </div>
+
+                                </Button>
+                            </div>
+                        </Card.Body>
+
+                    </Card>
+                </Modal>
+
+                {/* verivikasi */}
+                <Modal show={code} onHide={closeCode} animation={false} >
+                    <Card>
+                        <Modal.Header closeButton>
+
+                        </Modal.Header>
+                        <Card.Body style={{ padding: 30 }}>
+                            <ul style={{ textAlign: "center" }}>
+                                <li><b style={{ fontSize: 40 }}>Ubah Pin</b></li>
+                                <li><b>Masukkan 6-digit PIN Lama Anda</b></li>
+                            </ul>
+                            <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
+                                <Form.Control type="text" value={code[0]} onChange={(e) => handleChange(e, 0)} ref={codeRef1} maxLength={1} onPaste={handlePaste}
+                                />
+                                <Form.Control type="text" value={code[1]} onChange={(e) => handleChange(e, 1)} ref={codeRef2} maxLength={1} onPaste={handlePaste}
+                                />
+                                <Form.Control type="text" value={code[2]} onChange={(e) => handleChange(e, 2)} ref={codeRef3} maxLength={1} onPaste={handlePaste}
+                                />
+                                <Form.Control type="text" value={code[3]} onChange={(e) => handleChange(e, 3)} ref={codeRef4} maxLength={1} onPaste={handlePaste}
+                                />
+                            </div>
+                            <div style={{ textAlign: 'center', paddingBottom: 20 }}>
+                                <Button style={{ width: 500 }}>Selanjutnya</Button>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                                <Button className="element" style={{ width: 100 }} ><a style={{ color: '#31353B' }}> Lupa Pin</a></Button>
+                            </div>
+
+                        </Card.Body>
+
+
+
+                    </Card>
+
+
                 </Modal>
             </div>
         </Layout >
