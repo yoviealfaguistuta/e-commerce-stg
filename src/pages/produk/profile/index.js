@@ -1,1070 +1,596 @@
-import React, { Fragment, useState } from 'react'
-import { Layout } from '../../../layout';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Fragment, useState, useEffect, useRef } from "react";
+import { Layout } from "../../../layout";
+import Gopay from '../../../assets/img/icon/gopay.png';
+import Saldo from '../../../assets/img/icon/saldo.png';
+import Ovo from '../../../assets/img/icon/ovo.png';
+import Profil from '../../../assets/img/icon/profil.svg';
+import Search from '../../../assets/img/icon/search1.png';
+import Location from '../../../assets/img/icon/location.png';
+import Share from '../../../assets/img/icon/share.svg';
+import Sms from '../../../assets/img/icon/SMS.png';
+import Modal from 'react-bootstrap/Modal';
+import Cookies from 'js-cookie';
 
 
-const Profile = () => {
 
-  
 
-  return (
-    <Layout>
-        <>
-        <div>
-  {/* Required meta tags */}
-  <meta charSet="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  {/* Bootstrap CSS */}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossOrigin="anonymous" />
-  {/* bootstrap 3 and affix */}
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-  {/* end  */}
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <title>Tokopedia</title>
-  <div id="overlay" />
-  <div className="header">
-    <div className="item-header-1 d-flex justify-content-between align-items-center">
-      <div className="d-flex align-items-center">
-        <img className="mr-2" src="assets/img/1.png" alt="" />
-        <span>Download Tokopedia App</span>
-      </div>
-      <div className="d-flex">
-        <span className="mr-4">Tentang Tokopedia</span>
-        <span className="mr-4">Mitra Tokopedia</span>
-        <span className="mr-4">Mulai Berjualan</span>
-        <span className="mr-4">Promo</span>
-        <span className="mr-4">Tokopedia Care</span>
-      </div>
-    </div>
-    <div className="item-header-2 d-flex flex-column">
-      <div className="d-flex justify-content-between align-items-center">
-        <img className="img-tokopedia" src="assets/img/2.png" alt="" />
-        <span className="mx-2 text-kategory" onclick="kategoryOn()">Kategory</span>
-        <div className="wrap-search">
-          <input type="text" className="form-control" placeholder="Cari barang" data-toggle="modal" data-target="#exampleModal" />
-          <div className=" wrap-icon-search">
-            <img className="img-search" src="assets/img/3.png" alt="" />
-          </div>
-        </div>
-        <div className="wrap-img-shop mx-3" onclick="on()">
-          <img className="img-shop" src="assets/img/4.png" alt="" />
-        </div>
-        <span className="mr-3 line">|</span>
-        <div className="d-flex">
-          <button className="btn font-weight-bold mr-3">Masuk</button>
-          <button className="btn font-weight-bold text-white">Daftar</button>
-        </div>
-      </div>
-      <div className="text-under-search d-flex mt-2">
-        <span className="mr-3">Jersey Sepeda</span>
-        <span className="mr-3">Jersey Sepeda</span>
-        <span className="mr-3">Jersey Sepeda</span>
-        <span className="mr-3">Jersey Sepeda</span>
-        <span className="mr-3">Jersey Sepeda</span>
-      </div>
-    </div>
-    <div className="menu-bar flex-column justify-content-between align-items-center" id="menuBar">
-      <img src="assets/img/5.png" alt="" />
-      <h4 className="mt-2">Wah keranjang belanjaanmu kosong</h4>
-      <p className="text-center">Daripada dianggurin, mending diisi dengan barang barang <br />impianmu. Yuk cek
-        sekarang!</p>
-      <button className="btn">Lihat Rekomendasi</button>
-    </div>
-  </div>
-  <div className="kategory" id="kategory">
-    <div className="head-kategory d-flex w-100">
-      <span>Belanja</span>
-      <span>Featured</span>
-      <span>Featured</span>
-      <span>Brand&nbsp;Unggulan</span>
-      <span>Halal&nbsp;Corner</span>
-      <span>Investasi&nbsp;Asuransi&nbsp;&amp;&nbsp;Pinjaman</span>
-      <span>Pajak</span>
-      <span>Pendidikan</span>
-      <span>Tagihan</span>
-      <span>Top&nbsp;-&nbsp;Up</span>
-      <span>Travel&nbsp;Entertaiment</span>
-      <span>OS&nbsp;Pupuler</span>
-      <span>Lainnya</span>
-    </div>
-    <div className="row">
-      <div className="col-2">
-        <div className="head-left">
-          <h6 className="mb-0">Buku</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Dapur</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-          <h6 className="mb-0">Elektronik</h6>
-        </div>
-      </div>
-      <div className="col-10">
-        <div className="head-left">
-          <div className="w-100 d-flex align-items-center">
-            <img src="assets/img/6.png" alt="" />
-            <span className="h4 m-0 p-0 font-weight-bold">Buku</span>
-          </div>
-          <div className="row mt-5">
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-          </div>
-          <div className="row mt-5">
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-            <div className="col-3">
-              <h5>Title</h5>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-              <h6>Deskripsi</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {/* caraousel */}
-  <div id="carouselExampleIndicators" className="carousel slide d-flex flex-column align-items-center" data-ride="carousel">
-    <ol className="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
-      <li data-target="#carouselExampleIndicators" data-slide-to={1} />
-      <li data-target="#carouselExampleIndicators" data-slide-to={2} />
-    </ol>
-    <div className="carousel-inner">
-      <div className="carousel-item active">
-        <img src="assets/img/slide/3.png" className="d-block w-100" alt="..." />
-      </div>
-      <div className="carousel-item">
-        <img src="assets/img/slide/4.png" className="d-block w-100" alt="..." />
-      </div>
-    </div>
-    <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span className="carousel-control-prev-icon" aria-hidden="true" />
-      <span className="sr-only">Previous</span>
-    </a>
-    <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span className="carousel-control-next-icon" aria-hidden="true" />
-      <span className="sr-only">Next</span>
-    </a>
-  </div>
-  {/* kategory pilihan */}
-  <div className="kategory-pilihan">
-    <div className="row mx-0 p-0">
-      <div className="col-6 mx-0 p-0">
-        <h1>Kategory Pilihan</h1>
-        <div id="carouselExampleControls" className="carousel carousel2 slide mt-4" data-ride="carousel">
-          <div className="carousel-inner carousel-inner2">
-            <div className="carousel-item active">
-              <div className="row mx-0 p-0">
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="row mx-0 p-0">
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr-2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-                <div className="col-3 pl-0 pr2">
-                  <div className="d-flex p-2 flex-column align-items-center justify-content-center card-category">
-                    <img src="assets/img/7.png" alt="" />
-                    <h2 className="mb-0">Makanan</h2>
-                    <h3 className="mb-0">Kering</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="col-6">
-        <h1>Top Up &amp; Tagihan <span style={{fontSize: '16px', color: '#03ac0e'}}>Lihat Semua</span> </h1>
-        <div className="row mx-0 overflow-hidden border mt-4" style={{borderRadius: '12px'}}>
-          <div className="d-flex justify-content-between align-items-center w-100 border-bottom">
-            <div className="item-menu w-100 h-100 d-flex align-items-center justify-content-center">
-              <span>Pulsa</span>
-            </div>
-            <div className="item-menu w-100 h-100 d-flex align-items-center justify-content-center">
-              <span>Paket data</span>
-            </div>
-            <div className="item-menu w-100 h-100 d-flex align-items-center justify-content-center">
-              <span>Listrik PLN</span>
-            </div>
-            <div className="item-menu w-100 h-100 d-flex align-items-center justify-content-center">
-              <span>Flight</span>
-            </div>
-            <div className="item-menu d-flex px-2 align-items-center justify-content-center border-left">
-              <img src="assets/img/10.png" alt="" />
-            </div>
-          </div>
-          <div className="d-flex w-100 justify-content-between align-items-end p-3">
-            <div className="form-row mx-0 w-100">
-              <div className="form-group w-100 mr-3 mb-0">
-                <label htmlFor className="font-weight-bold">Nomor Telepon</label>
-                <input type="text" className="form-control w-100"  />
-              </div>
-            </div>
-            <div className="form-row mx-0 w-100">
-              <div className="form-group w-100 mr-3 mb-0">
-                <label htmlFor className="font-weight-bold">Nominal</label>
-                <select name id className="form-control" disabled>
-                  <option value>asdfsadfsafdsdf</option>
-                  <option value>asdfsadfsafdsdf</option>
-                </select>
-              </div>
-            </div>
-            <button className="btn px-3" style={{backgroundColor: '#4950572e'}}>Beli</button>
-          </div>
-        </div>
-      </div>
-      <div className="row flex-nowrap mx-0 mt-4 menu-scroll">
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-        <div className="item-scroll d-flex align-items-center border py-1 px-3 mr-2">
-          <img src="assets/img/9.png" alt="" />
-          <span className="ml-2">Kategory</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr className="position-relative" style={{top: '170px'}} />
-  <div className="trending">
-    <h3>Lagi trending nih! <img src="assets/img/reload.png" alt="" /> <span style={{color: '#03ac0e'}}>Muat
-        Lainnya</span> </h3>
-    <div className="row mt-4">
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="row mt-2">
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="card-trend">
-          <div className="wrap-img-trend">
-            <img className="w-100 h-100" src="assets/img/13.png" alt="" />
-          </div>
-          <div className="ml-4 d-flex flex-column justify-content-center">
-            <span className="mb-1 font-weight-bold">Mini PC</span>
-            <span style={{fontWeight: 400, color: '#dfdfdf'}}>67rb produk</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className="wrap-affix mt-4">
-    <div className="d-flex" data-spy="affix" data-offset-top={1200}>
-      <div className="position-relative mr-3 box-affix bg-affix1">
-        <div className="line1" />
-        <h4>For Your</h4>
-      </div>
-      <div className="position-relative mr-3 box-affix bg-affix2">
-        <div className="line1" />
-        <h4>Spesial Diskon</h4>
-      </div>
-    </div>
-    <div className="row mx-0 mt-5">
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="row mx-0 mt-2">
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-2 pl-0">
-        <div className="card">
-          <img src="assets/img/12.jpg" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h6 className="card-title">Kaos Cowo trending</h6>
-            <div className="d-flex">
-              <span className="badge badge-pill" style={{backgroundColor: '#ff00d13b', color: 'd50000'}}>47%</span>
-              <span className="badge-pill badge" style={{color: '#989898'}}><del>Rp 75.000</del></span>
-            </div>
-            <h6 className="mt-1">Rp 40.000</h6>
-            <div className="d-flex align-items-center">
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <img className="mr-1" width={10} height={10} src="assets/img/icon-bintang.png" alt="" />
-              <span style={{color: '#989898'}}>(14)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="row mx-0 mt-5 justify-content-center">
-      <button className="btn btn-green">Muat Lebih Banyak</button>
-    </div>
-  </div>
-  <div className="kategory-foot">
-    <div className="row mx-0">
-      <div className="d-flex w-100 justify-content-between align-items-center">
-        <h4 className="font-weight-bold" style={{fontSize: '20px'}}>Kategory</h4>
-        <h4 style={{color: '#03ac0e'}}>Lihat Semua</h4>
-      </div>
-    </div>
-    <div className="border p-3">
-      <div className="row mx-0 p-2 border-bottom">
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-      </div>
-      <div className="row mx-0 p-2 border-bottom">
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-      </div>
-      <div className="row mx-0 p-2 border-bottom">
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-      </div>
-      <div className="row mx-0 p-2 border-bottom">
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-      </div>
-      <div className="row mx-0 p-2 border-bottom">
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-        <div className="col-3 p-0">
-          <div className="d-flex align-items-center">
-            <div className="mr-4" style={{width: '2px', height: '40px', backgroundColor: '#4950572e'}} />
-            <img className="mr-3" src="assets/img/6.png" alt="" />
-            <h4 className="font-weight-normal">Fashion Wanita</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className="kategory-foot2">
-    <div className="row mx-0">
-      <div className="d-flex justify-content-between align-items-center w-100">
-        <div>
-          <h4 className="font-weight-bold" style={{color: '#ff8b00'}}>Punya Toko Online? Buka cabangnya di Tokopedia
-          </h4>
-          <h5 className="mt-5 font-weight-normal">Mudah, nyaman dan bebas komisi transaksi. <span className="font-weight-bold">GRATIS!</span> </h5>
-          <div className="d-flex align-items-center">
-            <button className="btn mr-4 text-white" style={{backgroundColor: '#03ac0e'}}>Buka Toko GRATIS</button>
-            <a href style={{color: '#03ac0e'}}>Pelajari lebih lanjut</a>
-          </div>
-        </div>
-        <img src="assets/img/17.png" alt="" />
-      </div>
-    </div>
-  </div>
-  <hr style={{position: 'relative', top: '190px', borderTop: '1px dashed black', margin: '10px 20px'}} />
-  <div className="kategory-foot3">
-    <p>Belanja di Tokopedia Sebagai Solusi Belanja Mudah dan Aman</p>
-    <p>Tokopedia merupakan salah satu e-commerce di Indonesia yang perkembangannya terhitung cepat, menjadikannya
-      sebagai marketplace pilihan bagi banyak masyarakat Indonesia. Hal ini disebabkan kehadiran Tokopedia membuat
-      pengalaman belanja online para penggunanya menjadi mudah, aman, dan efisien. Tersedia berbagai fitur dan
-      metode pembayaran yang dapat Anda pilih, untuk memastikan kegiatan belanja Anda dapat dilakukan senyaman
-      mungkin. Baik itu melalui transfer bank yang bisa dilakukan menggunakan rekening dari berbagai bank yang
-      tersedia, uang elektronik seperti OVO, hingga cicilan. Sistem berbelanja di Tokopedia terintegrasi pula
-      dengan sistem beberapa jasa ekspedisi. Kerjasama yang dijalin ini memungkinkan Tokopedia untuk memberikan
-      penawaran pengiriman gratis, dan memungkinkan pengguna yang berbelanja untuk terus melacak status pengiriman
-      produk yang mereka beli. Jadi, produk apapun yang dibeli di Tokopedia baik itu pakaian bayi, aksesoris
-      mobil, aksesoris kamera, celana, jam, hingga peralatan elektronik seperti kabel dan peralatan gaming, atau
-      makanan sekali pun dapat terus Anda lacak keberadaannya untuk memastikan akan sampai dengan aman. Data
-      pribadi dan seluruh transaksi yang sudah maupun yang akan Anda lakukan di Tokopedia dilindungi oleh
-      kebijakan privasi Tokopedia, sehingga tak perlu khawatir data Anda akan jatuh ke pihak yang tidak
-      bertanggungjawab dan/atau disalahgunakan. Karena faktor-faktor tersebut lah, Tokopedia menjadi solusi untuk
-      belanja online dengan mudah dan aman.
-      Kini, tak perlu ragu lagi untuk membeli semua kebutuhan rumah tangga atau keperluan pribadimu di website
-      jual beli online terpercaya, Tokopedia. Karena dengan berbelanja di Waktu Indonesia Belanja dari Tokopedia.
-      Kami menjamin semua produk yang kami tawarkan memiliki harga lebih murah dibandingkan dengan waktu belanja
-      pada umumnya. Selain itu, nikmati pula membeli aneka barang kebutuhan dengan mudah, lengkap, praktis dan
-      aman dengan penawaran diskon Tokopedia yang melimpah. Segera nikmati pengalaman berbelanja online dengan
-      ribuan promo belanja Tokopedia yang siap memanjakanmu, dengan membeli semua produk berkualitas di bawah
-      harga normal. Mulai dari produk kosmetik, peralatan rumah tangga, elektronik, fashion, perlengkapan ibu dan
-      bayi, makanan dan minuman semuanya tersedia lengkap dalam satu aplikasi saja. Tak perlu repot, tak perlu
-      ragu, ribuan promo Tokopedia serta cashback Tokopedia hingga ratusan ribu rupiah akan membawamu ke
-      pengalaman belanja online yang lebih untung. Tak tanggung-tanggung, kamu juga bisa menikmati bebas ongkir
-      pengiriman nol rupiah ke semua wilayah di Indonesia lho. Tunggu apa lagi? Cek segera campaign spesial Waktu
-      Indonesia Belanja dari Tokopedia di ponsel kesayanganmu dan nikmati promo WIB dengan diskon mencapai 90%!
-    </p>
-    <a href style={{color: '#03ac0e'}}>Selengkapnya</a>
-    <div className="row mx-0 mt-5">
-      <div className="col-4">
-        <div className="d-flex align-items-center">
-          <img className="mr-3" src="assets/img/18.png" alt="" />
-          <div className="d-flex flex-column">
-            <span className="mb-3 font-weight-bold" style={{color: '#03ac0e'}}>Transparent</span>
-            <p>Pembayaran Anda baru saja diteruskan kepenjual setelah barang diterima</p>
-          </div>
-        </div>
-      </div>
-      <div className="col-4">
-        <div className="d-flex align-items-center">
-          <img className="mr-3" src="assets/img/18.png" alt="" />
-          <div className="d-flex flex-column">
-            <span className="mb-3 font-weight-bold" style={{color: '#03ac0e'}}>Transparent</span>
-            <p>Pembayaran Anda baru saja diteruskan kepenjual setelah barang diterima</p>
-          </div>
-        </div>
-      </div>
-      <div className="col-4">
-        <div className="d-flex align-items-center">
-          <img className="mr-3" src="assets/img/18.png" alt="" />
-          <div className="d-flex flex-column">
-            <span className="mb-3 font-weight-bold" style={{color: '#03ac0e'}}>Transparent</span>
-            <p>Pembayaran Anda baru saja diteruskan kepenjual setelah barang diterima</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="row mx-0 mt-5" style={{padding: '50px'}}>
-      <div className="col-3">
-        <div className="d-flex flex-column">
-          <h4 className="font-weight-bold">Tokopedia</h4>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="d-flex flex-column">
-          <h4 className="font-weight-bold">Tokopedia</h4>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="d-flex flex-column">
-          <h4 className="font-weight-bold">Tokopedia</h4>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-          <h5>Tentang tokopedia</h5>
-        </div>
-      </div>
-      <div className="col-3">
-        <div className="d-flex flex-column align-items-center">
-          <img src="assets/img/21.png" width={400} alt="" />
-          <div className="d-flex mt-3">
-            <img width={150} className="mr-3" src="assets/img/22.png" alt="" />
-            <img width={150} src="assets/img/23.png" alt="" />
-          </div>
-          <span>2019 - 2020 Tokopedia</span>
-          <div className="d-flex align-items-center mt-3">
-            <span className="text-white font-weight-bold p-2 mr-3 rounded" style={{backgroundColor: '#03ac0e'}}>Indonesia</span>
-            <span>English</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {/* Modal pencarian */}
-  <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div className="modal-dialog">
-      <div className="modal-content m-c-head">
-        <div className="d-flex justify-content-between">
-          <span className="font-weight-bold title">Pencarian Terakhir</span>
-          <span className="font-weight-bold" style={{color: '#d50000'}}>Hapus Semua</span>
-        </div>
-        <span className="ml-2 mt-2" style={{fontSize: '14px'}}>Jersey sepeda</span>
-        <span className="ml-2 mt-2" style={{fontSize: '14px'}}>Lampu Emergency</span>
-        <span className="ml-2 mt-2" style={{fontSize: '14px'}}>Lampu Emergency</span>
-        <span className="font-weight-bold mt-2 mb-2 title">Populer</span>
-        <div className="d-flex flex-wrap">
-          <button className="btn mr-2">text button</button>
-          <button className="btn mr-2">text button</button>
-          <button className="btn mr-2">text button</button>
-        </div>
-      </div>
-    </div>
-    {/* Optional JavaScript */}
-    {/* jQuery first, then Popper.js, then Bootstrap JS */}
-  </div></div>
+import Nav from 'react-bootstrap/Nav';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Accordion from 'react-bootstrap/Accordion';
 
-        </>
-      <div>
-       
-      </div>
-    </Layout>
-  );
+
+import Switch from "react-bootstrap/Switch";
+import { Form, Row, Col } from "react-bootstrap";
+
+import '../../../assets/css/custom.css';
+import '../../../assets/css/plugins.css';
+import '../../../assets/css/style.css';
+import { height, textAlign } from "@mui/system";
+
+
+
+const Profile = (props) => {
+
+    ///pilih foto
+    const fileInputRef = useRef(null);
+
+    const handleButtonClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileInputChange = (event) => {
+        const selectedFile = event.target.files[0];
+        console.log(selectedFile);
+    };
+
+
+    const [isFeatureActive, setIsFeatureActive] = useState(false);
+    const handleSwitchChange = () => {
+        setIsFeatureActive(!isFeatureActive);
+    };
+
+
+    ///Alamat data diri
+    const [isGrid, setIsGrid] = useState(true);
+    const [isList, setIsList] = useState(true);
+
+    const handleResetLayoutGrid = () => {
+        setIsGrid(true);
+        setIsList(true);
+    };
+
+    const handleResetLayoutList = () => {
+        setIsGrid(false);
+        setIsList(false);
+    };
+
+    ///semua alamat->dari teman
+    const [isAlamat, setIsAlamat] = useState(true);
+    const [isTeman, setIsTeman] = useState(true);
+
+    const handleResetLayoutAlamat = () => {
+        setIsAlamat(true);
+        setIsTeman(true);
+    };
+
+    const handleResetLayoutTeman = () => {
+        setIsAlamat(false);
+        setIsTeman(false);
+    };
+
+    ///sidebar
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
+    const [isOpen3, setIsOpen3] = useState(false);
+
+
+    const handleClick = () => {
+        setIsOpen(!isOpen);
+    };
+    const handleClick2 = () => {
+        setIsOpen2(!isOpen2);
+    };
+    const handleClick3 = () => {
+        setIsOpen3(!isOpen3);
+    };
+
+    ///edit nama
+
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [name, setName] = useState("John Doe");
+    useEffect(() => {
+        const savedName = Cookies.get('name');
+        if (savedName) {
+            setName(savedName);
+        }
+
+    }, []);
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    }
+
+    const handleSaveName = () => {
+        Cookies.set('name', name, { expires: 7 });
+    }
+
+    ///edit nohp
+    const [nomor, setNomor] = useState(false);
+
+    const closeNomor = () => setNomor(false);
+    const openNomor = () => setNomor(true);
+
+    ///email
+    const [email, setEmail] = useState(false);
+
+    const closeEmail = () => setEmail(false);
+    const openEmail = () => setEmail(true);
+
+
+
+    ///tambah alamat
+    const [alamat, setAlamat] = useState(false);
+    const [tambahalamat, setTambahAlamat] = useState(false);
+    const [editalamat, setEditAlamat] = useState(false);
+
+
+    const closeAlamat = () => setAlamat(false);
+    const openAlamat = () => setAlamat(true);
+    const tambahAlamat = () => setTambahAlamat(true);
+    const closeTambah = () => setTambahAlamat(false);
+    const ubahAlamat = () => setEditAlamat(true);
+    const closeEdit = () => setEditAlamat(false);
+
+
+
+
+
+
+    return (
+        <Layout>
+            <div className="shop_area">
+                <div className="container">
+                    <div className="row">
+                        {/* PEMBAYARAN */}
+                        <div className="col-lg-3 col-md-12">
+                            <aside className="sidebar_widget">
+                                <div className="css-19ongn3">
+                                    <a data-testid="btnSidebarProfile" className="profileLink" href="https://www.tokopedia.com/people/136946280">
+                                        <img className="img-profil" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" width={48} height={48} alt="profilePic" />
+                                        <ul className="gojek">
+                                            <li><a className="nama-profil">Fadil Ainuddin</a></li>
+                                            <li><Button className="but" ><img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/c02d2b09.svg" style={{ width: 12, padding: 0 }} ></img>Sambungkan ke Gojek</Button></li>
+                                        </ul>
+                                    </a>
+                                </div>
+                            </aside>
+                            <aside className="sidebar_widget">
+                                <ul className="pembayaran">
+                                    <li style={{ paddingTop: 20 }}>< img src={Gopay} alt="gopay" /><a style={{ paddingLeft: 20 }}>GoPay</a><span style={{ paddingLeft: 120, color: '#0d6efd' }}>Aktifkan</span></li>
+                                    <li style={{ paddingTop: 20 }}>< img src={Saldo} alt="saldo" /><a style={{ paddingLeft: 20 }}>Saldo</a><span style={{ paddingLeft: 150 }}>Rp0</span></li>
+                                    <li style={{ paddingTop: 20 }}>< img src={Ovo} alt="ovo" /><a style={{ paddingLeft: 20 }}>Ovo</a><span style={{ paddingLeft: 135, color: '#0d6efd' }}>Aktifkan</span></li>
+
+                                    <li style={{ paddingTop: 20 }}><b>Member Silver</b></li>
+                                </ul>
+                            </aside>
+                            <aside className="sidebar_widget collapsible">
+                                <div className="widget_list widget_categories">
+                                    <a href="#/" className="header" onClick={handleClick} style={{ fontWeight: "bold", color: '#212121' }}>Kotak Masuk </a> {props.title}
+                                    {isOpen && <ul id="generateKategori" className="kotak content" >
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Chat</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Diskusi Produk </a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Ulasan</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Pesan Bantuan</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Pesanan Dikomplain</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Update</a></li>
+                                        {props.content}</ul>}
+                                </div>
+                            </aside>
+                            <aside className="sidebar_widget collapsible">
+                                <div className="widget_list widget_categories">
+                                    <a href="#/" className="header" onClick={handleClick2} style={{ fontWeight: "bold", color: '#212121' }}>Pembelian</a>
+                                    {isOpen2 && <ul id="generateKategori" className="kotak content" >
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Menunggu Pembayaran</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Daftar Transaksi </a></li>
+                                        {props.content}</ul>}
+                                </div>
+                            </aside>
+                            <aside className="sidebar_widget collapsible">
+                                <div className="widget_list widget_categories">
+                                    <a href="#/" className="header" onClick={handleClick3} style={{ fontWeight: "bold", color: '#212121' }}>Profil Saya</a>
+                                    {isOpen3 && <ul id="generateKategori" className="kotak content" >
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Wishlist</a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Toko Favorit </a></li>
+                                        <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Pengaturan </a></li>
+
+                                        {props.content} </ul>}
+                                </div>
+                            </aside>
+                            <aside className="sidebar_widget" style={{ borderRadius: 5 }}>
+                            </aside>
+                        </div>
+
+                        {/* BIODATA */}
+
+                        <div className="col-lg-9 col-md-12" style={{ paddingTop: 1 }}>
+                            <div className="nama">
+                                < img src={Profil} style={{ width: 20 }} alt="gopay" />
+                                <a style={{ paddingLeft: 5 }}>Fadil Ainuddin</a>
+                            </div>
+                            {isGrid ? (
+                                <div className="grid-layout " >
+                                    <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
+                                        <Card>
+                                            <Card.Body>
+                                                <div className="shop_toolbar_btn btn-data">
+                                                    <button onClick={handleResetLayoutGrid} data-role="grid_4" id="buttonResetLayoutGrid" type="button" className="" data-toggle="tooltip" title={4}>Biodata Diri</button>
+                                                    <button onClick={handleResetLayoutList} data-role="grid_list" id="buttonResetLayoutList" type="button" className="" data-toggle="tooltip" title="List" >Daftar Alamat</button>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <div className="col-lg-3 col-md-4 col-12 ">
+                                            <Card style={{ width: '18rem', marginBottom: 20, padding: 10 }}>
+                                                <Card.Img variant="top" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" />
+
+                                                <Card style={{ width: '16.5rem', marginTop: 10, height: 60 }}>
+                                                    <Card.Body className="">
+                                                        <Card.Text style={{ textAlign: "center" }}>
+                                                            <button onClick={handleButtonClick} className="my-button" style={{ fontWeight: 'bold' }}>Pilih Foto </button>
+                                                            <input
+                                                                type="file"
+                                                                ref={fileInputRef}
+                                                                style={{ display: 'none' }}
+                                                                onChange={handleFileInputChange}
+                                                            />
+                                                        </Card.Text>
+                                                    </Card.Body>
+                                                </Card>
+
+                                                <Card.Body>
+                                                    <Card.Text>
+                                                        Besar file: maksimum 10.000.000 bytes (10 Megabytes). Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Body>
+                                                    <Card.Text style={{ textAlign: "center" }}>
+                                                        <button className="my-button" style={{ fontWeight: 'bold' }}>Ubah Kata Sandi </button>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+
+                                        {/* Data diri */}
+                                        <div className="col-lg-9 col-md-4 col-12 ">
+                                            <ul >
+                                                <li className="data-diri"><h6 style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Biodata Diri</h6></li>
+                                                <li className="data-diri"><a>Nama</a><span style={{ paddingLeft: 90 }}>{name}</span><button onClick={handleShow} className="my-button" style={{ paddingLeft: 30, color: '#0d6efd' }}>Ubah</button></li>
+                                                <li className="data-diri"><a>Tanggal Lahir</a><span style={{ paddingLeft: 38 }}>01-Januari-2023</span></li>
+                                                <li className="data-diri"><a>Jenis Kelamin</a><span style={{ paddingLeft: 38 }}>Pria</span></li>
+                                                <li className="data-diri"><h6 style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Kontak</h6></li>
+                                                <li className="data-diri"><a>Email</a><span style={{ paddingLeft: 92 }}>ainuddinfadil@gmail.com</span><button onClick={openEmail} className="my-button" style={{ paddingLeft: 30, color: '#0d6efd' }}>Ubah</button></li>
+                                                <li className="data-diri"><a>Nomor HP</a><span style={{ paddingLeft: 60 }}>0895616710043</span><button onClick={openNomor} className="my-button" style={{ paddingLeft: 30, color: '#0d6efd' }}>Ubah</button></li>
+                                                <li className="data-diri"><h6 style={{ fontWeight: "bold", color: "#6D7588" }}>Safe Mode</h6></li>
+                                                <li className="data-diri " style={{ marginRight: 100, width: 510 }}><a>Fitur ini akan otomatis menyaring hasil pencarian sesuai kebijakan dan batasan usia pengguna</a></li>
+
+                                                <li className="data-diri"><a style={{ fontWeight: "bold", color: "#6D7588" }}>Aktifkan
+                                                    <Switch
+                                                        checked={isFeatureActive}
+                                                        onChange={handleSwitchChange}
+                                                        onColor="#4cd964"
+                                                        offColor="#0000"
+                                                    />
+                                                </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="list-layout ">
+                                    <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
+                                        <Card>
+                                            <Card.Body>
+                                                <div className="shop_toolbar_btn btn-data">
+                                                    <button onClick={handleResetLayoutGrid} data-role="grid_4" id="buttonResetLayoutGrid" type="button" className="" data-toggle="tooltip" title={4}>Biodata Diri</button>
+                                                    <button onClick={handleResetLayoutList} data-role="grid_list" id="buttonResetLayoutList" type="button" className="" data-toggle="tooltip" title="List" >Daftar Alamat</button>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <Form>
+                                            <Row className="mb-3" style={{ paddingTop: 20 }}>
+                                                <Form.Group as={Col} >
+                                                    <InputGroup className="mb-1" style={{ width: 300 }}>
+                                                        <Form.Control
+                                                            placeholder="Cari alamat atau nama penerima"
+                                                            aria-label="Recipient's username"
+                                                            aria-describedby="basic-addon2"
+                                                        />
+
+                                                        <InputGroup.Text id="basic-addon2">
+                                                            <img src={Search} style={{ width: 20 }} alt="gambar" />
+                                                        </InputGroup.Text>
+                                                    </InputGroup>
+                                                </Form.Group>
+                                                <Form.Group as={Col} style={{ paddingLeft: 600 }}>
+                                                    <Button variant='primary' onClick={openAlamat} type="submit">
+                                                        + Tambah Alamat Baru
+                                                    </Button>
+                                                </Form.Group>
+                                            </Row>
+
+                                            <Row className="">
+                                                <Form.Group as={Col} >
+                                                    <Button variant="outline-primary" onClick={handleResetLayoutAlamat}>Semua Alamat</Button>
+                                                    <Button style={{ marginLeft: 10 }} variant='outline-primary' onClick={handleResetLayoutTeman} type="submit">Dari Teman</Button>
+                                                </Form.Group>
+
+                                            </Row>
+                                        </Form>
+
+                                        <Card className="card-alamat">
+                                            <Card.Body>
+                                                <ul className="alamat">
+                                                    <li style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }} ><b> Rumah</b><span style={{background:'#0d6efd', color:'#6D7588', fontSize:16}}>Utama</span></li>
+                                                    <li style={{ paddingBottom: 8 }}><b> Fadil Ainuddin</b></li>
+                                                    <li style={{ paddingBottom: 8 }}> 0895616710043 </li>
+                                                    <li style={{ paddingBottom: 12 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
+                                                    <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li>
+
+                                                    <Nav className="me-auto">
+                                                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features">Share</Nav.Link>
+                                                        <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
+                                                    </Nav>
+                                                </ul>
+                                            </Card.Body>
+
+                                        </Card>
+                                        {/* Dari Teman */}
+                                        <Card className="card-alamat" style={{ height: 130 }}>
+
+                                            <Card.Body>
+                                                <img src={Share} style={{ height: 30 }} alt='share'></img>
+                                                <div style={{ paddingLeft: 60 }}>
+                                                    <ul>
+                                                        <li><b>Minta alamat ke teman kamu</b></li>
+                                                        <li><span>Lebih mudah dan cepat mendapatkan alamat teman cukup klik di sini.</span></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div style={{ paddingLeft: 950, marginTop: -45 }}>
+                                                    <Button>Request</Button>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* edit nama */}
+                <Modal show={show} onHide={handleClose} animation={false}>
+
+                    <Card >
+                        <Card.Body>
+                            <div onClick={handleClose} className="mini_cart_close" style={{ paddingLeft: 750 }}>
+                                <a href="javascript:void(0)">
+                                    <i class="ion-android-close"></i>
+                                </a>
+                            </div>
+
+                            <Card.Title style={{ paddingBottom: 20, marginTop: -25 }}>Ubah Nama</Card.Title>
+                            <Card.Text>
+                                Kamu hanya dapat mengubah nama 1 kali lagi. Pastikan nama sudah benar.
+                            </Card.Text>
+
+                            <Card.Subtitle className="mb-2 text-muted">Nama</Card.Subtitle>
+                            <Form.Control type="text" style={{ width: 600, height: 50 }} id="nameInput" value={name} onChange={handleNameChange} />
+                            <Form.Text id="text" muted>
+                                Nama dapat dilihat oleh pengguna lainnya
+                            </Form.Text>
+
+                            <div className="d-grid gap-2" style={{ padding: 50 }}>
+                                <Button onClick={handleSaveName} variant="primary" size="lg" style={{ marginBottom: -30, width: 500, alignItems: 'center' }}>
+                                    Simpan
+                                </Button>
+                            </div>
+                        </Card.Body>
+
+                    </Card>
+                </Modal>
+
+
+                {/* edit email */}
+                <Modal show={email} onHide={closeEmail} animation={false}>
+                    <Card >
+                        <Card.Body>
+                            <div onClick={closeEmail} className="mini_cart_close" style={{ paddingLeft: 750 }}>
+                                <a href="javascript:void(0)">
+                                    <i class="ion-android-close"></i>
+                                </a>
+                            </div>
+
+                            <Card.Title style={{ paddingBottom: 20, marginTop: -25, fontSize: 25, fontWeight: 600 }}>Ubah Email</Card.Title>
+                            <Card.Text>
+                                <ul>
+                                    <li style={{ color: '#31353B', textAlign: 'center', fontWeight: 'bold', fontSize: '1.14286rem' }}>Pilih Metode Verifikasi</li>
+                                    <li style={{ color: '#31353B', textAlign: 'center', lineHeight: 1.5 }}>Pilih salah satu metode dibawah ini untuk mendapatkan kode verifikasi.</li>
+                                </ul>
+                            </Card.Text>
+
+                            <div style={{ paddingBottom: 50, paddingLeft: 135 }}>
+                                <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
+                                    <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+                                    <b style={{ color: '#31353B', paddingLeft: 20 }}>SMS Ke</b>
+                                    <div>
+                                        <a style={{ color: '#31353B', paddingLeft: 70, fontSize: 13 }}>0895-6167-100-43</a>
+
+                                    </div>
+
+                                </Button>
+                            </div>
+                        </Card.Body>
+
+                    </Card>
+                </Modal>
+
+                {/* no hp */}
+                <Modal show={nomor} onHide={closeNomor} animation={false}>
+                    <Card >
+                        <Card.Body>
+                            <div onClick={closeNomor} className="mini_cart_close" style={{ paddingLeft: 750 }}>
+                                <a href="javascript:void(0)">
+                                    <i class="ion-android-close"></i>
+                                </a>
+                            </div>
+
+                            <Card.Title style={{ paddingBottom: 20, marginTop: -25, fontSize: 25, fontWeight: 600 }}>Ubah Email</Card.Title>
+                            <Card.Text>
+                                <ul>
+                                    <li style={{ color: '#31353B', textAlign: 'center', fontWeight: 'bold', fontSize: '1.14286rem' }}>Pilih Metode Verifikasi</li>
+                                    <li style={{ color: '#31353B', textAlign: 'center', lineHeight: 1.5 }}>Pilih salah satu metode dibawah ini untuk mendapatkan kode verifikasi.</li>
+
+                                </ul>
+                            </Card.Text>
+
+                            <div style={{ paddingBottom: 50, paddingLeft: 135 }}>
+                                <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
+                                    <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+                                    <b style={{ color: '#31353B', paddingLeft: 20 }}>SMS Ke</b>
+                                    <div>
+                                        <a style={{ color: '#31353B', paddingLeft: 70, fontSize: 13 }}>0895-6167-100-43</a>
+                                    </div>
+                                </Button>
+
+                            </div>
+                            <div style={{ paddingBottom: 50, paddingLeft: 400 }}>
+                                <Button className="element" ><a style={{ color: '#31353B' }}>Nomor saya sudah tidak aktif</a></Button>
+                            </div>
+
+                        </Card.Body>
+
+                    </Card>
+                </Modal>
+
+                {/* Alamat */}
+                <Modal show={alamat} onHide={closeAlamat} animation={false}>
+                    <Card >
+                        <Modal.Header closeButton>
+                            <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
+                                Tambah Alamat
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Card.Body style={{ paddingTop: 50 }}>
+                            <h4 style={{ paddingBottom: 20 }}>Di mana lokasi tujuan pengirimanmu?</h4>
+                            <Form>
+                                <InputGroup className="mb-3" style={{ width: 470, height: 50 }}>
+                                    <InputGroup.Text style={{ background: '#ffff' }} id="basic-addon1"> <img src={Search}></img></InputGroup.Text>
+                                    <Form.Control
+                                        style={{ width: 10, height: 50 }}
+                                        type="text"
+                                        placeholder="Tuliskan nama jalan /gedung /perumahan"
+                                    />
+                                </InputGroup>
+
+                                <Card.Text style={{ color: '#31353B', paddingTop: 40 }}>
+                                    <Button style={{ background: '#ffff', color: 'black' }} onClick={setTambahAlamat}>Mau cara lain? Isi alamat secara manual</Button>
+                                </Card.Text>
+                            </Form>
+
+                        </Card.Body>
+                    </Card>
+                </Modal>
+
+                {/* ubah alamat */}
+                <Modal show={editalamat} onHide={closeEdit} animation={false}>
+                    <Card >
+                        <Modal.Header closeButton>
+                            <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
+                                Ubah Alamat
+                            </Modal.Title>
+                        </Modal.Header>
+
+                        <Card.Body style={{ padding: 30 }}>
+                            <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }}>Catatan untuk kurir (opsional)</Form.Label>
+                            <Form.Control type="text" style={{ height: 80 }} id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <div>
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    Warna rumah, patokan, pesan khusus, dll.
+                                </Form.Text>
+                            </div>
+                            <Form.Label style={{ fontWeight: 'bold' }}>Nama Penerima</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <div>
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    Dengan klik “Simpan”, kamu menyetujui Syarat & Ketentuan.
+                                </Form.Text>
+                            </div>
+                            <Button >Simpan</Button>
+                        </Card.Body>
+                    </Card>
+                </Modal>
+
+                {/* Tambah Alamat */}
+                <Modal className="modal1" show={tambahalamat} onHide={closeTambah} animation={false}>
+                    <Card >
+                        <Modal.Header closeButton>
+                            <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
+                                Tambah Alamat
+                            </Modal.Title>
+                        </Modal.Header>
+                        <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
+                        <Card.Body style={{ padding: 30 }}>
+                            <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }} >Kota & Kecamatan</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
+                            <Form.Control type="text" style={{ height: 80 }} id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Label style={{ fontWeight: 'bold' }} >Catatan untuk kurir (opsional)</Form.Label>
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <div>
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    Warna rumah, patokan, pesan khusus, dll.
+                                </Form.Text>
+                            </div>
+                            
+                            <div>
+                            <Form><Form.Check type="checkbox" id="" label="Jadikan Alamat utama" /> </Form>
+                            </div>
+                            <div style={{textAlign:'center'}}>
+                                <Form.Text id="passwordHelpBlock" muted>
+                                    Dengan klik “Simpan”, kamu menyetujui <a variant='primary'>Syarat & Ketentuan.</a>
+                                </Form.Text>
+                            </div>
+                            <div style={{textAlign:'center'}}>
+                            <Button >Simpan</Button>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </Modal>
+            </div>
+        </Layout >
+    );
 };
 
 export default Profile;
