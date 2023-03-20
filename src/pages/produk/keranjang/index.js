@@ -1,28 +1,29 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, Component } from "react";
 import { Layout } from "../../../layout";
 import kategoribanner from "../../../assets/img/product/kategori-banner.png";
 import like from "../../../assets/img/logo/like-click.svg"
 import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
-import { BsDot } from 'react-icons/bs';
 import Form from 'react-bootstrap/Form';
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
-import Slider from '@mui/material/Slider';
 import Button from 'react-bootstrap/Button';
 import Figure from 'react-bootstrap/Figure';
 import Card from 'react-bootstrap/Card';
-// import { BsFillTrash3Fill } from 'react-icons/fa';
-// import { margin } from "@mui/system";
-// import { blue } from "@mui/material/colors";
-import Navbar from 'react-bootstrap/Navbar';
 import Modal from 'react-bootstrap/Modal';
-import { FiTrash2 } from 'react-icons/fi';
-import Accordion from 'react-bootstrap/Accordion';
+import { RxDividerVertical } from 'react-icons/rx';
+import { AiFillPlusCircle } from 'react-icons/ai';
+import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import InputGrup from 'react-bootstrap/InputGroup';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+
+
+
+
 
 
 const Keranjang = () => {
@@ -108,12 +109,27 @@ const Keranjang = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [openForm, setopenForm] = useState('none');
   ///tuliscatatan
 
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log('totally custom!'),
     );
+
+    //plusminus
+    const [count, setCount] = useState(0);
+
+    function tambah() {
+      setCount(count + 1);
+      console.log(tambah)
+    }
+
+    function kurang() {
+      if (count > 0) {
+        setCount(count - 1);
+      }
+    }
 
     return (
       <Button
@@ -126,6 +142,15 @@ const Keranjang = () => {
       </Button>
     );
   }
+
+  function openForms() {
+    console.log('openForm :>> ', openForm);
+    if (openForm == 'none') {
+      setopenForm('')
+    } else {
+      setopenForm('none')
+    }
+  }
   return (
     <Layout>
       <div>
@@ -136,23 +161,18 @@ const Keranjang = () => {
               <div className="col-lg-9 col-md-12">
                 <div className="row mb-3">
                   <div className="col-12">
-
                   </div>
                 </div>
-
                 <div
                   id="generateBarang"
                 >
                 </div>
-
                 {/* List daftar produk */}
-
                 <div className="grid-layout">
                   <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
                     <div className="keranjang">
                       <h4>Keranjang</h4>
                       <Form.Check label=" Pilih Semua" />
-
                       <div>
                       </div>
                       <Card style={{ paddingLeft: 30, margin: 0 }}>
@@ -162,41 +182,41 @@ const Keranjang = () => {
 
                         <Form.Check />
                         <Figure>
-                          <Figure.Image style={{ height: 95, width: 95, paddingLeft: 22, marginTop: -25, }}
+                          <Figure.Image style={{ height: 100, width: 120, paddingLeft: 30, marginTop: -5, }}
                             src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
                           </Figure.Image>
                         </Figure>
-                        <p style={{ paddingLeft: 98, fontSize: 14, marginTop: -90 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
-                        <p style={{ paddingLeft: 98, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
+                        <p style={{ paddingLeft: 130, fontSize: 14, marginTop: -90 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
+                        <p style={{ paddingLeft: 130, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
 
-                        <Accordion defaultActiveKey="0">
-                          <CustomToggle eventKey="0">Tulis Catatan</CustomToggle>
-                          <Accordion.Collapse eventKey="0">
-                            <Form>
-                              <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Control style={{ width: 300 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                              </Form.Group>
-                            </Form>
+                        <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
+                        <Form>
+                          <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
+                          </Form.Group>
+                        </Form>
 
-                          </Accordion.Collapse>
-                        </Accordion>
-                        <p style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 500, marginLeft: 90, marginTop: -25 }}> <FiTrash2 /></p>
-                        <a style={{ paddingLeft: 350, marginTop: -28,color: '#7B8FA1', fontSize: 13 }}>Sudah ada di wishlist</a>
-                        {/* <input id="jumlah" min={1} max={100} type="number" fdprocessedid="m48o36" defaultValue={1}  style={{ width:40,marginTop: -30}} /> */}
+                        <Stack direction="row" spacing={1} style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}>
+                          <IconButton aria-label="delete">
+                            <DeleteIcon />
+                          </IconButton>
+                        </Stack>
+                        <a style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}> <RxDividerVertical /></a>
+                        <a style={{ paddingLeft: 455, color: '#7B8FA1', marginLeft: 108, marginTop: -25, fontSize: 13, marginBottom: 40 }}>Sudah ada di wishlist</a>
+                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -28 }}> <AiOutlineMinusCircle /></a>
+                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -30 }}> <AiFillPlusCircle /></a>
 
+
+                        <div>
+                          <p>Jumlah barang: {count}</p>
+                          <button onClick={tambah}>Tambah</button>
+                          <button onClick={kurang}>Kurang</button>
+                        </div>
                       </Card>
-
-                      <div>
-                      </div>
                     </div>
                   </div>
                 </div>
-
-
               </div>
-
-
-
               {/* Filter */}
               <div className="col-lg-3 col-md-12">
                 <aside className="sidebar_widget">
@@ -226,7 +246,6 @@ const Keranjang = () => {
                           </Form>
                         </Modal.Body>
                         <Modal.Footer>
-
                         </Modal.Footer>
                       </Modal>
                       <Card>
