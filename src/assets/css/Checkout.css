@@ -1,0 +1,19 @@
+.satu1 {
+    background: linear-gradient(rgba(255, 255, 255, 0.5) 24.62%, rgba(235, 255, 239, 0.5) 100%);
+    box-shadow: none;
+}
+
+.satu {
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-color: var(--NN200,#D6DFEB);
+    box-shadow: rgba(141, 150, 170, 0.4) 0px 1px 4px;
+    background-color: var(--NN0,#FFFFFF);
+    cursor: default;
+
+}
