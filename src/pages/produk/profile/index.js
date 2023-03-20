@@ -11,10 +11,6 @@ import Share from '../../../assets/img/icon/share.svg';
 import Sms from '../../../assets/img/icon/SMS.png';
 import Modal from 'react-bootstrap/Modal';
 import Cookies from 'js-cookie';
-
-
-
-
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
