@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo/logo.svg";
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 
 
 
@@ -50,6 +52,10 @@ export const Header = () => {
     const handleCloseModalCart = () => {
         setVisibleCart(false);
     };
+
+    const imageIndex = Cookies.get('imageIndex') || 0;
+    const cartIndex = Cookies.get('cartIndex') || 0;
+
 
 
     return (
@@ -362,13 +368,13 @@ export const Header = () => {
                                         <div onClick={toggleVisibilityWish} className="header_wishlist">
                                             <a href="javascript:void(0)">
                                                 <i className="ion-android-favorite-outline" />
-                                                <span className="wishlist_count">0</span>
+                                                <span className="wishlist_count">{imageIndex}</span>
                                             </a>
                                         </div>
                                         <div onClick={toggleVisibilityCart} className="mini_cart_wrapper">
                                             <a href="javascript:void(0)">
                                                 <i className="fa fa-shopping-bag" />
-                                                <span className="cart_count">0</span>
+                                                <span className="cart_count">{cartIndex}</span>
                                             </a>
                                             <div className="mini_cart">
                                                 <div className="cart_close">
@@ -524,14 +530,14 @@ export const Header = () => {
                                     <div className="header_configure_area">
                                         <div onClick={toggleVisibilityWish} className="header_wishlist">
                                             <a onclick="openFavoriteItem()"><i className="ion-android-favorite-outline" />
-                                                <span className="wishlist_count" id="favorite-count-second">0</span>
+                                                <span className="wishlist_count" id="favorite-count-second">{imageIndex}</span>
                                             </a>
                                         </div>
                                         <div onClick={toggleVisibilityCart} className="mini_cart_wrapper">
                                             <a onclick="opencartItem()">
                                                 <i className="fa fa-shopping-bag" />
                                                 <span className="cart_price"> </span>
-                                                <span className="cart_count_sticky" id="cart-count-second">0</span>
+                                                <span className="cart_count_sticky" id="cart-count-second">{cartIndex}</span>
                                             </a>
                                         </div>
                                     </div>

@@ -61,21 +61,18 @@
    
 }
 
+.col-lg-2{
+  flex: 0 0 auto;
+    width: 20% !important;
+    padding-right: 20px !important;
+   
+}
+
+
 html, body {
   height: 100%;
 }
-img {
-  max-width: 100% !important;
-  height: auto !important;
-}
-.slider_s_four .col-lg-6 {
-  flex: 0 0 58% !important;
-  max-width: 58% !important;
-}
-.col-10 {
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
+
 body {
   line-height: 24px;
   font-size: 14px;
@@ -128,7 +125,7 @@ p:last-child {
 }
 
 a, button {
-  color: inherit !important;
+  color: inherit;
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -161,8 +158,8 @@ button, input[type="submit"] {
 }
 
 img {
-  max-width: 100% !important;
-  height: auto !important;
+  max-width: 100%;
+  height: auto;
 }
 
 ul {
@@ -356,6 +353,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     padding: 60px 0;
   }
 }
+
+ .home_selection_bg{
+  margin-top: 40px;
+  padding-left: 60px;
+ }
 
 .section-pt {
   padding-top: 100px;
@@ -565,7 +567,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .button {
   background: #1764E4;
   box-shadow: none;
-  color: #ffffff !important;
+  color: #ffffff;
   display: inline-block;
   height: 45px;
   line-height: 45px;
@@ -578,7 +580,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /* 2. Home 1 Header css here */
 /* 01. header css here */
 .off_canvars_overlay {
-  width: 100% ;
+  width: 100%;
   height: 100%;
   position: fixed;
   z-index: 999;
@@ -11339,4 +11341,130 @@ body {
     width: 150px;
   }
 }
+
+/* Profil */
+.img-profil{
+  border-radius: 50%;
+}
+.nama{
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+.nama-profil{
+  width: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  padding-left:5px;
+  font-family: sans-serif !important;
+
+}
+
+.my-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.data-diri{
+  padding-left: 40px;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 15px;
+  font-family: Open Sauce One ,sans-serif;
+}
+
+.card-alamat{
+  width: 1100px !important;
+  margin-top: 12px !important;
+  margin-left: 12px;
+  margin-right: 20px !important;
+  border-radius: 10px !important;
+  
+  
+}
+
+.alamat{
+  font-family: Open Sauce One ,sans-serif;
+  font-size: 16px;
+
+}
+
+.nav{
+  padding: 0px !important;
+}
+.a{
+  padding-left: 10px !important;
+}
+
+.btn-data{
+  color: #6D7588;
+  font-size: 16px;
+  font-family: Open Sauce One ,sans-serif;
+  font-weight: 600;
+}
+
+.kotak{
+  padding-top: 10px !important;
+  padding-left: 10px !important;
+}
+
+.ubah-nama{
+    position: fixed;
+    display: flex;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+    z-index: 1009;
+
+}
+
+.gojek{
+  padding-left: 60px !important;
+  margin-top: -50px !important;
+}
+.but{
+  border-radius: 60px !important;
+  font-size: 12px !important;
+  color:#FFFFFF !important;
+  font-weight: bold !important;
+  width: 168px !important;
+  height: 22px !important;
+  background-color: #00AA5B !important;
+  border: none !important;
+  font-family: sans-serif !important;
+  margin: 0 !important;
+}
+
+.pembayaran{
+  font-family: 'Open Sauce One',sans-serif !important;
+}
+
+
+
+.modal {
+  position: relative;
+  margin-left: -160px !important;
+  margin-top: 90px !important;
+  height: 1000px;
+
+  
+}
+
+
+.element {
+  background-color: white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  
+}
+
+
 

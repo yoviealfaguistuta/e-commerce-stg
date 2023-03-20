@@ -11,6 +11,8 @@ import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
+import Cookies from 'js-cookie';
+
 
 
 
@@ -25,9 +27,12 @@ const List = () => {
 
   function handleClick() {
     setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    Cookies.set('imageIndex', imageIndex + 1);
   }
   function handleClick2() {
     setCart((prevIndex) => (prevIndex + 1) % gambar.length);
+    Cookies.set('cartIndex', cartIndex + 1);
+
   }
 
   ///load gambar
@@ -389,11 +394,6 @@ function handleLike() {
                   </div>
                 )}
 
-
-
-
-
-
                 {/* Button */}
                 <div className="shop_toolbar t_bottom">
                   <div className="pagination">
@@ -403,8 +403,6 @@ function handleLike() {
                   </div>
                 </div>
               </div>
-
-
 
               {/* Filter */}
               <div className="col-lg-3 col-md-12">
