@@ -50,6 +50,9 @@
 *, *::after, *::before {
   box-sizing: border-box;
 }
+.home_selection_bg{
+  margin:50px;
+}
 
 .col-lg-2{
   flex: 0 0 auto;
