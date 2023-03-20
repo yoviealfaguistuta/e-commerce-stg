@@ -3,6 +3,7 @@ import { Layout } from "../../../layout";
 import Gopay from '../../../assets/img/icon/gopay.png';
 import Saldo from '../../../assets/img/icon/saldo.png';
 import Ovo from '../../../assets/img/icon/ovo.png';
+import Ovoo from '../../../assets/img/icon/Ovoo.png';
 import Profil from '../../../assets/img/icon/profil.svg';
 import Search from '../../../assets/img/icon/search1.png';
 import Location from '../../../assets/img/icon/location.png';
@@ -29,6 +30,8 @@ import { height, textAlign } from "@mui/system";
 
 
 const Profile = (props) => {
+
+
 
     ///pilih foto
     const fileInputRef = useRef(null);
@@ -101,7 +104,7 @@ const Profile = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [name, setName] = useState("John Doe");
+    const [name, setName] = useState("Mr Ai");
     useEffect(() => {
         const savedName = Cookies.get('name');
         if (savedName) {
@@ -140,8 +143,10 @@ const Profile = (props) => {
 
     const closeAlamat = () => setAlamat(false);
     const openAlamat = () => setAlamat(true);
-    const tambahAlamat = () => setTambahAlamat(true);
+
     const closeTambah = () => setTambahAlamat(false);
+    const tambahAlamat = () => setTambahAlamat(true);
+
     const ubahAlamat = () => setEditAlamat(true);
     const closeEdit = () => setEditAlamat(false);
 
@@ -155,6 +160,16 @@ const Profile = (props) => {
     const [sandi, setSandi] = useState(false);
     const closeSandi = () => setSandi(false);
     const openSandi = () => setSandi(true);
+
+    ///Ovo 
+    const [ovo, setOvo] = useState(false);
+    const closeOvo = () => setOvo(false);
+    const openOvo = () => setOvo(true);
+
+    ///Ovo 
+    const [gopay, setGopay] = useState(false);
+    const closeGopay = () => setGopay(false);
+    const openGopay = () => setGopay(true);
 
     ///verivikasi kode 
     const [code, setCode] = useState(false);
@@ -200,7 +215,6 @@ const Profile = (props) => {
     };
 
 
-
     return (
         <Layout>
             <div className="shop_area">
@@ -221,9 +235,9 @@ const Profile = (props) => {
                             </aside>
                             <aside className="sidebar_widget">
                                 <ul className="pembayaran">
-                                    <li style={{ paddingTop: 20 }}>< img src={Gopay} alt="gopay" /><a style={{ paddingLeft: 20 }}>GoPay</a><span style={{ paddingLeft: 120, color: '#0d6efd' }}>Aktifkan</span></li>
+                                    <li style={{ paddingTop: 20 }}>< img src={Gopay} alt="gopay" /><a style={{ paddingLeft: 20 }} onClick={openGopay}>GoPay</a><span style={{ paddingLeft: 120, color: '#0d6efd' }}>Aktifkan</span></li>
                                     <li style={{ paddingTop: 20 }}>< img src={Saldo} alt="saldo" /><a style={{ paddingLeft: 20 }}>Saldo</a><span style={{ paddingLeft: 150 }}>Rp0</span></li>
-                                    <li style={{ paddingTop: 20 }}>< img src={Ovo} alt="ovo" /><a style={{ paddingLeft: 20 }}>Ovo</a><span style={{ paddingLeft: 135, color: '#0d6efd' }}>Aktifkan</span></li>
+                                    <li style={{ paddingTop: 20 }}>< img src={Ovo} alt="ovo" /><a style={{ paddingLeft: 20 }} onClick={openOvo}>Ovo</a><span style={{ paddingLeft: 135, color: '#0d6efd' }}>Aktifkan</span></li>
 
                                     <li style={{ paddingTop: 20 }}><b>Member Silver</b></li>
                                 </ul>
@@ -332,7 +346,7 @@ const Profile = (props) => {
                                             <ul >
                                                 <li className="data-diri"><h6 style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Biodata Diri</h6></li>
                                                 <li className="data-diri"><a>Nama</a><span style={{ paddingLeft: 90 }}>{name}</span><button onClick={handleShow} className="my-button" style={{ paddingLeft: 30, color: '#0d6efd' }}>Ubah</button></li>
-                                                <li className="data-diri"><a>Tanggal Lahir</a><span style={{ paddingLeft: 38 }}>01-Januari-2023</span></li>
+                                                <li className="data-diri"><a>Tanggal Lahir</a><span style={{ paddingLeft: 38 }}>01 Januari 2023</span></li>
                                                 <li className="data-diri"><a>Jenis Kelamin</a><span style={{ paddingLeft: 38 }}>Pria</span></li>
                                                 <li className="data-diri"><h6 style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Kontak</h6></li>
                                                 <li className="data-diri"><a>Email</a><span style={{ paddingLeft: 92 }}>ainuddinfadil@gmail.com</span><button onClick={openEmail} className="my-button" style={{ paddingLeft: 30, color: '#0d6efd' }}>Ubah</button></li>
@@ -380,7 +394,7 @@ const Profile = (props) => {
                                                     </InputGroup>
                                                 </Form.Group>
                                                 <Form.Group as={Col} style={{ paddingLeft: 600 }}>
-                                                    <Button variant='primary' onClick={openAlamat} type="submit">
+                                                    <Button variant='primary' onClick={openAlamat} href="#features" type="submit">
                                                         + Tambah Alamat Baru
                                                     </Button>
                                                 </Form.Group>
@@ -549,8 +563,10 @@ const Profile = (props) => {
                                 Tambah Alamat
                             </Modal.Title>
                         </Modal.Header>
-                        <Card.Body style={{ paddingTop: 50 }}>
+                        <Card.Body style={{ paddingTop: 50 }} className="location-search">
                             <h4 style={{ paddingBottom: 20 }}>Di mana lokasi tujuan pengirimanmu?</h4>
+                            <LocationMap />
+
                             <Form>
                                 <InputGroup className="mb-3" style={{ width: 470, height: 50 }}>
                                     <InputGroup.Text style={{ background: '#ffff' }} id="basic-addon1"> <img src={Search}></img></InputGroup.Text>
@@ -558,13 +574,16 @@ const Profile = (props) => {
                                         style={{ width: 10, height: 50 }}
                                         type="text"
                                         placeholder="Tuliskan nama jalan /gedung /perumahan"
+
                                     />
                                 </InputGroup>
 
+
                                 <Card.Text style={{ color: '#31353B', paddingTop: 40 }}>
-                                    <Button style={{ background: '#ffff', color: 'black' }} onClick={setTambahAlamat}>Mau cara lain? Isi alamat secara manual</Button>
+                                    <Button style={{ background: '#ffff', color: 'black' }} onClick={tambahAlamat}>Mau cara lain? Isi alamat secara manual</Button>
                                 </Card.Text>
                             </Form>
+
 
                         </Card.Body>
                     </Card>
@@ -579,7 +598,7 @@ const Profile = (props) => {
                             </Modal.Title>
                         </Modal.Header>
 
-                        <Card.Body style={{ padding: 30 }}>
+                        <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
                             <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
                             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
                             <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
@@ -607,14 +626,14 @@ const Profile = (props) => {
 
                 {/* Tambah Alamat */}
                 <Modal className="modal1" show={tambahalamat} onHide={closeTambah} animation={false}>
-                    <Card >
+                    <Card style={{}}>
                         <Modal.Header closeButton>
                             <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
                                 Tambah Alamat
                             </Modal.Title>
                         </Modal.Header>
                         <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
-                        <Card.Body style={{ padding: 30 }}>
+                        <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
                             <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
                             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
                             <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
@@ -742,12 +761,58 @@ const Profile = (props) => {
                             </div>
 
                         </Card.Body>
-
-
-
                     </Card>
+                </Modal>
 
+                {/* Ovo */}
+                <Modal show={ovo} onHide={closeOvo} animation={false} >
+                    <Card>
+                        <Modal.Header closeButton>
 
+                        </Modal.Header>
+                        <Card.Body style={{ padding: 30 }}>
+                            <ul style={{ textAlign: "center" }}>
+                                <img src={Ovoo} style={{width:100}}></img>
+                                <li><b style={{ fontSize: 40 }}>Lebih praktis dengan OVO</b></li>
+                                <li><b>Aktifkan OVO untuk pembayaran instan dalam sekali klik. Sstt, beragam promo khusus OVO juga menantimu lho.</b></li>
+                            </ul>
+                            <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
+                                
+                            </div>
+                            <div style={{ textAlign: 'center', paddingBottom: 20 }}>
+                                <Button style={{ width: 500 }}>Aktifkan Ovo</Button>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                                <Button className="element" style={{ width: 400 }} ><a style={{ color: '#31353B' }}> Pelajari Lebih Lanjut</a></Button>
+                            </div>
+
+                        </Card.Body>
+                    </Card>
+                </Modal>
+
+                {/* Ovo */}
+                <Modal show={gopay} onHide={closeGopay} animation={false} >
+                    <Card>
+                        <Modal.Header closeButton>
+
+                        </Modal.Header>
+                        <Card.Body style={{ padding: 30 }}>
+                            <ul style={{ textAlign: "center" }}>
+                                <img src={Gopay} style={{width:100}}></img>
+                                <li><b style={{ fontSize: 30 }}>Sambungin akun Tokopedia & Gojek biar dapat keuntungan ekstra ini!</b></li>
+                                <li><b>Dengan klik tombol di bawah, saya bersedia bagikan data untuk sambungkan akun sesuai Syarat & Ketentuan Tokopedia dan Gojek.</b></li>
+                            </ul>
+                            <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
+                                
+                            </div>
+                            <div style={{ textAlign: 'center', paddingBottom: 20 }}>
+                                <Button style={{ width: 500 }}>Sambungkan Akun</Button>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                            </div>
+
+                        </Card.Body>
+                    </Card>
                 </Modal>
             </div>
         </Layout >
