@@ -17,6 +17,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Accordion from 'react-bootstrap/Accordion';
+import LocationMap from "./LocationMap";
 
 
 import Switch from "react-bootstrap/Switch";
