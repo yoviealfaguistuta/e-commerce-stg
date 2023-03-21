@@ -207,11 +207,11 @@ const Keranjang = () => {
                         <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -30 }}> <AiFillPlusCircle /></a>
 
 
-                        <div>
+                        {/* <div>
                           <p>Jumlah barang: {count}</p>
                           <button onClick={tambah}>Tambah</button>
                           <button onClick={kurang}>Kurang</button>
-                        </div>
+                        </div> */}
                       </Card>
                     </div>
                   </div>
