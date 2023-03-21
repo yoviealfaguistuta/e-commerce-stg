@@ -5,6 +5,7 @@ import Saldo from '../../../assets/img/icon/saldo.png';
 import Ovo from '../../../assets/img/icon/ovo.png';
 import Ovoo from '../../../assets/img/icon/Ovoo.png';
 import Profil from '../../../assets/img/icon/profil.svg';
+import Konek from '../../../assets/img/icon/konek.svg';
 import Search from '../../../assets/img/icon/search1.png';
 import Location from '../../../assets/img/icon/location.png';
 import Kode from '../../../assets/img/icon/kode.svg';
@@ -55,6 +56,8 @@ const Profile = (props) => {
     ///Alamat data diri
     const [isGrid, setIsGrid] = useState(true);
     const [isList, setIsList] = useState(true);
+    const [ToogleAddress, setToogleAddress] = useState(true); // TRUE = SEMUA, FALSE = DARI TEMAN
+
 
     const handleResetLayoutGrid = () => {
         setIsGrid(true);
@@ -121,6 +124,36 @@ const Profile = (props) => {
         Cookies.set('name', name, { expires: 7 });
     }
 
+    ///tambah alamat
+    const [data, setData] = useState([]);
+
+    const [formData, setFormData] = useState({
+        nama: "fadil ainuddin",
+        hp: "0895616710043",
+        jalan: "Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara",
+    });
+
+    useEffect(() => {
+        const cookieData = Cookies.get("crudData");
+        if (cookieData) {
+            setData(JSON.parse(cookieData));
+        }
+    }, []);
+
+    useEffect(() => {
+        Cookies.set("crudData", JSON.stringify(data));
+    }, [data]);
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleAddData = () => {
+        setData([...data, formData]);
+        setFormData({ nama: "", hp: "", jalan: "" });
+    };
+
+
     ///edit nohp
     const [nomor, setNomor] = useState(false);
 
@@ -166,10 +199,15 @@ const Profile = (props) => {
     const closeOvo = () => setOvo(false);
     const openOvo = () => setOvo(true);
 
-    ///Ovo 
+    ///Gopay 
     const [gopay, setGopay] = useState(false);
     const closeGopay = () => setGopay(false);
     const openGopay = () => setGopay(true);
+
+    ///Gopay->grab 
+    const [konek, setKonek] = useState(false);
+    const closeKonek = () => setKonek(false);
+    const openKonek = () => setKonek(true);
 
     ///verivikasi kode 
     const [code, setCode] = useState(false);
@@ -213,6 +251,8 @@ const Profile = (props) => {
         // Move focus to the last input field after pasting
         codeRef4.current.focus();
     };
+
+
 
 
     return (
@@ -402,47 +442,52 @@ const Profile = (props) => {
 
                                             <Row className="">
                                                 <Form.Group as={Col} >
-                                                    <Button variant="outline-primary" onClick={handleResetLayoutAlamat}>Semua Alamat</Button>
-                                                    <Button style={{ marginLeft: 10 }} variant='outline-primary' onClick={handleResetLayoutTeman} type="submit">Dari Teman</Button>
+                                                    <Button variant="outline-primary" onClick={() => setToogleAddress(true)}>Semua Alamat</Button>
+                                                    <Button style={{ marginLeft: 10 }} variant='outline-primary' onClick={() => setToogleAddress(false)} href="#features" type="submit">Dari Teman</Button>
                                                 </Form.Group>
 
                                             </Row>
                                         </Form>
+                                        {
+                                            (ToogleAddress) ?
+                                                <Card className="card-alamat">
+                                                    {data.map((item, index) => (
+                                                    <Card.Body>
+                                                        <ul className="alamat">
+                                                            <li style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }} ><b> Rumah</b><span style={{ background: '#0d6efd', color: '#6D7588', fontSize: 16 }}>Utama</span></li>
+                                                            <li style={{ paddingBottom: 8 }}><b> {item.nama}</b></li>
+                                                            <li style={{ paddingBottom: 8 }}> {item.hp} </li>
+                                                            <li style={{ paddingBottom: 12 }}>{item.jalan}</li>
+                                                            <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li>
+                                                            <Nav className="me-auto">
+                                                                <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link>
+                                                                <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
+                                                            </Nav> 
+                                                        </ul>
+                                                    </Card.Body>
+                                                     ))}
 
-                                        <Card className="card-alamat">
-                                            <Card.Body>
-                                                <ul className="alamat">
-                                                    <li style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }} ><b> Rumah</b><span style={{ background: '#0d6efd', color: '#6D7588', fontSize: 16 }}>Utama</span></li>
-                                                    <li style={{ paddingBottom: 8 }}><b> Fadil Ainuddin</b></li>
-                                                    <li style={{ paddingBottom: 8 }}> 0895616710043 </li>
-                                                    <li style={{ paddingBottom: 12 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
-                                                    <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li>
+                                                </Card> :
+                                                <Card className="card-alamat" style={{ height: 130 }}>
 
-                                                    <Nav className="me-auto">
-                                                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link>
-                                                        <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
-                                                    </Nav>
-                                                </ul>
-                                            </Card.Body>
+                                                    <Card.Body>
+                                                        <img src={Share} style={{ height: 30 }} alt='share'></img>
+                                                        <div style={{ paddingLeft: 60 }}>
+                                                            <ul>
+                                                                <li><b>Minta alamat ke teman kamu</b></li>
+                                                                <li><span>Lebih mudah dan cepat mendapatkan alamat teman cukup klik di sini.</span></li>
+                                                            </ul>
+                                                        </div>
 
-                                        </Card>
+                                                        <div style={{ paddingLeft: 950, marginTop: -45 }}>
+                                                            <Button onClick={openRequest}>Request</Button>
+                                                        </div>
+                                                    </Card.Body>
+                                                </Card>
+                                        }
+
                                         {/* Dari Teman */}
-                                        <Card className="card-alamat" style={{ height: 130 }}>
 
-                                            <Card.Body>
-                                                <img src={Share} style={{ height: 30 }} alt='share'></img>
-                                                <div style={{ paddingLeft: 60 }}>
-                                                    <ul>
-                                                        <li><b>Minta alamat ke teman kamu</b></li>
-                                                        <li><span>Lebih mudah dan cepat mendapatkan alamat teman cukup klik di sini.</span></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div style={{ paddingLeft: 950, marginTop: -45 }}>
-                                                    <Button onClick={openRequest}>Request</Button>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>
                                     </div>
                                 </div>
                             )}
@@ -584,7 +629,6 @@ const Profile = (props) => {
                                 </Card.Text>
                             </Form>
 
-
                         </Card.Body>
                     </Card>
                 </Modal>
@@ -600,7 +644,7 @@ const Profile = (props) => {
 
                         <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
                             <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
-                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock"  />
                             <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
                             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
                             <Form.Label style={{ fontWeight: 'bold' }}>Catatan untuk kurir (opsional)</Form.Label>
@@ -635,11 +679,11 @@ const Profile = (props) => {
                         <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
                         <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
                             <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
-                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" name="nama" value={formData.nama} onChange={handleInputChange} />
                             <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
-                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Control type="text" id="inputPassword5" name="hp" value={formData.hp} onChange={handleInputChange} />
                             <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
-                            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                            <Form.Control type="text" id="inputPassword5" name="jalan" value={formData.jalan} onChange={handleInputChange} />
                             <Form.Label style={{ fontWeight: 'bold' }} >Kota & Kecamatan</Form.Label>
                             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
                             <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
@@ -661,7 +705,7 @@ const Profile = (props) => {
                                 </Form.Text>
                             </div>
                             <div style={{ textAlign: 'center' }}>
-                                <Button >Simpan</Button>
+                                <Button onClick={handleAddData} >Simpan</Button>
                             </div>
                         </Card.Body>
                     </Card>
@@ -772,12 +816,12 @@ const Profile = (props) => {
                         </Modal.Header>
                         <Card.Body style={{ padding: 30 }}>
                             <ul style={{ textAlign: "center" }}>
-                                <img src={Ovoo} style={{width:100}}></img>
+                                <img src={Ovoo} style={{ width: 100 }}></img>
                                 <li><b style={{ fontSize: 40 }}>Lebih praktis dengan OVO</b></li>
                                 <li><b>Aktifkan OVO untuk pembayaran instan dalam sekali klik. Sstt, beragam promo khusus OVO juga menantimu lho.</b></li>
                             </ul>
                             <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
-                                
+
                             </div>
                             <div style={{ textAlign: 'center', paddingBottom: 20 }}>
                                 <Button style={{ width: 500 }}>Aktifkan Ovo</Button>
@@ -790,7 +834,7 @@ const Profile = (props) => {
                     </Card>
                 </Modal>
 
-                {/* Ovo */}
+                {/* Gopay */}
                 <Modal show={gopay} onHide={closeGopay} animation={false} >
                     <Card>
                         <Modal.Header closeButton>
@@ -798,15 +842,55 @@ const Profile = (props) => {
                         </Modal.Header>
                         <Card.Body style={{ padding: 30 }}>
                             <ul style={{ textAlign: "center" }}>
-                                <img src={Gopay} style={{width:100}}></img>
-                                <li><b style={{ fontSize: 30 }}>Sambungin akun Tokopedia & Gojek biar dapat keuntungan ekstra ini!</b></li>
+                                <img src={Gopay} style={{ width: 100 }}></img>
+                                <li><b style={{ fontSize: 30 }}>Sambungin akun  & Gojek biar dapat keuntungan ekstra ini!</b></li>
                                 <li><b>Dengan klik tombol di bawah, saya bersedia bagikan data untuk sambungkan akun sesuai Syarat & Ketentuan Tokopedia dan Gojek.</b></li>
                             </ul>
                             <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
-                                
+
                             </div>
                             <div style={{ textAlign: 'center', paddingBottom: 20 }}>
-                                <Button style={{ width: 500 }}>Sambungkan Akun</Button>
+                                <Button style={{ width: 500 }} onClick={openKonek} >Sambungkan Akun</Button>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                            </div>
+
+                        </Card.Body>
+                    </Card>
+                </Modal>
+
+                {/* Gopay - grab */}
+                <Modal show={konek} onHide={closeKonek} animation={false} >
+                    <Card>
+                        <Modal.Header closeButton>
+
+                        </Modal.Header>
+                        <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
+                            <ul style={{ textAlign: "center" }}>
+                                <img src={Gopay} style={{ width: 100 }}></img>
+
+                                <li><b style={{ fontSize: 28 }}>Konfirmasi akun Gojek yang akan disambungin ke Tokopedia</b></li>
+                            </ul>
+
+                            <Card style={{ width: 600, height: 300, marginLeft: 65, alignItems: 'center', background: '#0d6efd' }}>
+                                <b style={{ fontSize: 14, paddingBottom: 20 }}>Konfirmasi akun Gojek yang akan disambungin ke Tokopedia</b>
+                                <Card style={{ width: 300, height: 200 }}>
+                                    <Card.Body style={{ textAlign: 'center', margin: 10 }}>
+                                        <img src={Konek} style={{ width: 80, }}></img>
+
+                                        <ul>
+                                            <li style={{ fontWeight: 800, fontSize: '1.42857rem' }}>0895616710043</li>
+                                            <li>Fadil Ainuddin</li>
+
+                                        </ul>
+                                    </Card.Body>
+                                </Card>
+                            </Card>
+                            <div className="verification-code-input" style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', paddingBottom: 30 }}>
+
+                            </div>
+                            <div style={{ textAlign: 'center', paddingBottom: 20 }}>
+                                <Button style={{ width: 500 }}>Konfirmasi</Button>
                             </div>
                             <div style={{ textAlign: 'right' }}>
                             </div>

@@ -19,7 +19,7 @@ const LocationMap = () => {
 
   return (
     <div className="location-map">
-      <iframe src={mapUrl} width="100%" height="300" title="Map" />
+      <iframe src={mapUrl} width="100%" height="250" title="Map" />
     </div>
   );
 };
