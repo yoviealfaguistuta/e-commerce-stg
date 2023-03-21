@@ -111,6 +111,8 @@ const Keranjang = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [openForm, setopenForm] = useState('none');
+  const [count, setCount] = useState(0);
+
 
 
 
@@ -149,7 +151,7 @@ const Keranjang = () => {
 
   //plusminus
 
-  const [count, setCount] = useState(0);
+
 
   function plus() {
     setCount(count + 1);
@@ -161,8 +163,6 @@ const Keranjang = () => {
       setCount(count - 1);
     }
   }
-
-
 
   return (
     <Layout>
@@ -189,32 +189,48 @@ const Keranjang = () => {
                       {/* <a style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 970, marginLeft: 80}} >hapus</a> */}
                       <div>
                       </div>
-                      <Card style={{ paddingLeft: 30, margin: 0 }}>
 
-                        <Form.Check style={{ paddingLeft: 22, fontSize: 14, fontWeight: 'bold' }} label="TokoIni" />
-                        <a style={{ paddingLeft: 21, marginTop: -10, color: '#7B8FA1', fontSize: 13 }}>Bandar Lampung</a>
+                      <Card>
+                      
+                          <Form.Check style={{ fontSize: 14, fontWeight: 'bold' }} label="TokoIni" />
+                            <a style={{ color: '#7B8FA1', fontSize: 13 ,paddingLeft:30}}>Bandar Lampung</a>
+                        <div className="row">
+                          <div className="col-2">
+                            <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
+                              <div className="col-2">  <Form.Check /></div>
 
-                        <Form.Check />
-                        <Figure>
-                          <Figure.Image style={{ height: 100, width: 120, paddingLeft: 30, marginTop: -5, }}
-                            src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
-                          </Figure.Image>
-                        </Figure>
-                        <p style={{ paddingLeft: 130, fontSize: 14, marginTop: -90 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
-                        <p style={{ paddingLeft: 130, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
+                              <Figure>
+                                <Figure.Image style={{ height: 100, width: 120 }}
+                                  src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
+                                </Figure.Image>
+                              </Figure>
+                            </div>
 
-                        <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
-                        <Form>
-                          <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                          </Form.Group>
-                        </Form>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 710, marginLeft: 80, marginTop: -30, marginBottom: -15 }}> <FiTrash2 /></a>
-                        <a style={{ fontSize: 25, color: '#7B8FA1', paddingLeft: 669, marginLeft: 100, marginTop: -20, fontWeight: 'bold' }}> <RxDividerVertical /></a>
-                        <a style={{ paddingLeft: 555, color: '#7B8FA1', marginLeft: 100, marginTop: -25, fontSize: 13 }}>Sudah ada di wishlist</a>
-                        <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -30 }}> <AiOutlineMinusCircle /></a>
-                        <a style={{ fontSize: 15, paddingLeft: 760, marginLeft: 90, marginTop: -25 }}> {count}</a>
-                        <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -28 }}> <AiFillPlusCircle /></a>
+                          </div>
+                          <div className="col-8">
+                            <p style={{ fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
+                            <p style={{ fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
+
+                          </div>
+                          <div className="row">
+                            <div className="col-6">
+                              <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14,paddingLeft:30 }}>Tulis Catatan</a>
+                              <Form>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                  <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
+                                </Form.Group>
+                              </Form>
+                            </div>
+                            <div className="col-6">
+                              <a style={{ color: '#7B8FA1', fontSize: 13 }}>Sudah ada di wishlist</a>
+                              <a style={{ fontSize: 25, color: '#7B8FA1', fontWeight: 'bold' }}> <RxDividerVertical /></a>
+                              <a style={{ fontSize: 20, color: '#7B8FA1' }}> <FiTrash2 /></a>
+                              <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiOutlineMinusCircle /></a>
+                              {count}
+                              <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiFillPlusCircle /></a>
+                            </div>
+                          </div>
+                        </div>
                       </Card>
                     </div>
                   </div>
@@ -285,7 +301,7 @@ const Keranjang = () => {
 
 
 
-    </Layout>
+    </Layout >
 
   );
 };
