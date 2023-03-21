@@ -12,7 +12,6 @@ import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import '../../../assets/css/Checkout.css';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -26,8 +25,10 @@ import Indomaret from "../../../assets/img/logo/Indomaret.png";
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Figure from 'react-bootstrap/Figure';
-import { BiRightArrow } from 'react-icons/bi';
-
+import Nav from 'react-bootstrap/Nav';
+import { IoChevronForward } from "react-icons/io5";
+import { AiFillPlusCircle } from 'react-icons/ai';
+import { AiOutlineMinusCircle } from 'react-icons/ai';
 
 
 const Checkout = () => {
@@ -86,6 +87,23 @@ const Checkout = () => {
   };
 
 
+  ///tambah alamat
+
+
+  const [request, setRequest] = useState(false);
+
+  const closeRequest = () => setRequest(false);
+  const openRequest = () => setRequest(true);
+
+  const [alamat, setAlamat] = useState(false);
+  const [tambahalamat, setTambahAlamat] = useState(false);
+  const [editalamat, setEditAlamat] = useState(false);
+
+  const ubahAlamat = () => setEditAlamat(true);
+  const closeEdit = () => setEditAlamat(false);
+
+
+
   ///list
   const [isGrid, setIsGrid] = useState(true);
   const [isList, setIsList] = useState(true);
@@ -119,6 +137,27 @@ const Checkout = () => {
   const handleShow2 = () => setShow2(true);
   const handleClose2 = () => setShow2(false);
 
+  //Bank
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedBRI, setSelectedBRI] = useState(null);
+
+  const handleImageClick = (event) => {
+    setSelectedImage(event.target.src);
+  };
+
+  const handleBRIClick = (event) => {
+    setSelectedBRI(event.target.innerHTML);
+  };
+
+  //pengiriman
+  const [selectedPengiriman, setSelectedPengiriman] = useState(null);
+
+  const handlePengirimanClick = (nama, desc) => {
+    setSelectedPengiriman({
+      nama: nama,
+      desc: desc
+    });
+  };
   ///tuliscatatan
 
   function CustomToggle({ children, eventKey }) {
@@ -138,6 +177,40 @@ const Checkout = () => {
     );
   }
 
+  ///kodepromo
+  const [openForm, setopenForm] = useState('none');
+  const [show3, setShow3] = useState(false);
+
+  const handleClose3 = () => setShow3(false);
+  const handleShow3 = () => setShow3(true);
+
+
+  //plusminus
+  const [count, setCount] = useState(0);
+
+  function plus() {
+    setCount(count + 1);
+    console.log(count + 1)
+  }
+
+  function min() {
+    console.log('min')
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  }
+
+  const handleForm = () => {
+    if (openForm === 'none') {
+      setopenForm('')
+      return
+    }
+    setopenForm('none')
+
+  }
+
+
+
   return (
     <Layout>
       <card>
@@ -153,59 +226,114 @@ const Checkout = () => {
                     </div>
                     <h5 style={{ marginTop: 20 }}>Barang Yang Dibeli</h5>
                   </div>
+
+                  {/* //JENIS BARANG */}
                   <Card style={{ paddingLeft: 30, margin: 0 }}>
-                    <Figure>
-                      <Figure.Image style={{ height: 120, width: 120, paddingLeft: 22, marginTop: 30, }}
-                        src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
-                      </Figure.Image>
-                    </Figure>
-                    <h3 className="namabarang-detail" style={{ paddingLeft: 150, fontSize: 14, marginTop: -120 }}><a id="namaBarang">Wardah - Facial Cleansher</a></h3>
-                    <div className="price_box">
-                      <span className="current_price" id="hargaBarang" style={{ paddingLeft: 150, fontSize: 14, fontWeight: 'bold' }}>Rp. 31.500</span>
+                    <div className="row">
+                      <div className="col-2">
+                        <Figure>
+                          <Figure.Image
+                            src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
+                          </Figure.Image>
+                        </Figure>
+                      </div>
+                      <div className="col-10">
+                        <p style={{ paddingLeft: 130, fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
+                        <p style={{ paddingLeft: 130, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
+                      </div>
                     </div>
-                    <Accordion defaultActiveKey="0" style={{ paddingTop: 50, paddingLeft: 130 }}>
-                      <CustomToggle eventKey="0"  >Tulis Catatan</CustomToggle>
-                      <Accordion.Collapse eventKey="0">
+                    <div className="row">
+                      <div className="col-8">
+                        <a onClick={() => handleForm()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
                         <Form>
                           <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control style={{ width: 300 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
+                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
                           </Form.Group>
                         </Form>
-                      </Accordion.Collapse>
-                      <input id="jumlah" min={1} max={100} type="number" fdprocessedid="m48o36" defaultValue={1}
-                        style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 50, marginLeft: 50, marginTop: 50 }} />
-                    </Accordion>
+                      </div>
+                      <div className="col-4">
+                        <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
+                          <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1', display: 'flex', alignContent: 'center', textAlign: 'center', }}> <AiOutlineMinusCircle /></a>
+                          {count}
+                          <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1', display: 'flex', alignContent: 'center', textAlign: 'center' }}> <AiFillPlusCircle /></a>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
                   </Card>
                 </div>
 
-
                 <h5 style={{ marginTop: 20 }}>Pengirimana Dan Pembayaran</h5>
+
+                {/* ALAMAT */}
                 <Card>
-                  <div className="row mt-2">
-                    <div className="col-md-2">
-                      <span className="content-detail-title">Kategori:</span>
-                    </div>
-                    <div className="col-md-10">
-                    <Button variant="outline-primary" onClick={handleShow2}><BiRightArrow/></Button>
-                    <Modal show={show2} onHide={handleClose2}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Pilih Pembayaran</Modal.Title>
-                      </Modal.Header>
-                      <h6>Transfer Bank</h6>
-                      <Card style={{ paddingLeft: 50, paddingRight: 50 }}>           
-                      </Card>
-                    </Modal>
-                    </div>
-                    </div>
+                  <Card.Body >
+                    <ul className="alamat">
+                      <li style={{ paddingBottom: 8, fontSize: 14, fontWeight: 700, color: '#6D7588' }} ><b>Utama</b></li>
+                      <li style={{ paddingBottom: 8, fontSize: 14 }}><b> Fadil Ainuddin</b>(0895616710043) </li>
+                      <li style={{ paddingBottom: 12, fontSize: 14 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
+                      {/* <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li> */}
+
+                      {/* <Nav className="me-auto">
+                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link>
+                        <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
+                      </Nav> */}
+                    </ul>
+
+                    <Card.Text style={{ marginLeft: 1070 }}>
+                      <Button variant="outline-white" onClick={handleShow2}><IoChevronForward /></Button>
+                      <Modal show={show2} onHide={handleClose2}>
+                        <Modal.Header closeButton>
+                          <Modal.Title style={{ fontWeight: 'bold', paddingLeft: 285 }}>Pilih Alamat Pengiriman</Modal.Title>
+                        </Modal.Header>
+                        <div style={{ paddingLeft: 60, paddingRight: 60 }}>
+                          <div style={{ paddingTop: 30 }}>
+                            <Card >
+                              <Button variant="white" onClick={openRequest}>tambah Alamat Baru</Button>
+                            </Card>
+                          </div>
+                          <div style={{ paddingTop: 30 }}>
+                            <Card Variant="outline-success">
+                              <ul className="alamat">
+                                <li style={{ paddingBottom: 8, fontSize: 14, fontWeight: 700, color: '#6D7588' }} ><b>Utama</b></li>
+                                <li style={{ paddingBottom: 8, fontSize: 14 }}><b> Fadil Ainuddin</b>(0895616710043) </li>
+                                <li style={{ paddingBottom: 12, fontSize: 14 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
+                                {/* <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li> */}
+
+                                <Nav className="me-auto">
+                                  {/* <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link> */}
+                                  <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
+                                </Nav>
+                              </ul>
+                            </Card>
+                          </div>
+                        </div>
+                      </Modal>
+                    </Card.Text>
+                  </Card.Body>
                 </Card>
+
+                {/* PEMBAYARAN DAN PENGIRIMAN */}
                 <CardGroup>
                   <Card>
                     <Card.Body>
                       <h6>Pilih Pengiriman</h6>
-                      <Card.Text>
-                        <Button variant="outline-primary" onClick={handleShow1}>
-                          Launch demo modal
-                        </Button>
+                      {selectedPengiriman && (
+                        <div>
+                          <p style={{ marginTop: 10, fontSize: 20, fontWeight: "bold" }}>{selectedPengiriman.nama}</p>
+                        </div>
+                      )}
+                      {selectedPengiriman && (
+                        <div>
+                          <p style={{ marginTop: 10, fontSize: 14 }}>{selectedPengiriman.desc}</p>
+                        </div>
+                      )}
+
+                      <Card.Text style={{ marginLeft: 500 }}>
+                        <Button variant="outline-white" onClick={handleShow1}><IoChevronForward /></Button>
 
                         <Modal show={show1} onHide={handleClose1}>
                           <Modal.Header closeButton>
@@ -213,19 +341,19 @@ const Checkout = () => {
                           </Modal.Header>
                           <div style={{ height: 150, overflowY: "scroll", paddingLeft: 60, paddingRight: 60 }}>
                             <Card >
-                              <Button variant="white">
-                                <h3 style={{ fontSize: 18, paddingRight: 430 }} >Next Day<a> (Rp 30.000) </a></h3>
+                              <Button variant="white" onClick={() => handlePengirimanClick('Next Day (Rp 30.000)', 'Estiminasi Tiba Esok')} >
+                                <h3 style={{ fontSize: 18, paddingRight: 430 }} >Next Day (Rp 30.000)</h3>
                                 <span style={{ fontSize: 14, paddingRight: 430 }}>Estiminasi Tiba Esok</span>
                               </Button>
-                              <Button variant="white">
-                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Instan <a> (Rp 27.000-31.000) </a></h3>
+                              <Button variant="white" onClick={() => handlePengirimanClick('Instan (Rp 27.000-31.000)', 'Tiba Dalam 2 Jam')} >
+                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Instan (Rp 27.000-31.000)</h3>
                                 <span style={{ fontSize: 14, paddingRight: 400 }}>Tiba Dalam 2 Jam</span>
                               </Button>
-                              <Button variant="white">
-                                <h3 style={{ fontSize: 18, paddingRight: 380 }} >Reguler <a> (Rp 16.500-21.500) </a></h3>
+                              <Button variant="white" onClick={() => handlePengirimanClick('Reguler (Rp 16.500-21.500)', 'Estiminasi tiba 21-22 maret 2023')}>
+                                <h3 style={{ fontSize: 18, paddingRight: 380 }} >Reguler (Rp 16.500-21.500)</h3>
                                 <span style={{ fontSize: 14, paddingRight: 380 }}>Estiminasi tiba 21-22 maret 2023 </span>
-                              </Button><Button variant="white">
-                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Kargo<a> (Rp 25.500-30.500) </a></h3>
+                              </Button><Button variant="white" onClick={() => handlePengirimanClick('Kargo(Rp 25.500-30.500)', 'Estiminasi Tiba 24-25 maret 2023')}>
+                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Kargo(Rp 25.500-30.500)</h3>
                                 <span style={{ fontSize: 14, paddingRight: 400 }}>Estiminasi Tiba 24-25 maret 2023</span>
                               </Button>
                             </Card>
@@ -237,10 +365,19 @@ const Checkout = () => {
                   <Card>
                     <Card.Body>
                       <h6>Pilih Pembayaran</h6>
-                      <Card.Text>
-                        <Button variant="outline-primary" onClick={handleShow}>
-                          Launch demo modal
-                        </Button>
+                      {selectedImage && (
+                        <div>
+                          <img style={{ marginRight: 500, height: 40, width: 60 }} src={selectedImage} />
+                        </div>
+                      )}
+                      {selectedBRI && (
+                        <div>
+                          <p style={{ marginTop: 10 }}>{selectedBRI}</p>
+                        </div>
+                      )}
+
+                      <Card.Text style={{ marginLeft: 500 }}>
+                        <Button variant="outline-white" onClick={handleShow}><IoChevronForward /></Button>
 
                         <Modal show={show} onHide={handleClose}>
                           <Modal.Header closeButton>
@@ -250,31 +387,31 @@ const Checkout = () => {
                             <h6>Transfer Bank</h6>
                             <Card style={{ paddingLeft: 50, paddingRight: 50 }}>
                               <Button variant="white">
-                                <img src={BRI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Bank BRI</p>
+                                <img onClick={handleImageClick} src={BRI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BRI</p>
                               </Button>
                               <Button variant="white">
-                                <img src={BNI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Bank BNI</p>
+                                <img onClick={handleImageClick} src={BNI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BNI</p>
                               </Button>
                               <Button variant="white">
-                                <img src={Mandiri} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Bank Mandiri</p>
+                                <img onClick={handleImageClick} src={Mandiri} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank Mandiri</p>
                               </Button>
                               <Button variant="white">
-                                <img src={BCA} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Bank BCA</p>
+                                <img onClick={handleImageClick} src={BCA} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BCA</p>
                               </Button>
                             </Card>
                             <h6>Tunai di Gerai Retail</h6>
                             <Card>
                               <Button variant="white">
-                                <img src={Alfamart} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <img onClick={handleImageClick} src={Alfamart} style={{ marginRight: 500, height: 25, width: 40 }}></img>
                                 <p style={{ marginTop: -30 }}>Alfamart</p>
                               </Button>
                               <Button variant="white">
-                                <img src={Indomaret} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Indomaret</p>
+                                <img onClick={handleImageClick} src={Indomaret} style={{ marginRight: 500, height: 25, width: 40 }}></img>
+                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Indomaret</p>
                               </Button>
                             </Card>
                           </div>
@@ -283,158 +420,134 @@ const Checkout = () => {
                     </Card.Body>
                   </Card>
                 </CardGroup>
-                <div id="generateBarang"></div>
-                {isGrid ? (
-                  <div className="grid-layout">
-                  </div>
-                ) : (
-                  <div className="list-layout">
-                    {/* tombol list single produk */}
-                    <div className="row no-gutters shop_wrapper grid_list" id="generateBarang">
-                      <div className="col-12">
-                        <article className="single_product">
-                          <figure>
-                            <div className="product_thumb">
-                              <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img id="testload" className="image1-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="" />
-                              </a>
-                              <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img className="image2-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="" />
-                              </a>
-                              <div className="label_product">
-                                <span className="label_sale">Sale</span>
-                              </div>
-                              <div className="action_links">
-                                <ul>
-                                  <li className="wishlist">
-                                    <input defaultValue={9} id="data-favorite-8621" type="hidden" name={8621} />
-                                    <a id="click-favorite-8621" onclick="favorite(this)" data="[object Object]" className="click-favorites">
-                                      <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
-                                    </a>
-                                  </li>
-                                  <li className="compare">
-                                    <a>
-                                      <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
-                                    </a>
-                                  </li>
-                                  <li className="quick_button">
-                                    <input defaultValue={9} id="data-cart-8621" type="hidden" name={8621} />
-                                    <a id="click-cart-8621" onclick="cart(this)" data="[object Object]" className="click-cart">
-                                      <img className="icon-item-costum-cart image-cart-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div className="product_content grid_content">
-                              <div className="product_content_inner">
-                                <h4 className="product_name" style={{ height: '50px' }}>
-                                  <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
-                                </h4>
-                                <div className="price_box">
-                                  <span className="current_price" >Rp. 31.500</span>
-                                </div>
-                              </div>
-                              <div className="add_to_cart">
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                              </div>
-                            </div>
-                            <div className="product_content list_content">
-                              <h4 className="product_name">
-                                <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>Wardah - Facial Cleansher</a>
-                              </h4>
-                              <div className="price_box">
-                                <span className="current_price" >Rp. 31.500</span>
-                              </div>
-                              <div className="product_desc">
-                                <p style={{ fontSize: '32px', paddingLeft: '15px' }}>-</p>
-                                <ul>
-                                  <div className="row" style={{ paddingTop: '10px' }}>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40} />Wardah Crystal Secret Foaming Cleanser with Natural AHA+PHA merupakan Foaming Cleanser dengan kandungan Natural AHA + PHA dan Moistbeads yang sustainable
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40} />bantu mengangkat sel kulit mati
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40} /> minyak
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40} />kotoran
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40} />dan sisa make-up dengan lembut
-                                      </li>
-                                    </div>
-                                  </div>
-                                  <ul />
-                                </ul>
-                              </div>
-                              <div className="add-cart-costum" style={{ paddingLeft: '17px' }}>
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                                <a id="click-favorite-8621" onclick="favorite(this)" className="click-favorites">
-                                  <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
-                                  {/* <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like.svg" alt="like" /> */}
-                                </a>
-                                <a title="Add to cart">
-                                  <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
-                                </a>
-                                <a id="click-cart-8621" onclick="cart(this)" className="click-cart">
-                                  <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
-                                </a>
-                              </div>
-                            </div>
-                          </figure>
-                        </article>
+
+
+                {/* Tambah Alamat */}
+                <Modal show={request} onHide={closeRequest} animation={false}>
+                  <Card style={{}}>
+                    <Modal.Header closeButton>
+                      <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
+                        Tambah Alamat
+                      </Modal.Title>
+                    </Modal.Header>
+                    <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
+                    <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
+                      <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }} >Kota & Kecamatan</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
+                      <Form.Control type="text" style={{ height: 80 }} id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }} >Catatan untuk kurir (opsional)</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <div>
+                        <Form.Text id="passwordHelpBlock" muted>
+                          Warna rumah, patokan, pesan khusus, dll.
+                        </Form.Text>
                       </div>
-                    </div>
-                  </div>
-                )}
+
+                      <div>
+                        <Form><Form.Check type="checkbox" id="" label="Jadikan Alamat utama" /> </Form>
+                      </div>
+                      <div style={{ textAlign: 'center' }}>
+                        <Form.Text id="passwordHelpBlock" muted>
+                          Dengan klik “Simpan”, kamu menyetujui <a variant='primary'>Syarat & Ketentuan.</a>
+                        </Form.Text>
+                      </div>
+                      <div style={{ textAlign: 'center' }}>
+                        <Button >Simpan</Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Modal>
+
+                {/* ubah alamat */}
+                <Modal show={editalamat} onHide={closeEdit} animation={false}>
+                  <Card >
+                    <Modal.Header closeButton>
+                      <Modal.Title id="contained-modal-title-vcenter" style={{ fontWeight: 'bold', paddingLeft: 300 }}>
+                        Ubah Alamat
+                      </Modal.Title>
+                    </Modal.Header>
+
+                    <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
+                      <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }}>Catatan untuk kurir (opsional)</Form.Label>
+                      <Form.Control type="text" style={{ height: 80 }} id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <div>
+                        <Form.Text id="passwordHelpBlock" muted>
+                          Warna rumah, patokan, pesan khusus, dll.
+                        </Form.Text>
+                      </div>
+                      <Form.Label style={{ fontWeight: 'bold' }}>Nama Penerima</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
+                      <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+                      <div>
+                        <Form.Text id="passwordHelpBlock" muted>
+                          Dengan klik “Simpan”, kamu menyetujui Syarat & Ketentuan.
+                        </Form.Text>
+                      </div>
+                      <Button >Simpan</Button>
+                    </Card.Body>
+                  </Card>
+                </Modal>
               </div>
+              {/* Filter */}
               <div className="col-lg-3 col-md-12">
                 <aside className="sidebar_widget">
                   <div className="widget_list widget_categories">
-                    <h3>Product categories</h3>
-                    <ul id="generateKategori">
-                      <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Facial Cleanser</a></li>
-                    </ul>
-                  </div>
-                  <div className="widget_list widget_filter">
-                    <h3>Filter by price</h3>
-                    <form action="#">
-                      <Slider
-                        value={value}
-                        onChange={handleChange}
-                        valueLabelDisplay="auto"
-                        min={0}
-                        max={500}
-                      />
-                      <p className="filter">${value[0]} - ${value[1]}</p>
-                      <button className="btn-filter" style={{}} type="submit" placeholder="Filter">
-                        Filter
-                      </button>
-                      <input type="text" name="text" id="amount" />
-                    </form>
+                    <div>
+                      <Card style={{ paddingLeft: 50, paddingRight: 50, marginRight: -12, margin: 10 }} variant="light" onClick={handleShow3}>
 
+                        Makin Hemat Pakai Promo
+
+                      </Card>
+
+                      <Modal show={show3} onHide={handleClose3}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Pakai Promo</Modal.Title>
+
+                        </Modal.Header>
+                        <Modal.Body>
+                          <Form>
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                              <Form.Control
+                                type="name"
+                                placeholder="Masukkan kode promo"
+                                autoFocus
+                              />
+                            </Form.Group>
+                            <Button variant="light" type="submit">
+                              Terapkan
+                            </Button>
+                          </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        </Modal.Footer>
+                      </Modal>
+                      <Card>
+                        <h3 style={{ margin: 10 }} >Ringkasan belanja</h3>
+                        <a style={{ margin: 10 }}>Total Barang (0 harga)</a>
+                        <a></a>
+                      </Card>
+                      <Card>
+                        {/* <p>Total Diskon</p> */}
+                        <h3 style={{ margin: 10 }} >Total Harga</h3>
+                        <Button style={{ margin: 10 }} variant="success" size="sm" active>
+                          Total
+                        </Button>{' '}</Card>
+
+                    </div>
                   </div>
                   <div className="widget_list tags_widget">
-                    <h3>Product tags</h3>
-                    <div className="tag_cloud">
-                      <a href="shop-right-sidebar.html#">blouse</a>
-                      <a href="shop-right-sidebar.html#">clothes</a>
-                      <a href="shop-right-sidebar.html#">fashion</a>
-                      <a href="shop-right-sidebar.html#">handbag</a>
-                      <a href="shop-right-sidebar.html#">laptop</a>
-                    </div>
                   </div>
                 </aside>
 
@@ -452,7 +565,8 @@ const Checkout = () => {
 
 
 
-    </Layout>
+
+    </Layout >
 
   );
 };

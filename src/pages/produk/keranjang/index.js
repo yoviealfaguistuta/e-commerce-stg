@@ -209,12 +209,16 @@ const Keranjang = () => {
                             <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
                           </Form.Group>
                         </Form>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 710, marginLeft: 80, marginTop: -30, marginBottom: -15 }}> <FiTrash2 /></a>
-                        <a style={{ fontSize: 25, color: '#7B8FA1', paddingLeft: 669, marginLeft: 100, marginTop: -20, fontWeight: 'bold' }}> <RxDividerVertical /></a>
-                        <a style={{ paddingLeft: 555, color: '#7B8FA1', marginLeft: 100, marginTop: -25, fontSize: 13 }}>Sudah ada di wishlist</a>
-                        <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -30 }}> <AiOutlineMinusCircle /></a>
-                        <a style={{ fontSize: 15, paddingLeft: 760, marginLeft: 90, marginTop: -25 }}> {count}</a>
-                        <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -28 }}> <AiFillPlusCircle /></a>
+
+                        <Stack direction="row" spacing={1} style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}>
+                          <IconButton aria-label="delete">
+                            <DeleteIcon />
+                          </IconButton>
+                        </Stack>
+                        <a style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}> <RxDividerVertical /></a>
+                        <a style={{ paddingLeft: 455, color: '#7B8FA1', marginLeft: 108, marginTop: -25, fontSize: 13, marginBottom: 40 }}>Sudah ada di wishlist</a>
+                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -28 }}> <AiOutlineMinusCircle /></a>
+                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -30 }}> <AiFillPlusCircle /></a>
                       </Card>
                     </div>
                   </div>
