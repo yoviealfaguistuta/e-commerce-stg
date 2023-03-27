@@ -33,7 +33,10 @@ import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import { height, textAlign } from "@mui/system";
-
+import '../../../assets/css/custom.css';
+import '../../../assets/css/plugins.css';
+import '../../../assets/css/style.css';
+import { height, textAlign } from "@mui/system";
 
 
 const Profile = (props) => {
@@ -621,12 +624,21 @@ const Profile = (props) => {
 
             <div style={{ paddingBottom: 50, paddingLeft: 135 }}>
               <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
-                <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
-                <b style={{ color: '#31353B', paddingLeft: 20 }}>SMS Ke</b>
-                <div>
-                  <a style={{ color: '#31353B', paddingLeft: 70, fontSize: 13 }}>0895-6167-100-43</a>
+                <div className="row">
+                  <div className="col">
+                  <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+
+                  </div>
+                  <div className="col" style={{width:300, paddingTop: 20}}>
+                  <b style={{ color: '#31353B', paddingTop: 20}}>SMS Ke</b>
+                  <div>
+                  <a style={{ color: '#31353B',fontSize: 13 }}>0895-6167-100-43</a>
 
                 </div>
+
+                  </div>
+                </div>
+              
 
               </Button>
             </div>
