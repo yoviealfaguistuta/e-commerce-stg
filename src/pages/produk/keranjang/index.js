@@ -206,24 +206,6 @@ const Keranjang = () => {
                               </Figure>
                             </div>
 
-<<<<<<< HEAD
-                        <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
-                        <Form>
-                          <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                          </Form.Group>
-                        </Form>
-
-                        <Stack direction="row" spacing={1} style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}>
-                          <IconButton aria-label="delete">
-                            <DeleteIcon />
-                          </IconButton>
-                        </Stack>
-                        <a style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}> <RxDividerVertical /></a>
-                        <a style={{ paddingLeft: 455, color: '#7B8FA1', marginLeft: 108, marginTop: -25, fontSize: 13, marginBottom: 40 }}>Sudah ada di wishlist</a>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -28 }}> <AiOutlineMinusCircle /></a>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -30 }}> <AiFillPlusCircle /></a>
-=======
                           </div>
                           <div className="col-8">
                             <p style={{ fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
@@ -249,7 +231,6 @@ const Keranjang = () => {
                             </div>
                           </div>
                         </div>
->>>>>>> 4062ec802c4fdc3a17de4adcc35585262bf5b681
                       </Card>
                     </div>
                   </div>
