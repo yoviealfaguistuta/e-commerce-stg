@@ -27,16 +27,13 @@ import Accordion from 'react-bootstrap/Accordion';
 import LocationMap from "./LocationMap";
 import { width } from "@mui/system";
 import Switch from "react-bootstrap/Switch";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form} from "react-bootstrap";
 
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import { height, textAlign } from "@mui/system";
-import '../../../assets/css/custom.css';
-import '../../../assets/css/plugins.css';
-import '../../../assets/css/style.css';
-import { height, textAlign } from "@mui/system";
+
 
 
 const Profile = (props) => {
