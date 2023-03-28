@@ -6424,7 +6424,6 @@ textarea:-ms-input-placeholder {
 
 .widget_list>ul>li>a {
   font-size: 16px;
-  display: block;
   line-height: 25px;
   padding: 10px 0;
   text-decoration: none;
@@ -6670,7 +6669,6 @@ textarea:-ms-input-placeholder {
   margin: 0 5px 12px 0;
   padding: 5px 15px;
   text-transform: capitalize;
-  display: inline-block;
   border: 1px solid #ebebeb;
   background: #ffffff;
   border-radius: 3px;
