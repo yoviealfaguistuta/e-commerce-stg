@@ -12,6 +12,8 @@ import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
+import axios from "axios";
+
 
 
 
@@ -89,12 +91,69 @@ const List = () => {
     setIsList(false);
   };
 
-///like
-const [jumlahLike, setJumlahLike] = useState(0);
-function handleLike() {
-  setJumlahLike(jumlahLike + 1);
-}
+  ///like
+  const [jumlahLike, setJumlahLike] = useState(0);
+  function handleLike() {
+    setJumlahLike(jumlahLike + 1);
+  }
 
+
+  ///barang
+  const [barang, setBarang] = useState([]);
+
+  useEffect(() => {
+    getBarang();
+  }, []);
+
+  function getBarang() {
+    axios
+      .get('https://microdatastoreapi.cooljarsoft.com/barang')
+      .then(function (response) {
+        console.log('response :>> ', response.data.items);
+        setBarang(response.data.items);
+
+
+        // kode yang ada disini bakal di jalanin kalo berhasil dapet sesuatu
+      })
+      .catch(function (error) {
+        //  yang ada disini bakal di jalanin kalo tidak berhasil dapet sesuatu
+      })
+      .finally(function () {
+        // kode yang ada disini bakal di jalanin kalo dia berhasil atau tidak berhasil dapet sesuatu
+      });
+  }
+
+  const getDescriptionAsList = (description) => {
+    const paragraphs = description.split('\n');
+    return paragraphs.map((paragraph, index) => (
+      <li key={index}>{paragraph}</li>
+    ));
+  };
+
+  ///jenis barang
+  const [jenisbarang, setJenisBarang] = useState([]);
+
+  useEffect(() => {
+    getJenisBarang();
+  }, []);
+
+  function getJenisBarang() {
+    axios
+      .get('https://microdatastoreapi.cooljarsoft.com/jenis-barang')
+      .then(function (response) {
+        console.log('response :>> ', response.data.items);
+        setJenisBarang(response.data.items);
+
+
+        // kode yang ada disini bakal di jalanin kalo berhasil dapet sesuatu
+      })
+      .catch(function (error) {
+        //  yang ada disini bakal di jalanin kalo tidak berhasil dapet sesuatu
+      })
+      .finally(function () {
+        // kode yang ada disini bakal di jalanin kalo dia berhasil atau tidak berhasil dapet sesuatu
+      });
+  }
 
   return (
     <Layout>
@@ -166,230 +225,325 @@ function handleLike() {
                 >
                 </div>
 
+
                 {/* List daftar produk */}
                 {isGrid ? (
                   <div className="grid-layout">
                     <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
-                      <div className="col-lg-3 col-md-4 col-12 ">
-                        <article className="single_product">
-                          <figure>
-                            <div className="product_thumb">
-                              <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img id="testload" className="image1-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="" />
-                              </a>
-                              <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img className="image2-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="" />
-                              </a>
-                              <div className="label_product">
-                                <span className="label_sale">Sale</span>
-                              </div>
-                              <div className="action_links">
-                                <ul>
-                                  <li className="wishlist">
-                                    <input defaultValue={9} id="data-favorite-3977" type="hidden" name={3977} />
-                                    <a id="click-favorite-3977" onclick="favorite(this)" data="[object Object]" className="click-favorites">
-                                      <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
-                                      {/* <img className="icon-item-costum-like image-favorite-3977"  src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" /> */}
-                                    </a>
-                                  </li>
-                                  <li className="compare">
-                                    <a>
-                                      <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
-                                    </a>
-                                  </li>
-                                  <li className="quick_button">
-                                    <input defaultValue={9} id="data-cart-3977" type="hidden" name={3977} />
-                                    <a id="click-cart-3977" onclick="cart(this)" data="[object Object]" className="click-cart">
-                                      <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
-                                      {/* <img className="icon-item-costum-cart image-cart-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" /> */}
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div className="product_content grid_content">
-                              <div className="product_content_inner">
-                                <h4 className="product_name" style={{ height: '50px' }}>
-                                  <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
-                                </h4>
-                                <div className="price_box">
-                                  <span className="current_price">Rp. 31.500</span>
-                                </div>
-                              </div>
-                              <div className="add_to_cart">
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                              </div>
-                            </div>
 
-                            <div className="product_content list_content">
-                              <h4 className="product_name">
-                                <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
-                              </h4>
-                              <div className="price_box">
-                                <span className="current_price">Rp. 31.500</span>
-                              </div>
+                      {
+                        barang.map((items, index) => {
 
-                              <div className="product_desc">
-                                <p>-</p>
-                                <ul>
-                                  <div className="row">
-                                    <div className="col-md-6 ">
-                                      <li className="wrapper-list-kategori">
-                                        <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> Wardah Crystal Secret Foaming Cleanser with Natural AHA+PHA merupakan Foaming Cleanser dengan kandungan Natural AHA + PHA dan Moistbeads yang sustainable
-                                      </li>
+
+                          return (
+
+                            <div className="col-lg-3 col-md-4 col-12 ">
+                              {['Info',].map((variant) => (
+
+                                <article className="single_product">
+                                  <figure>
+                                    <div className="product_thumb">
+                                      <a className="primary_img" href='/detail/id_barang'>
+                                        {
+                                          items.images.map((gambar, indexGambar) => {
+                                            return (
+                                              <>
+                                                {
+                                                  (indexGambar == 0) ?
+                                                    <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
+                                                    : ""
+                                                }
+                                              </>
+                                            )
+                                          })
+
+                                        }
+
+                                      </a>
+                                      <a className="secondary_img" href='/detail/id_barang'>
+                                        {
+                                          items.images.map((gambar, indexGambar) => {
+                                            return (
+                                              <>
+                                                {
+                                                  (indexGambar == 0) ?
+                                                    <img id="testload" className="image1-barang" src={gambar.thumb} alt="gambar" />
+                                                    : ""
+                                                }
+                                              </>
+                                            )
+                                          })
+
+                                        }
+                                      </a>
+                                      <div className="label_product">
+                                        <span className="label_sale">Sale</span>
+                                      </div>
+                                      <div className="action_links">
+                                        <ul>
+                                          <li className="wishlist">
+                                            <input defaultValue={9} id="data-favorite-3977" type="hidden" name={3977} />
+                                            <a id="click-favorite-3977" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                              <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
+                                            </a>
+                                          </li>
+                                          <li className="compare">
+                                            <a>
+                                              <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                          </li>
+                                          <li className="quick_button">
+                                            <input defaultValue={9} id="data-cart-3977" type="hidden" name={3977} />
+                                            <a id="click-cart-3977" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                              <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
                                     </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> bantu mengangkat sel kulit mati
-                                      </li>
+                                    <div className="product_content grid_content">
+                                      <div className="product_content_inner">
+                                        <h4 className="product_name" style={{ height: '50px' }}>
+                                          <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{items.name}</a>
+                                        </h4>
+                                        <div className="price_box">
+                                          <span className="current_price">Rp.{items.price}</span>
+                                        </div>
+                                      </div>
+                                      <div className="add_to_cart">
+                                        <a href="/checkout/" title="Add to cart">Checkout</a>
+                                      </div>
                                     </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> minyak
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> kotoran
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> dan sisa make-up dengan lembut
-                                      </li>
-                                    </div>
-                                  </div>
-                                  <ul />
-                                </ul>
-                              </div>
-                              <div className="add-cart-costum">
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                                <a id="click-favorite-3977" onclick="favorite(this)" className="click-favorites">
-                                  <img className="icon-item-costum-like image-favorite-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like.svg" alt="like" />
-                                </a>
-                                <a title="Add to cart">
-                                  <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
-                                </a>
-                                <a id="click-cart-3977" onclick="cart(this)" className="click-cart">
-                                  <img className="icon-item-costum-cart image-cart-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart.svg" alt="like" />
-                                </a>
-                              </div>
+
+                                    {/* <div className="product_content list_content">
+                                      <h4 className="product_name">
+                                        <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
+                                      </h4>
+                                      <div className="price_box">
+                                        <span className="current_price">Rp. 31.500</span>
+                                      </div>
+
+                                      <div className="product_desc">
+                                        <p>-</p>
+                                        <ul>
+                                          <div className="row">
+                                            <div className="col-md-6 ">
+                                              <li className="wrapper-list-kategori">
+                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> Wardah Crystal Secret Foaming Cleanser with Natural AHA+PHA merupakan Foaming Cleanser dengan kandungan Natural AHA + PHA dan Moistbeads yang sustainable
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> bantu mengangkat sel kulit mati
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> minyak
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> kotoran
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> dan sisa make-up dengan lembut
+                                              </li>
+                                            </div>
+                                          </div>
+                                          <ul />
+                                        </ul>
+                                      </div>
+                                      <div className="add-cart-costum">
+                                        <a href="cart.html" title="Add to cart">Checkout</a>
+                                        <a id="click-favorite-3977" onclick="favorite(this)" className="click-favorites">
+                                          <img className="icon-item-costum-like image-favorite-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like.svg" alt="like" />
+                                        </a>
+                                        <a title="Add to cart">
+                                          <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
+                                        </a>
+                                        <a id="click-cart-3977" onclick="cart(this)" className="click-cart">
+                                          <img className="icon-item-costum-cart image-cart-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart.svg" alt="like" />
+                                        </a>
+                                      </div>
+                                    </div> */}
+                                  </figure>
+                                </article>
+                              ))}
+
                             </div>
-                          </figure>
-                        </article>
-                      </div>
+                          )
+                        })
+
+                      }
+
                     </div>
                   </div>
+
                 ) : (
                   <div className="list-layout">
                     {/* tombol list single produk */}
                     <div className="row no-gutters shop_wrapper grid_list" id="generateBarang">
-                      <div className="col-12">
-                        <article className="single_product">
-                          <figure>
-                            <div className="product_thumb">
-                              <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img id="testload" className="image1-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="" />
-                              </a>
-                              <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
-                                <img className="image2-barang" src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="" />
-                              </a>
-                              <div className="label_product">
-                                <span className="label_sale">Sale</span>
-                              </div>
-                              <div className="action_links">
-                                <ul>
-                                  <li className="wishlist">
-                                    <input defaultValue={9} id="data-favorite-8621" type="hidden" name={8621} />
-                                    <a id="click-favorite-8621" onclick="favorite(this)" data="[object Object]" className="click-favorites">
-                                      <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
-                                    </a>
-                                  </li>
-                                  <li className="compare">
-                                    <a>
-                                      <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
-                                    </a>
-                                  </li>
-                                  <li className="quick_button">
-                                    <input defaultValue={9} id="data-cart-8621" type="hidden" name={8621} />
-                                    <a id="click-cart-8621" onclick="cart(this)" data="[object Object]" className="click-cart">
-                                      <img className="icon-item-costum-cart image-cart-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
+                      {
+                        barang.map((items, index) => {
+
+
+                          return (
+                            <div className="col-12">
+                              {['Info',].map((variant) => (
+
+                                <article className="single_product">
+                                  <figure>
+                                    <div className="product_thumb">
+                                      <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                        {
+                                          items.images.map((gambar, indexGambar) => {
+                                            return (
+                                              <>
+                                                {
+                                                  (indexGambar == 0) ?
+                                                    <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
+                                                    : ""
+                                                }
+                                              </>
+                                            )
+                                          })
+
+                                        }                                      </a>
+                                      <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                        {
+                                          items.images.map((gambar, indexGambar) => {
+                                            return (
+                                              <>
+                                                {
+                                                  (indexGambar == 0) ?
+                                                    <img id="testload" className="image1-barang" src={gambar.thumb} alt="gambar" />
+                                                    : ""
+                                                }
+                                              </>
+                                            )
+                                          })
+
+                                        }                                      </a>
+                                      <div className="label_product">
+                                        <span className="label_sale">Sale</span>
+                                      </div>
+                                      <div className="action_links">
+                                        <ul>
+                                          <li className="wishlist">
+                                            <input defaultValue={9} id="data-favorite-8621" type="hidden" name={8621} />
+                                            <a id="click-favorite-8621" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                              <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                            </a>
+                                          </li>
+                                          <li className="compare">
+                                            <a>
+                                              <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                            </a>
+                                          </li>
+                                          <li className="quick_button">
+                                            <input defaultValue={9} id="data-cart-8621" type="hidden" name={8621} />
+                                            <a id="click-cart-8621" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                              <img className="icon-item-costum-cart image-cart-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <div className="product_content grid_content">
+                                      <div className="product_content_inner">
+                                        <h4 className="product_name" style={{ height: '50px' }}>
+                                          <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9"></a>
+                                        </h4>
+                                        <div className="price_box">
+                                          <span className="current_price" >Rp. 31.500</span>
+                                        </div>
+                                      </div>
+                                      <div className="add_to_cart">
+                                        <a href="cart.html" title="Add to cart">Checkout</a>
+                                      </div>
+                                    </div>
+                                    <div className="product_content list_content">
+                                      <h4 className="product_name">
+                                        <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>{items.name}</a>
+                                      </h4>
+                                      <div className="price_box">
+                                        <span className="current_price" >Rp. {items.price}</span>
+                                      </div>
+                                      <div className="product_desc">
+                                        <p style={{ paddingLeft: '15px' }}>{items.short_description}</p>
+
+                                        <ul>
+                                          <div className="row" style={{ paddingTop: '10px' }}>
+                                            {barang.map((items) => (
+                                              <div className="col-md-6">
+                                                <li className="wrapper-list-kategori" key={items.index}>
+
+                                                  <BsDot size={40} />{getDescriptionAsList(items.long_description)}
+
+                                                </li>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </ul>
+
+
+
+                                        {/* <ul>
+                                          <div className="row" style={{ paddingTop: '10px' }}>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <BsDot size={40} />{items.long_description}
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <BsDot size={40} />{items.long_description}
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <BsDot size={40} /> minyak
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <BsDot size={40} />kotoran
+                                              </li>
+                                            </div>
+                                            <div className="col-md-6">
+                                              <li className="wrapper-list-kategori">
+                                                <BsDot size={40} />dan sisa make-up dengan lembut
+                                              </li>
+                                            </div>
+                                          </div>
+                                          <ul />
+                                        </ul> */}
+                                      </div>
+                                      <div className="add-cart-costum" style={{ paddingLeft: '17px' }}>
+                                        <a href="/checkout/" title="Add to cart">Checkout</a>
+                                        <a id="click-favorite-8621" onclick="favorite(this)" className="click-favorites">
+                                          <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
+                                        </a>
+                                        <a title="Add to cart">
+                                          <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
+                                        </a>
+                                        <a id="click-cart-8621" onclick="cart(this)" className="click-cart">
+                                          <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </figure>
+                                </article>
+                              ))}
                             </div>
-                            <div className="product_content grid_content">
-                              <div className="product_content_inner">
-                                <h4 className="product_name" style={{ height: '50px' }}>
-                                  <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
-                                </h4>
-                                <div className="price_box">
-                                  <span className="current_price" >Rp. 31.500</span>
-                                </div>
-                              </div>
-                              <div className="add_to_cart">
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                              </div>
-                            </div>
-                            <div className="product_content list_content">
-                              <h4 className="product_name">
-                                <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{paddingLeft: '10px'}}>Wardah - Facial Cleansher</a>
-                              </h4>
-                              <div className="price_box">
-                                <span className="current_price" >Rp. 31.500</span>
-                              </div>
-                              <div className="product_desc">
-                                <p style={{fontSize: '32px', paddingLeft: '15px'}}>-</p>
-                                <ul>
-                                  <div className="row" style={{paddingTop:'10px'}}>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                        <BsDot size={40}/>Wardah Crystal Secret Foaming Cleanser with Natural AHA+PHA merupakan Foaming Cleanser dengan kandungan Natural AHA + PHA dan Moistbeads yang sustainable
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                      <BsDot size={40}/>bantu mengangkat sel kulit mati
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                      <BsDot size={40} /> minyak
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                      <BsDot size={40}/>kotoran
-                                      </li>
-                                    </div>
-                                    <div className="col-md-6">
-                                      <li className="wrapper-list-kategori">
-                                      <BsDot size={40} />dan sisa make-up dengan lembut
-                                      </li>
-                                    </div>
-                                  </div>
-                                  <ul />
-                                </ul>
-                              </div>
-                              <div className="add-cart-costum" style={{paddingLeft:'17px'}}>
-                                <a href="cart.html" title="Add to cart">Checkout</a>
-                                <a id="click-favorite-8621" onclick="favorite(this)" className="click-favorites">
-                                  <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick}/>
-                                  {/* <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like.svg" alt="like" /> */}
-                                </a>
-                                <a title="Add to cart">
-                                  <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
-                                </a>
-                                <a id="click-cart-8621" onclick="cart(this)" className="click-cart">
-                                  <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
-                                  {/* <img className="icon-item-costum-cart image-cart-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart.svg" alt="like" /> */}
-                                </a>
-                              </div>
-                            </div>
-                          </figure>
-                        </article>
-                      </div>
+                          )
+                        })
+
+                      }
+
                     </div>
                   </div>
                 )}
@@ -409,18 +563,15 @@ function handleLike() {
                 <aside className="sidebar_widget">
                   <div className="widget_list widget_categories">
                     <h3>Product categories</h3>
-                    <ul id="generateKategori">
-                      {/* <li><a href="#/" onclick="generateBarang(1,1)">Pulsa Prabayar</a></li>
-                      <li><a href="#/" onclick="generateBarang(2,1)">Paket Data</a></li>
-                      <li><a href="#/" onclick="generateBarang(3,1)">Printer</a></li>
-                      <li><a href="#/" onclick="generateBarang(4,1)">Scanner</a></li>
-                      <li><a href="#/" onclick="generateBarang(5,1)">External Storage</a></li>
-                      <li><a href="#/" onclick="generateBarang(6,1)">Monitor</a></li>
-                      <li><a href="#/" onclick="generateBarang(7,1)">Audio Video</a></li>
-                      <li><a href="#/" onclick="generateBarang(8,1)">Televisi</a></li>
-                      <li><a href="#/" onclick="generateBarang(9,1)">Facial Wash</a></li> */}
-                      <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>Facial Cleanser</a></li>
-                    </ul>
+                    {
+                      barang.map((items, index) => {
+                        return (
+                          <ul id="generateKategori">
+                            <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
+                          </ul>
+                        )
+                      })
+                    }
                   </div>
                   <div className="widget_list widget_filter">
                     <h3>Filter by price</h3>
@@ -433,27 +584,26 @@ function handleLike() {
                         max={500}
                       />
                       <p className="filter">${value[0]} - ${value[1]}</p>
-                      {/* <div id="slider-range" className="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                        <div className="ui-slider-range ui-widget-header ui-corner-all" style={{ left: '0%', width: '84%' }} />
-                        <span className="ui-slider-handle ui-state-default ui-corner-all" tabIndex={0} style={{ left: '0%' }} />
-                        <span className="ui-slider-handle ui-state-default ui-corner-all" tabIndex={0} style={{ left: '84%' }} />
-                      </div> */}
                       <button className="btn-filter" style={{}} type="submit" placeholder="Filter">
                         Filter
                       </button>
                       <input type="text" name="text" id="amount" />
                     </form>
-
                   </div>
                   <div className="widget_list tags_widget">
                     <h3>Product tags</h3>
-                    <div className="tag_cloud">
-                      <a href="shop-right-sidebar.html#">blouse</a>
-                      <a href="shop-right-sidebar.html#">clothes</a>
-                      <a href="shop-right-sidebar.html#">fashion</a>
-                      <a href="shop-right-sidebar.html#">handbag</a>
-                      <a href="shop-right-sidebar.html#">laptop</a>
+                    <div style={{display:'flex', flexWrap:'wrap'}}>
+                    {jenisbarang.map((items) => (
+                      <div key={items.index} style={{padding:10}}>
+                        <div className="tag_cloud">
+                        <a  href="shop-right-sidebar.html#">{items.tag}</a>
+                        </div>
+                       
+                      </div>
+                    ))}
                     </div>
+                   
+
                   </div>
                 </aside>
 
@@ -477,21 +627,3 @@ function handleLike() {
 };
 
 export default List;
-
-function ProdukList() {
-  return (
-    <div>
-      <h1>Produk List</h1>
-      {/* Daftar produk */}
-    </div>
-  );
-}
-
-function SingleProduk() {
-  return (
-    <div>
-      <h1>Single Produk</h1>
-      {/* Detail produk */}
-    </div>
-  );
-}
