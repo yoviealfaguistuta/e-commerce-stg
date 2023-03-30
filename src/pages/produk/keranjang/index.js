@@ -22,7 +22,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import { IoIosArrowForward } from "react-icons/io";
-
+import axios from "axios";
 
 
 
@@ -164,6 +164,25 @@ const Keranjang = () => {
     }
   }
 
+
+  const [barang, setBarang] = useState([]);
+  useEffect(() => {
+    getBarang();
+  }, []);
+  function getBarang() {
+    axios
+      .get('https://microdatastoreapi.cooljarsoft.com/barang?per-page=5')
+      .then(function (response) {
+        console.log('response :>> ', response.data.items);
+        setBarang(response.data.items);
+      }).catch(function (error) {
+
+      }).finally(function () {
+
+      });
+  }
+
+
   return (
     <Layout>
       <div>
@@ -171,6 +190,8 @@ const Keranjang = () => {
         <div className="shop_area">
           <div className="container">
             <div className="row">
+
+
               <div className="col-lg-9 col-md-12">
                 <div className="row mb-3">
                   <div className="col-12">
@@ -189,49 +210,51 @@ const Keranjang = () => {
                       {/* <a style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 970, marginLeft: 80}} >hapus</a> */}
                       <div>
                       </div>
+                      <div>
+                        {
+                          barang.map((items, index) => {
+                            return (
+                              <Card>
+                                <Form.Check style={{ fontSize: 14, fontWeight: 'bold' }} label="TokoIni" /><a style={{ color: '#7B8FA1', fontSize: 13, paddingLeft: 30 }}>Bandar Lampung</a><div className="row">
+                                  <div className="col-2">
+                                    <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
+                                      <div className="col-2">  <Form.Check /></div>
 
-                      <Card>
-                      
-                          <Form.Check style={{ fontSize: 14, fontWeight: 'bold' }} label="TokoIni" />
-                            <a style={{ color: '#7B8FA1', fontSize: 13 ,paddingLeft:30}}>Bandar Lampung</a>
-                        <div className="row">
-                          <div className="col-2">
-                            <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
-                              <div className="col-2">  <Form.Check /></div>
+                                      <Figure>
+                                        <Figure.Image style={{ height: 100, width: 120 }}
+                                          src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
+                                        </Figure.Image>
+                                      </Figure>
+                                    </div>
+                                  </div>
+                                  <div className="col-8">
+                                    <p style={{ fontSize: 14 }}>{items.name}</p>
+                                    <p style={{ fontSize: 14, fontWeight: 'bold' }}>{items.price}</p>
 
-                              <Figure>
-                                <Figure.Image style={{ height: 100, width: 120 }}
-                                  src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
-                                </Figure.Image>
-                              </Figure>
-                            </div>
+                                  </div>
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 30 }}>Tulis Catatan</a>
+                                      <Form>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                          <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
+                                        </Form.Group>
+                                      </Form>
+                                    </div>
+                                    <div className="col-6">
+                                      <a style={{ color: '#7B8FA1', fontSize: 13 }}>Sudah ada di wishlist</a>
+                                      <a style={{ fontSize: 25, color: '#7B8FA1', fontWeight: 'bold' }}> <RxDividerVertical /></a>
+                                      <a style={{ fontSize: 20, color: '#7B8FA1' }}> <FiTrash2 /></a>
+                                      <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiOutlineMinusCircle /></a>
+                                      {count}
+                                      <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiFillPlusCircle /></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </Card>)
+                          })}
+                      </div>
 
-                          </div>
-                          <div className="col-8">
-                            <p style={{ fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
-                            <p style={{ fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
-
-                          </div>
-                          <div className="row">
-                            <div className="col-6">
-                              <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14,paddingLeft:30 }}>Tulis Catatan</a>
-                              <Form>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                  <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                                </Form.Group>
-                              </Form>
-                            </div>
-                            <div className="col-6">
-                              <a style={{ color: '#7B8FA1', fontSize: 13 }}>Sudah ada di wishlist</a>
-                              <a style={{ fontSize: 25, color: '#7B8FA1', fontWeight: 'bold' }}> <RxDividerVertical /></a>
-                              <a style={{ fontSize: 20, color: '#7B8FA1' }}> <FiTrash2 /></a>
-                              <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiOutlineMinusCircle /></a>
-                              {count}
-                              <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiFillPlusCircle /></a>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
                     </div>
                   </div>
                 </div>
@@ -246,6 +269,7 @@ const Keranjang = () => {
                         Makin Hemat Pakai Promo
 
                       </Card>
+
 
                       <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
@@ -288,6 +312,7 @@ const Keranjang = () => {
                 </aside>
 
               </div>
+
             </div>
           </div>
         </div>

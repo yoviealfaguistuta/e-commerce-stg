@@ -12,8 +12,7 @@ import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
-
-
+import  axios  from "axios";
 
 
 const List = () => {
@@ -95,6 +94,23 @@ function handleLike() {
   setJumlahLike(jumlahLike + 1);
 }
 
+///jenis-barang
+const [barang,setBarang] = useState([]);
+useEffect(() =>{
+  getBarang();
+},[]);
+function getBarang(){
+  axios
+  .get('https://microdatastoreapi.cooljarsoft.com/barang')
+  .then(function(response){
+    console.log('response :>> ', response.data.items);
+    setBarang(response.data.items);
+  }).catch(function(error){
+
+  }).finally(function(){
+
+  });
+}
 
   return (
     <Layout>
