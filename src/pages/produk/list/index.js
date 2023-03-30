@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from "../../../layout";
 import kategoribanner from "../../../assets/img/product/kategori-banner.png";
 import like from "../../../assets/img/logo/like-click.svg"
@@ -100,8 +101,17 @@ const List = () => {
 
   ///barang
   const [barang, setBarang] = useState([]);
+  const [sortType, setSortType] = useState('asc');
+  const [formattedNumber, setFormattedNumber] = useState('');
+ 
+
+
+  const { id_barang } = useParams();
+  let navigate = useNavigate();
 
   useEffect(() => {
+    const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
+    setFormattedNumber(formatter.format());
     getBarang();
   }, []);
 
@@ -111,24 +121,13 @@ const List = () => {
       .then(function (response) {
         console.log('response :>> ', response.data.items);
         setBarang(response.data.items);
-
-
-        // kode yang ada disini bakal di jalanin kalo berhasil dapet sesuatu
       })
       .catch(function (error) {
-        //  yang ada disini bakal di jalanin kalo tidak berhasil dapet sesuatu
       })
       .finally(function () {
-        // kode yang ada disini bakal di jalanin kalo dia berhasil atau tidak berhasil dapet sesuatu
       });
   }
 
-  const getDescriptionAsList = (description) => {
-    const paragraphs = description.split('\n');
-    return paragraphs.map((paragraph, index) => (
-      <li key={index}>{paragraph}</li>
-    ));
-  };
 
   ///jenis barang
   const [jenisbarang, setJenisBarang] = useState([]);
@@ -143,17 +142,22 @@ const List = () => {
       .then(function (response) {
         console.log('response :>> ', response.data.items);
         setJenisBarang(response.data.items);
-
-
-        // kode yang ada disini bakal di jalanin kalo berhasil dapet sesuatu
       })
       .catch(function (error) {
-        //  yang ada disini bakal di jalanin kalo tidak berhasil dapet sesuatu
       })
       .finally(function () {
-        // kode yang ada disini bakal di jalanin kalo dia berhasil atau tidak berhasil dapet sesuatu
       });
   }
+
+  function filterBarang() {
+    if (sortType === 'asc') {
+      return barang.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortType === 'desc') {
+      return barang.sort((a, b) => b.name.localeCompare(a.name));
+    }
+  }
+
+  
 
   return (
     <Layout>
@@ -186,7 +190,7 @@ const List = () => {
                         className="image_breadcumb"
                       />
                       <div className="top-left-breadcumb">
-                        ALL PRODUCT IS 100% ORIGINAL 2
+                        ALL PRODUCT IS 100% ORIGINAL
                       </div>
                       <div className="top-left-breadcumb-hint">
                         Feel free to get what you want
@@ -213,8 +217,8 @@ const List = () => {
                   </div>
                   <select className="select_costum_kategori" onchange="sortirAscDesc()" id="sortir-barang">
                     <option value selected disabled hidden>Urutkan nama barang</option>
-                    <option value="name">Urut berdasarkan A ke Z</option>
-                    <option value="-name">Urut berdasarkan Z ke A</option>
+                    <option value="name" onClick={() => setSortType('asc')}>Urut berdasarkan A ke Z</option>
+                    <option value="-name"onClick={() => setSortType('desc')}>Urut berdasarkan Z ke A</option>
                   </select>
                   <div className="page_amount" id="page-count-kategori">
                     <p>Showing 0–1 of 1 results</p>
@@ -233,17 +237,13 @@ const List = () => {
 
                       {
                         barang.map((items, index) => {
-
-
-                          return (
-
+                          return (                            
                             <div className="col-lg-3 col-md-4 col-12 ">
                               {['Info',].map((variant) => (
-
                                 <article className="single_product">
                                   <figure>
                                     <div className="product_thumb">
-                                      <a className="primary_img" href='/detail/id_barang'>
+                                      <a className="primary_img" href={'/detail/' + items.id_barang}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -260,7 +260,7 @@ const List = () => {
                                         }
 
                                       </a>
-                                      <a className="secondary_img" href='/detail/id_barang'>
+                                      <a className="secondary_img" href={'/detail/' + items.id_barang}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -307,7 +307,7 @@ const List = () => {
                                           <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{items.name}</a>
                                         </h4>
                                         <div className="price_box">
-                                          <span className="current_price">Rp.{items.price}</span>
+                                          <span className="current_price">Rp. {items.price}</span>
                                         </div>
                                       </div>
                                       <div className="add_to_cart">
@@ -315,60 +315,6 @@ const List = () => {
                                       </div>
                                     </div>
 
-                                    {/* <div className="product_content list_content">
-                                      <h4 className="product_name">
-                                        <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">Wardah - Facial Cleansher</a>
-                                      </h4>
-                                      <div className="price_box">
-                                        <span className="current_price">Rp. 31.500</span>
-                                      </div>
-
-                                      <div className="product_desc">
-                                        <p>-</p>
-                                        <ul>
-                                          <div className="row">
-                                            <div className="col-md-6 ">
-                                              <li className="wrapper-list-kategori">
-                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> Wardah Crystal Secret Foaming Cleanser with Natural AHA+PHA merupakan Foaming Cleanser dengan kandungan Natural AHA + PHA dan Moistbeads yang sustainable
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> bantu mengangkat sel kulit mati
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> minyak
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> kotoran
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <ion-icon name="ellipse" role="img" className="md hydrated" aria-label="ellipse" /> dan sisa make-up dengan lembut
-                                              </li>
-                                            </div>
-                                          </div>
-                                          <ul />
-                                        </ul>
-                                      </div>
-                                      <div className="add-cart-costum">
-                                        <a href="cart.html" title="Add to cart">Checkout</a>
-                                        <a id="click-favorite-3977" onclick="favorite(this)" className="click-favorites">
-                                          <img className="icon-item-costum-like image-favorite-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like.svg" alt="like" />
-                                        </a>
-                                        <a title="Add to cart">
-                                          <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
-                                        </a>
-                                        <a id="click-cart-3977" onclick="cart(this)" className="click-cart">
-                                          <img className="icon-item-costum-cart image-cart-3977" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart.svg" alt="like" />
-                                        </a>
-                                      </div>
-                                    </div> */}
                                   </figure>
                                 </article>
                               ))}
@@ -397,7 +343,7 @@ const List = () => {
                                 <article className="single_product">
                                   <figure>
                                     <div className="product_thumb">
-                                      <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                      <a className="primary_img" href={'/detail/' + items.id_barang}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -411,8 +357,9 @@ const List = () => {
                                             )
                                           })
 
-                                        }                                      </a>
-                                      <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">
+                                        }
+                                      </a>
+                                      <a className="secondary_img" href={'/detail/' + items.id_barang}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -426,7 +373,8 @@ const List = () => {
                                             )
                                           })
 
-                                        }                                      </a>
+                                        }
+                                      </a>
                                       <div className="label_product">
                                         <span className="label_sale">Sale</span>
                                       </div>
@@ -462,7 +410,7 @@ const List = () => {
                                         </div>
                                       </div>
                                       <div className="add_to_cart">
-                                        <a href="cart.html" title="Add to cart">Checkout</a>
+                                        <a href="/checkout/" title="Add to cart">Checkout</a>
                                       </div>
                                     </div>
                                     <div className="product_content list_content">
@@ -473,54 +421,21 @@ const List = () => {
                                         <span className="current_price" >Rp. {items.price}</span>
                                       </div>
                                       <div className="product_desc">
-                                        <p style={{ paddingLeft: '15px' }}>{items.short_description}</p>
-
                                         <ul>
-                                          <div className="row" style={{ paddingTop: '10px' }}>
-                                            {barang.map((items) => (
-                                              <div className="col-md-6">
-                                                <li className="wrapper-list-kategori" key={items.index}>
+                                          <div className="row mt-2" id="shortDescription">
+                                            {
+                                              items.short_description.map((short_description) =>
+                                                <div className='col-md-6'>
+                                                  <li className="wrapper-list-kategori" >
+                                                    <BsDot size={30} />{short_description}
 
-                                                  <BsDot size={40} />{getDescriptionAsList(items.long_description)}
+                                                  </li>
+                                                </div>
 
-                                                </li>
-                                              </div>
-                                            ))}
+                                              )
+                                            }
                                           </div>
                                         </ul>
-
-
-
-                                        {/* <ul>
-                                          <div className="row" style={{ paddingTop: '10px' }}>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <BsDot size={40} />{items.long_description}
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <BsDot size={40} />{items.long_description}
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <BsDot size={40} /> minyak
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <BsDot size={40} />kotoran
-                                              </li>
-                                            </div>
-                                            <div className="col-md-6">
-                                              <li className="wrapper-list-kategori">
-                                                <BsDot size={40} />dan sisa make-up dengan lembut
-                                              </li>
-                                            </div>
-                                          </div>
-                                          <ul />
-                                        </ul> */}
                                       </div>
                                       <div className="add-cart-costum" style={{ paddingLeft: '17px' }}>
                                         <a href="/checkout/" title="Add to cart">Checkout</a>
@@ -567,6 +482,7 @@ const List = () => {
                       barang.map((items, index) => {
                         return (
                           <ul id="generateKategori">
+                            <div className="border-divider" style={{}} />
                             <li><a href="#/" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
                           </ul>
                         )
@@ -592,17 +508,17 @@ const List = () => {
                   </div>
                   <div className="widget_list tags_widget">
                     <h3>Product tags</h3>
-                    <div style={{display:'flex', flexWrap:'wrap'}}>
-                    {jenisbarang.map((items) => (
-                      <div key={items.index} style={{padding:10}}>
-                        <div className="tag_cloud">
-                        <a  href="shop-right-sidebar.html#">{items.tag}</a>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                      {jenisbarang.map((items) => (
+                        <div key={items.index} style={{ padding: 10 }}>
+                          <div className="tag_cloud">
+                            <a href="shop-right-sidebar.html#">{items.tag}</a>
+                          </div>
+
                         </div>
-                       
-                      </div>
-                    ))}
+                      ))}
                     </div>
-                   
+
 
                   </div>
                 </aside>
