@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState } from 'react'
 import { Layout } from '../../layout';
 import Row from 'react-bootstrap/Row';
 
@@ -947,7 +947,7 @@ const Home = () => {
                                                 </figure>
                                             </div>
                                         </div>
-                                        <div className="owl-item cloned" style={{ width: 453 }}>
+                                        {/* <div className="owl-item cloned" style={{ width: 453 }}>
                                             <div className="product_items">
                                                 <figure className="single_product">
                                                     <div className="product_thumb">
@@ -1042,7 +1042,7 @@ const Home = () => {
                                                     </div>
                                                 </figure>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="owl-nav disabled">
