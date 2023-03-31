@@ -43,7 +43,7 @@ export const Footer = (params) => {
             <div className="footer_top">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3 col-md-5 col-sm-7">
+                        <div className="col-lg-2 col-md-5 col-sm-7">
                             <div className="widgets_container contact_us">
                                 <h3>GET THE APP</h3>
                                 <div className="aff_content">
@@ -104,7 +104,7 @@ export const Footer = (params) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-7 col-sm-12">
+                        <div className="col-lg-2 col-md-7 col-sm-12">
                             <div className="widgets_container">
                                 <h3>CONTACT INFO</h3>
                                 <div className="footer_contact">

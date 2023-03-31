@@ -210,7 +210,6 @@ const Checkout = () => {
   }
 
 
-
   return (
     <Layout>
       <card>
