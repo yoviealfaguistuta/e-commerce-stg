@@ -65,7 +65,7 @@
 
 }
 
-.col-lg-2 {
+.col-lg-2{
   flex: 0 0 auto;
   width: 20% !important;
   padding-right: 20px !important;
@@ -385,7 +385,7 @@ textarea:-ms-input-placeholder {
   }
 }
 
-.home_selection_bg {
+ .home_selection_bg{
   margin-top: 40px;
   padding-left: 60px;
 }

@@ -433,5 +433,3 @@ const Detail = () => {
     </Layout >
   );
 };
-
-export default Detail;

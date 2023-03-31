@@ -1,25 +1,95 @@
-import React, { Fragment,useState } from 'react'
+import React, { Fragment } from 'react'
 import { Layout } from '../../layout';
 import Row from 'react-bootstrap/Row';
+import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { Figure } from "react-bootstrap";
+import { fontSize } from "@mui/system";
+import like from "../../assets/img/logo/like-click.svg"
+import likehover from "../../assets/img/logo/like-hover.svg"
+import cart from "../../assets/img/logo/cart-click.svg"
+import carthover from "../../assets/img/logo/cart-hover.svg"
+import Slider from '@mui/material/Slider';
+import Cookies from 'js-cookie';
+
 
 
 const Home = () => {
+
+    const [barang, setBarang] = useState([]);
+    const [Barangmurah, setBarangmurah] = useState([]);
+
+    useEffect(() => {
+        getBarang();
+        getBarangmurah();
+    }, []);
+
+
+    function getBarang() {
+        axios
+            .get('https://microdatastoreapi.cooljarsoft.com/barang?per-page=5')
+            .then(function (response) {
+                console.log('response :>> ', response.data.items);
+                setBarang(response.data.items);
+
+            }).catch(function (error) {
+
+            }).finally(function () {
+
+            });
+    }
+    function getBarangmurah() {
+        axios
+            .get('https://microdatastoreapi.cooljarsoft.com/barang?sort=price&per-page=6')
+            .then(function (response) {
+                console.log('response :>> ', response.data.items);
+                setBarangmurah(response.data.items);
+
+            }).catch(function (error) {
+
+            }).finally(function () {
+
+            });
+    }
+
+    const [imageIndex, setImageIndex] = useState(0);
+    const images = [likehover, like];
+
+    const [cartIndex, setCart] = useState(0);
+    const gambar = [carthover, cart];
+
+    function handleClick() {
+        setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        Cookies.set('imageIndex', imageIndex + 1);
+    }
+    function handleClick2() {
+        setCart((prevIndex) => (prevIndex + 1) % gambar.length);
+        Cookies.set('cartIndex', cartIndex + 1);
+
+    }
+    ///like
+    const [jumlahLike, setJumlahLike] = useState(0);
+    function handleLike() {
+        setJumlahLike(jumlahLike + 1);
+    }
+
     return (
         <Layout >
             <div className='home_selection_bg'>
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="slider_area slider2_carousel owl-carousel owl-loaded owl-drag">
+                        <div className="slider_area slider3_carousel owl-carousel owl-loaded owl-drag">
                             <div className="owl-stage-outer">
                                 <div
                                     className="owl-stage"
                                     style={{
-                                        transform: "translate3d(-1610px, 0px, 0px)",
+                                        transform: "translate3d(-2415px, 0px, 0px)",
                                         transition: "all 0s ease 0s",
                                         width: 5635
                                     }}
                                 >
-                                    <div className="owl-item cloned" style={{ width: 805,paddingTop:'50px'}}>
+                                    <div className="owl-item cloned" style={{ width: 805 }}>
                                         <div
                                             className="single_slider d-flex align-items-center"
                                             data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg"
@@ -31,14 +101,16 @@ const Home = () => {
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>popular products</h3>
                                                 <h1>
-                                                    chellphone <br /> new model 2019
+                                                    chellphone
+                                                    <br /> new model 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
-                                                    href='http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty'
+                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
                                                 >
                                                     DISCOVER NOW
                                                 </a>
@@ -57,36 +129,12 @@ const Home = () => {
                                             <div className="slider_content slider_c_four">
                                                 <h3>big sale products</h3>
                                                 <h1>
-                                                    wooden minimalist <br /> chair 2019
+                                                    wooden minimalist
+                                                    <br /> chair 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href='http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty'
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item active" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            style={{
-                                                background:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg") rgb(235, 235, 235)'
-                                            }}
-                                            data-bgimg='http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg'
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>new Arrivals</h3>
-                                                <h1>
-                                                    summer <br /> collection 2019
-                                                </h1>
-                                                <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
@@ -100,6 +148,34 @@ const Home = () => {
                                     <div className="owl-item" style={{ width: 805 }}>
                                         <div
                                             className="single_slider d-flex align-items-center"
+                                            style={{
+                                                background:
+                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg") rgb(235, 235, 235)'
+                                            }}
+                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg"
+                                        >
+                                            <div className="slider_content slider_c_four color_white">
+                                                <h3>new Arrivals</h3>
+                                                <h1>
+                                                    summer
+                                                    <br /> collection 2019
+                                                </h1>
+                                                <p>
+                                                    discount
+                                                    <span> -30% off</span> this week
+                                                </p>
+                                                <a
+                                                    className="button"
+                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
+                                                >
+                                                    DISCOVER NOW
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="owl-item active" style={{ width: 805 }}>
+                                        <div
+                                            className="single_slider d-flex align-items-center"
                                             data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg"
                                             style={{
                                                 backgroundImage:
@@ -109,10 +185,12 @@ const Home = () => {
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>popular products</h3>
                                                 <h1>
-                                                    chellphone <br /> new model 2019
+                                                    chellphone
+                                                    <br /> new model 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
@@ -135,10 +213,12 @@ const Home = () => {
                                             <div className="slider_content slider_c_four">
                                                 <h3>big sale products</h3>
                                                 <h1>
-                                                    wooden minimalist <br /> chair 2019
+                                                    wooden minimalist
+                                                    <br /> chair 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
@@ -161,10 +241,12 @@ const Home = () => {
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>new Arrivals</h3>
                                                 <h1>
-                                                    summer <br /> collection 2019
+                                                    summer
+                                                    <br /> collection 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
@@ -187,10 +269,12 @@ const Home = () => {
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>popular products</h3>
                                                 <h1>
-                                                    chellphone <br /> new model 2019
+                                                    chellphone
+                                                    <br /> new model 2019
                                                 </h1>
                                                 <p>
-                                                    discount <span> -30% off</span> this week
+                                                    discount
+                                                    <span> -30% off</span> this week
                                                 </p>
                                                 <a
                                                     className="button"
@@ -208,26 +292,26 @@ const Home = () => {
                                 <div className="owl-next">next</div>
                             </div>
                             <div className="owl-dots">
+                                <div className="owl-dot">
+                                    <span></span>
+                                </div>
                                 <div className="owl-dot active">
-                                    <span />
+                                    <span></span>
                                 </div>
                                 <div className="owl-dot">
-                                    <span />
-                                </div>
-                                <div className="owl-dot">
-                                    <span />
+                                    <span></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div  className="col-lg-2">
+                    <div className="col-lg-2">
                         <figure className="single_banner">
                             <div className="banner_thumb">
-                                <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/394"><img style={{width:'800px'}} src="http://onlinestore.microdataindonesia.co.id/assets/img/product/lenovo.svg" alt="" /></a>
+                                <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/394"><img style={{ width: '800px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/product/lenovo.svg" alt="" /></a>
                             </div>
                         </figure>
                     </div>
-                    <div className="col-lg-2">
+                    <div className="col-lg-2" >
                         <figure className="single_banner mb-30">
                             <div className="banner_thumb">
                                 <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9"><img src="http://onlinestore.microdataindonesia.co.id/assets/img/product/sony.svg" alt="" /></a>
@@ -239,6 +323,7 @@ const Home = () => {
                             </div>
                         </figure>
                     </div>
+
                 </div>
                 <div className="banner_area banner_style2 banner_style4 mb-30">
                     <div className="container">
@@ -246,7 +331,7 @@ const Home = () => {
                             <div className="col-lg-3 col-md-3">
                                 <figure className="single_banner">
                                     <div className="banner_thumb">
-                                        <a  href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty">
+                                        <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty">
                                             <img
                                                 src="http://onlinestore.microdataindonesia.co.id/assets/img/product/pc.svg"
                                                 alt
@@ -255,12 +340,12 @@ const Home = () => {
                                     </div>
                                 </figure>
                             </div>
-                            <div className="col-lg-6 col-md-3">
+                            <div className="col-lg-6 col-md-6">
                                 <figure className="single_banner">
                                     <div className="banner_thumb">
                                         <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty">
-                                            <img style={{padding:20}}
-                                                  src="http://onlinestore.microdataindonesia.co.id/assets/img/product/middleimage.svg"
+                                            <img style={{ padding: 20 }}
+                                                src="http://onlinestore.microdataindonesia.co.id/assets/img/product/middleimage.svg"
                                                 alt
                                             />
                                         </a>
@@ -299,7 +384,7 @@ const Home = () => {
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/empty"
                                 />
                                 <h4>
-                                    <a style={{color: 'white'}}
+                                    <a style={{ color: 'white' }}
                                         className="go-to-jenisbarang"
                                         href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/1/empty/empty"
                                     >
@@ -340,7 +425,7 @@ const Home = () => {
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/empty"
                                 />
                                 <h4 >
-                                    <a style={{color: 'white'}}
+                                    <a style={{ color: 'white' }}
                                         className="go-to-jenisbarang"
                                         href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/2/empty/empty"
                                     >
@@ -381,7 +466,7 @@ const Home = () => {
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/empty"
                                 />
                                 <h4>
-                                    <a style={{color: 'white'}}
+                                    <a style={{ color: 'white' }}
                                         className="go-to-jenisbarang"
                                         href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/3/empty/empty"
                                     >
@@ -422,7 +507,7 @@ const Home = () => {
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/empty"
                                 />
                                 <h4>
-                                    <a style={{color: 'white'}}
+                                    <a style={{ color: 'white' }}
                                         className="go-to-jenisbarang"
                                         href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/4/empty/empty"
                                     >
@@ -463,14 +548,14 @@ const Home = () => {
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty"
                                 />
                                 <h4>
-                                    <a style={{color: 'white'}}
+                                    <a style={{ color: 'white' }}
                                         className="go-to-jenisbarang"
                                         href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty"
                                     >
                                         Kosmetik
                                     </a>
                                 </h4>
-                                <a style={{color: 'white'}}
+                                <a style={{ color: 'white' }}
                                     className="go-to-jenisbarang-deskripsi"
                                     href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/10/empty/empty"
                                 >
@@ -947,7 +1032,7 @@ const Home = () => {
                                                 </figure>
                                             </div>
                                         </div>
-                                        {/* <div className="owl-item cloned" style={{ width: 453 }}>
+                                        <div className="owl-item cloned" style={{ width: 453 }}>
                                             <div className="product_items">
                                                 <figure className="single_product">
                                                     <div className="product_thumb">
@@ -1042,7 +1127,7 @@ const Home = () => {
                                                     </div>
                                                 </figure>
                                             </div>
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="owl-nav disabled">
@@ -1604,7 +1689,6 @@ const Home = () => {
                 </div>
             </div >
             <div>
-
                 <i className="" />
                 <a id="scrollUp" href="#top" style={{ position: 'fixed', zIndex: 2147483647, display: 'block' }}>
                     <i className="fa fa-angle-double-up" />
