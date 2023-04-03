@@ -31,21 +31,23 @@ const Detail = () => {
     setUserData({ backgroundSize: 800, backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/1')` })
   }
 
-  const [imageIndex, setImageIndex] = useState(0);
-  const images = [likehover, like];
+  // const [imageIndex, setImageIndex] = useState(0);
+  // const images = [likehover, like];
 
-  const [cartIndex, setCart] = useState(0);
-  const gambar = [carthover, cart];
+  // const [cartIndex, setCart] = useState(0);
+  // const gambar = [carthover, cart];
 
-  function handleClick() {
-    setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }
-  function handleClick2() {
-    setCart((prevIndex) => (prevIndex + 1) % gambar.length);
-  }
+  // function handleClick() {
+  //   setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  // }
+  // function handleClick2() {
+  //   setCart((prevIndex) => (prevIndex + 1) % gambar.length);
+  // }
 
   ///detail barang
   const [detailBarang, setDetailBarang] = useState([]);
+  const [Barangmurah, setBarangmurah] = useState([]);
+
 
 
   const { id_barang } = useParams();
@@ -53,17 +55,34 @@ const Detail = () => {
 
   useEffect(() => {
     getDetailBarang();
+    getBarangmurah();
+
   }, []);
 
   function getDetailBarang() {
     axios
-      .get('https://microdatastoreapi.cooljarsoft.com/barang/' + 1)
+      .get('https://microdatastoreapi.cooljarsoft.com/barang/' + id_barang)
       .then(function (response) {
         console.log('response :>> ', response.data);
         setDetailBarang(response.data);
 
       }).catch(function (error) {
       }).finally(function () {
+      });
+  }
+
+  ///barang murah
+  function getBarangmurah() {
+    axios
+      .get('https://microdatastoreapi.cooljarsoft.com/barang?sort=price&per-page=6')
+      .then(function (response) {
+        console.log('response :>> ', response.data.items);
+        setBarangmurah(response.data.items);
+
+      }).catch(function (error) {
+
+      }).finally(function () {
+
       });
   }
 
@@ -80,7 +99,16 @@ const Detail = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="breadcrumb_content">
-                        <ul id="title_breadcumb_detail"><li><a href="http://onlinestore.microdataindonesia.co.id">home</a></li><li>Kosmetik</li><li><a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/10">Facial Cleanser</a></li><li>Wardah - Facial Cleansher</li></ul>
+                        <ul id="title_breadcumb_detail">
+                          <li>
+                            <a href='/'>home</a>
+                          </li>
+                          <li>{detailBarang.jenisName}</li>
+                          <li>
+                            <a href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/10">{detailBarang.kategoriName}</a>
+                          </li>
+                          <li>{detailBarang.kategoriName}</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -246,7 +274,7 @@ const Detail = () => {
                                   <span className="content-detail-title">Total:</span>
                                 </div>
                                 <div className="col-md-10">
-                                  <span className="content-detail-price-main" id="total">Rp. 31.500</span>
+                                  <span className="content-detail-price-main" id="total">Rp. {detailBarang.price}</span>
                                 </div>
                               </div>
                               <div className="border-divider" />
@@ -367,48 +395,64 @@ const Detail = () => {
                     <div className="row">
                       <div className="col-12">
                         <div className="section_title">
-                          <h2>PRODUK YANG SERUPA </h2>
+                          <h2>PRODUK YANG TERMURAH </h2>
                         </div>
                       </div>
                     </div>
-                    <div className="product_carousel product_style product_column5 owl-carousel owl-loaded owl-drag" id="generateProdukSerupa">
+                    <div className="product_carousel product_style product_column1 small_p_container owl-carousel owl-loaded owl-drag" id="generateProdukSerupa">
                       <div className="owl-stage-outer">
-                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', width: '283px' }}>
-                          <div className="owl-item active" style={{ width: '282.333px' }}>
-                            <article className="single_product">
-                              <figure>
-                                <div style={{ width: '260px', height: '260px' }} className="product_thumb"><a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/16" alt="" /></a><a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9"><img src="https://microdatastoreapi.cooljarsoft.com/image-barang/original/17" alt="" /></a>
-                                  <div className="label_product"><span className="label_sale">Sale</span></div>
-                                  <div className="action_links">
-                                    <ul>
-                                      <li className="wishlist">
-                                        <input defaultValue={9} id="data-cart-301" type="hidden" name={301} />
-                                        <a id="click-cart-30" onclick="cawil(this)" data="[object Object]" className="click-wilshit">
-                                          {/* <img src={gambar} onClick={() => setGambar(like)} alt="gambar" /> */}
-                                          <img src={images[imageIndex]} alt="gambar" onClick={handleClick} />
-                                        </a>
-                                      </li>
-                                      <li className="compare">
-                                        <a><img className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                      <li className="quick_button">
-                                        <input defaultValue={9} id="data-cart-301" type="hidden" name={301} />
-                                        <a id="click-cart-301" onclick="cart(this)" data="[object Object]" className="click-cart">
-                                          <img src={gambar[cartIndex]} alt="image" onClick={handleClick2} />
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div className="product_content">
-                                  <div className="product_content_inner">
-                                    <h4 className="product_name"><a href="product-details.html">Natus erro at congue massa commodo sit Natus erro</a></h4>
-                                    <div className="price_box"><span className="old_price">$80.00</span><span className="current_price">$70.00</span></div>
-                                  </div>
-                                  <div className="add_to_cart"><a href="cart.html" title="Add to cart">Checkout</a></div>
-                                </div>
-                              </figure>
-                            </article>
-                          </div>
+                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', width: '283px', display: 'flex', flexDirection: 'row' }}>
+                          {
+                            Barangmurah.map((items, index) => {
+                              return (
+                                <div className="owl-item active" style={{ width: '282.333px' }}>
+                                  <article className="single_product">
+                                    <figure>
+                                      <div style={{ width: '260px', height: '260px' }} className="product_thumb"><a className="primary_img" href={'/detail/' + items.id_barang}>
+                                        {
+                                          items.images.map((gambar, indexGambar) => {
+                                            return (
+                                              <>
+                                                {
+                                                  (indexGambar == 0) ?
+                                                    <img src={gambar.original} alt="gambar" />
+                                                    : ""
+                                                }
+                                              </>
+                                            )
+                                          })
+
+                                        }
+                                      </a>
+                                        <a className="secondary_img" href={'/detail/' + items.id_barang}>
+                                          {
+                                            items.images.map((gambar, indexGambar) => {
+                                              return (
+                                                <>
+                                                  {
+                                                    (indexGambar == 0) ?
+                                                      <img src={gambar.original} alt="gambar" />
+                                                      : ""
+                                                  }
+                                                </>
+                                              )
+                                            })
+
+                                          }</a>
+                                        <div className="label_product"><span className="label_sale">Sale</span></div>
+                                      </div>
+                                      <div className="product_content">
+                                        <div className="product_content_inner">
+                                          <h4 className="product_name" style={{ height: '60px' }} >{items.name}</h4>
+                                          <div className="price_box">
+                                            <span className="current_price" style={{ fontSize: 15 }}>Rp. {items.price}</span></div>
+                                        </div>
+                                      </div>
+                                    </figure>
+                                  </article>
+                                </div>)
+                            })}
+
                         </div>
                       </div>
                       <div className="owl-nav disabled">
@@ -428,7 +472,7 @@ const Detail = () => {
                   <i className="fa fa-angle-double-up" />
                 </a>
               </div>
-            </> : 'Loading ...'}
+            </> : ''}
       </>
     </Layout >
   );
