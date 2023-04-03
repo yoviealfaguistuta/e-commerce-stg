@@ -14,7 +14,7 @@ import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
 import  axios  from "axios";
-
+import { Link, useSearchParams } from "react-router-dom";
 
 const List = () => {
 
