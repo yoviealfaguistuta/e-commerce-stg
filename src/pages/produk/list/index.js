@@ -61,20 +61,6 @@ const List = () => {
   const hideScroll = scrollPosition > 0;
 
 
-  ///Filter harga
-  const [value, setValue] = useState([0, 100]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const [visible, setVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    setVisible(!visible);
-  };
-
-
   ///list
   const [isGrid, setIsGrid] = useState(true);
   const [isList, setIsList] = useState(true);
@@ -115,23 +101,23 @@ const List = () => {
 
   ///barang
   const [barang, setBarang] = useState([]);
-  const [sortType, setSortType] = useState('asc');
-  const [formattedNumber, setFormattedNumber] = useState('');
- 
 
 
-  const { id_barang } = useParams();
-  let navigate = useNavigate();
+  function getBarang(type, pencarian) {
+    let Order = ''
+    if (type == 'asc') {
+      Order = 'name'
+    } else if (type == 'desc') {
+      Order = '-name'
+    }
 
-  useEffect(() => {
-    const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
-    setFormattedNumber(formatter.format());
-    getBarang();
-  }, []);
-
-  function getBarang() {
     axios
-      .get('https://microdatastoreapi.cooljarsoft.com/barang')
+      .get('https://microdatastoreapi.cooljarsoft.com/barang', {
+        params: {
+          sort: Order,
+          name: pencarian
+        }
+      })
       .then(function (response) {
         console.log('response :>> ', response.data.items);
         setBarang(response.data.items);
@@ -141,7 +127,6 @@ const List = () => {
       .finally(function () {
       });
   }
-
 
   ///jenis barang
   const [jenisbarang, setJenisBarang] = useState([]);
@@ -163,29 +148,45 @@ const List = () => {
       });
   }
 
-  function filterBarang() {
-    if (sortType === 'asc') {
-      return barang.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortType === 'desc') {
-      return barang.sort((a, b) => b.name.localeCompare(a.name));
-    }
-  }
+  ///pencarian
+  let [searchParams, setSearchParams] = useSearchParams();
+  let type = searchParams.get("pencarian")
 
-  
+  useEffect(() => {
+    console.log("lol! the type is ", type);
+    getBarang('asc', type)
+  }, [type]);
 
+  ///Filter harga
+  const [value, setValue] = useState([0, 100]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setVisible(!visible);
+  };
   return (
     <Layout>
       <div>
         <div className="breadcrumbs_area">
           <div className="container">
+
             <div className="row">
               <div className="col-12">
                 <div className="breadcrumb_content">
-                  <ul id="title_breadcumb">
-                    <li><a href="http://onlinestore.microdataindonesia.co.id">home</a></li>
-                    <li>Kosmetik</li>
-                    <li>Facial Cleanser</li>
-                  </ul>
+                  {barang.map((items, index) => (
+                    index === 0 && (
+                      <ul id="title_breadcumb" key={items.id}>
+                        <li><a href='/'>home</a></li>
+                        <li>{items.jenisName}</li>
+                        <li>{items.kategoriName}</li>
+                      </ul>
+                    )
+                  ))}
                 </div>
               </div>
             </div>
@@ -213,7 +214,6 @@ const List = () => {
                       <div className="start_lottie">
                         <lottie-player id="lottie-player" src="https://assets9.lottiefiles.com/packages/lf20_oCWIv0.json"
                           background="white"
-                          speed={1}
                           style={{
                             position: "absolute", width: "100%", height: "228px",
                           }}
@@ -227,12 +227,11 @@ const List = () => {
                   <div className="shop_toolbar_btn">
                     <button onClick={handleResetLayoutGrid} data-role="grid_4" id="buttonResetLayoutGrid" type="button" className="btn-grid-4 active" data-toggle="tooltip" title={4} />
                     <button onClick={handleResetLayoutList} data-role="grid_list" id="buttonResetLayoutList" type="button" className="btn-list" data-toggle="tooltip" title="List" />
-                    {/* {showAllProducts? <AllProducts/> : <SingleProducts/>} */}
                   </div>
-                  <select className="select_costum_kategori" onchange="sortirAscDesc()" id="sortir-barang">
+                  <select className="select_costum_kategori" id="sortir-barang" onChange={(e) => getBarang(e.target.value)} >
                     <option value selected disabled hidden>Urutkan nama barang</option>
-                    <option value="name" onClick={() => setSortType('asc')}>Urut berdasarkan A ke Z</option>
-                    <option value="-name"onClick={() => setSortType('desc')}>Urut berdasarkan Z ke A</option>
+                    <option value={'asc'}>Urut berdasarkan A ke Z</option>
+                    <option value={'desc'}>Urut berdasarkan Z ke A</option>
                   </select>
                   <div className="page_amount" id="page-count-kategori">
                     <p>Showing 0–1 of 1 results</p>
@@ -243,21 +242,20 @@ const List = () => {
                 >
                 </div>
 
-
                 {/* List daftar produk */}
                 {isGrid ? (
                   <div className="grid-layout">
                     <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
 
                       {
-                        barang.map((items, index) => {
-                          return (                            
+                        barang.map((items, id) => {
+                          return (
                             <div className="col-lg-3 col-md-4 col-12 ">
                               {['Info',].map((variant) => (
                                 <article className="single_product">
                                   <figure>
                                     <div className="product_thumb">
-                                      <a className="primary_img" href={'/detail/' + items.id_barang}>
+                                      <a className="primary_img" href={'/detail/' + items.id}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -274,7 +272,7 @@ const List = () => {
                                         }
 
                                       </a>
-                                      <a className="secondary_img" href={'/detail/' + items.id_barang}>
+                                      <a className="secondary_img" href={'/detail/' + items.id}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
