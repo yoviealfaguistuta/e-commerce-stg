@@ -139,7 +139,6 @@ const Detail = () => {
 
                                 }
 
-
                               </figure>
                               <a href="#/" id="image-detail-main"></a>
                             </div>

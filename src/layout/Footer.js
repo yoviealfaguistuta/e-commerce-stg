@@ -51,10 +51,10 @@ export const Footer = (params) => {
                                 </div>
                                 <div className="app_img">
                                     <figure className="app_img">
-                                        <a href="index-4.html#"><img src="assets/img/icon/icon-appstore.png" alt="" /></a>
+                                        <a href="index-4.html#"><img src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/icon-appstore.png" alt="" /></a>
                                     </figure>
                                     <figure className="app_img">
-                                        <a href="index-4.html#"><img src="assets/img/icon/icon-googleplay.png" alt="" /></a>
+                                        <a href="index-4.html#"><img src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/icon-googleplay.png" alt="" /></a>
                                     </figure>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ export const Footer = (params) => {
                         </div>
                         <div className="col-lg-6 col-md-6">
                             <div className="footer_payment text-right">
-                                <img src="assets/img/icon/payment.png" alt="" />
+                                <img src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/payment.png" alt="" />
                             </div>
                         </div>
                     </div>

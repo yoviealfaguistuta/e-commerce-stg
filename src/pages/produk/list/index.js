@@ -81,24 +81,6 @@ const List = () => {
     setJumlahLike(jumlahLike + 1);
   }
 
-// ///jenis-barang
-// const [barang,setBarang] = useState([]);
-// useEffect(() =>{
-//   getBarang();
-// },[]);
-// function getBarang(){
-//   axios
-//   .get('https://microdatastoreapi.cooljarsoft.com/barang')
-//   .then(function(response){
-//     console.log('response :>> ', response.data.items);
-//     setBarang(response.data.items);
-//   }).catch(function(error){
-
-//   }).finally(function(){
-
-//   });
-// }
-
   ///barang
   const [barang, setBarang] = useState([]);
 
@@ -156,6 +138,7 @@ const List = () => {
     console.log("lol! the type is ", type);
     getBarang('asc', type)
   }, [type]);
+
 
   ///Filter harga
   const [value, setValue] = useState([0, 100]);
@@ -355,7 +338,7 @@ const List = () => {
                                 <article className="single_product">
                                   <figure>
                                     <div className="product_thumb">
-                                      <a className="primary_img" href={'/detail/' + items.id_barang}>
+                                      <a className="primary_img" href={'/detail/' + items.id}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -371,7 +354,7 @@ const List = () => {
 
                                         }
                                       </a>
-                                      <a className="secondary_img" href={'/detail/' + items.id_barang}>
+                                      <a className="secondary_img" href={'/detail/' + items.id}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
