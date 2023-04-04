@@ -10,8 +10,10 @@ import like from "../../assets/img/logo/like-click.svg"
 import likehover from "../../assets/img/logo/like-hover.svg"
 import cart from "../../assets/img/logo/cart-click.svg"
 import carthover from "../../assets/img/logo/cart-hover.svg"
-import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
+import ReactDOM from 'react-dom';
+import Countdown from 'react-countdown';
+import Slider from "react-slick";
 
 
 
@@ -73,30 +75,59 @@ const Home = () => {
     function handleLike() {
         setJumlahLike(jumlahLike + 1);
     }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        className: 'test2'
+    };
+    
+    // Renderer callback with condition
+  const renderer = ({ days,hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      
+    } else {
+      // Render a countdown
+      return (
+                <>
+                 <div className="single_countdown">
+                        <div className="countdown_number">{days}</div>
+                        <div className="countdown_title">days</div>
+                    </div>
+                    <div className="single_countdown">
+                        <div className="countdown_number">{hours}</div>
+                        <div className="countdown_title">hours</div>
+                    </div>
+                    <div className="single_countdown">
+                        <div className="countdown_number">{minutes}</div>
+                        <div className="countdown_title">minutes</div>
+                    </div>
+                    <div className="single_countdown">
+                        <div className="countdown_number">{seconds}</div>
+                        <div className="countdown_title">seconds</div>
+                    </div>
+                </>
+            )
+        }
+    };
+
 
     return (
         <Layout >
             <div className='home_selection_bg'>
+
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="slider_area slider3_carousel owl-carousel owl-loaded owl-drag">
-                            <div className="owl-stage-outer">
-                                <div
-                                    className="owl-stage"
-                                    style={{
-                                        transform: "translate3d(-2415px, 0px, 0px)",
-                                        transition: "all 0s ease 0s",
-                                        width: 5635
-                                    }}
-                                >
-                                    <div className="owl-item cloned" style={{ width: 805 }}>
+
+                        <Slider {...settings}>
+
+                        <div className="owl-item cloned" style={{width:'378px'}}>
                                         <div
-                                            className="single_slider d-flex align-items-center"
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg"
-                                            style={{
-                                                backgroundImage:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg")'
-                                            }}
+                                            className="single_slider d-flex align-items-center "
+                                            style={{ height:'378px', backgroundImage:  'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg")'}}
                                         >
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>popular products</h3>
@@ -110,77 +141,17 @@ const Home = () => {
                                                 </p>
                                                 <a
                                                     className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
+                                                    href="/list"
                                                 >
                                                     DISCOVER NOW
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="owl-item cloned" style={{ width: 805 }}>
+                                    <div className="owl-item cloned" style={{width:'378px'}}>
                                         <div
-                                            className="single_slider d-flex align-items-center"
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/slide3.png"
-                                            style={{
-                                                backgroundImage:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/slide3.png")'
-                                            }}
-                                        >
-                                            <div className="slider_content slider_c_four">
-                                                <h3>big sale products</h3>
-                                                <h1>
-                                                    wooden minimalist
-                                                    <br /> chair 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            style={{
-                                                background:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg") rgb(235, 235, 235)'
-                                            }}
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg"
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>new Arrivals</h3>
-                                                <h1>
-                                                    summer
-                                                    <br /> collection 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item active" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg"
-                                            style={{
-                                                backgroundImage:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg")'
-                                            }}
+                                            className="single_slider d-flex align-items-center "
+                                            style={{ height:'378px', backgroundImage:  'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg")'}}
                                         >
                                             <div className="slider_content slider_c_four color_white">
                                                 <h3>popular products</h3>
@@ -194,116 +165,22 @@ const Home = () => {
                                                 </p>
                                                 <a
                                                     className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
+                                                    href="/list"
                                                 >
                                                     DISCOVER NOW
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="owl-item" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/slide3.png"
-                                            style={{
-                                                backgroundImage:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/slide3.png")'
-                                            }}
-                                        >
-                                            <div className="slider_content slider_c_four">
-                                                <h3>big sale products</h3>
-                                                <h1>
-                                                    wooden minimalist
-                                                    <br /> chair 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item cloned" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            style={{
-                                                background:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg") rgb(235, 235, 235)'
-                                            }}
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg"
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>new Arrivals</h3>
-                                                <h1>
-                                                    summer
-                                                    <br /> collection 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item cloned" style={{ width: 805 }}>
-                                        <div
-                                            className="single_slider d-flex align-items-center"
-                                            data-bgimg="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg"
-                                            style={{
-                                                backgroundImage:
-                                                    'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg")'
-                                            }}
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>popular products</h3>
-                                                <h1>
-                                                    chellphone
-                                                    <br /> new model 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="http://onlinestore.microdataindonesia.co.id/kategori/list_kategori/empty/empty/empty"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="owl-nav disabled">
-                                <div className="owl-prev">prev</div>
-                                <div className="owl-next">next</div>
-                            </div>
-                            <div className="owl-dots">
-                                <div className="owl-dot">
-                                    <span></span>
-                                </div>
-                                <div className="owl-dot active">
-                                    <span></span>
-                                </div>
-                                <div className="owl-dot">
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
+                            {/* <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg" alt="" /></a>
+                            <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg" alt="" /></a>
+                            <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg" alt="" /></a> */}
+
+
+                        </Slider>
+
                     </div>
+
                     <div className="col-lg-2">
                         <figure className="single_banner">
                             <div className="banner_thumb">
@@ -643,7 +520,7 @@ const Home = () => {
                                                     <div className="action_links">
                                                         <ul>
                                                             <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites">
-                                                            <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} /></a></li>
+                                                                <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} /></a></li>
                                                             <li className="compare"><a><img style={{ width: '500px' }} className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
                                                             <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} />
                                                                 <a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart">
@@ -662,7 +539,8 @@ const Home = () => {
                                                         <div className="product_timing">
                                                             <div data-countdown="2021/12/15">
                                                                 <div className="countdown_area">
-                                                                    <div className="single_countdown">
+                                                                <Countdown date={new Date().setDate(new Date().getDate() + 2)} renderer={renderer}/>
+                                                                    {/* <div className="single_countdown">
                                                                         <div className="countdown_number">00</div>
                                                                         <div className="countdown_title">days</div>
                                                                     </div>
@@ -677,7 +555,7 @@ const Home = () => {
                                                                     <div className="single_countdown">
                                                                         <div className="countdown_number">00</div>
                                                                         <div className="countdown_title">secs</div>
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             </div>
                                                         </div>
