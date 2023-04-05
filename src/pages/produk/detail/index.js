@@ -384,10 +384,7 @@ const Detail = () => {
                         </div>
                       </div>
                     </div>
-
                   </div>
-
-
 
                   <section className="product_area related_products">
                     <div className="row">
@@ -399,14 +396,14 @@ const Detail = () => {
                     </div>
                     <div className="product_carousel product_style product_column1 small_p_container owl-carousel owl-loaded owl-drag" id="generateProdukSerupa">
                       <div className="owl-stage-outer">
-                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', width: '283px', display: 'flex', flexDirection: 'row' }}>
+                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', display: 'flex', flexDirection: 'row',overflow: 'scroll' }}>
                           {
                             Barangmurah.map((items, index) => {
                               return (
                                 <div className="owl-item active" style={{ width: '282.333px' }}>
                                   <article className="single_product">
                                     <figure>
-                                      <div style={{ width: '260px', height: '260px' }} className="product_thumb"><a className="primary_img" href={'/detail/' + items.id_barang}>
+                                      <div style={{ width: '260px', height: '260px' }} className="product_thumb"><a className="primary_img" href={'/detail/' + items.id}>
                                         {
                                           items.images.map((gambar, indexGambar) => {
                                             return (
@@ -422,7 +419,7 @@ const Detail = () => {
 
                                         }
                                       </a>
-                                        <a className="secondary_img" href={'/detail/' + items.id_barang}>
+                                        <a className="secondary_img" href={'/detail/' + items.id}>
                                           {
                                             items.images.map((gambar, indexGambar) => {
                                               return (
