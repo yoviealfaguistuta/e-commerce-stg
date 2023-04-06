@@ -14,6 +14,7 @@ import Contact from "../pages/produk/list/contact";
 import Detail from "../pages/produk/detail";
 import Login from "../pages/produk/login/login";
 import Register from "../pages/produk/login/register";
+import Pembayaran from "../pages/pembayaran";
 
 
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />,
+    },
+    {
+        path: "/pembayaran",
+        element: <Pembayaran />,
     },
 ]);
 
