@@ -6,7 +6,7 @@ import like from "../../../assets/img/logo/like-click.svg"
 import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
-import { BsCalendar3Range, BsDot } from 'react-icons/bs';
+import { BsDot } from 'react-icons/bs';
 
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
@@ -14,8 +14,12 @@ import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
 import axios from "axios";
+<<<<<<< HEAD
 import { Link, useSearchParams } from "react-router-dom";
 import SliderHome from "../../../components/SliderHome";
+=======
+import { useSearchParams } from "react-router-dom";
+>>>>>>> fadil
 
 
 
@@ -151,22 +155,22 @@ const List = (props) => {
   };
 
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function submitHarga(e) {
-      navigate("/list?harga=" + priceRange, { replace: true });
+  function submitHarga(e) {
+    navigate("/list?harga=" + priceRange, { replace: true });
 
   }
- 
+
   let price = searchParams.get("harga")
 
   useEffect(() => {
     console.log("harga ", price);
-    getBarang( price)
+    getBarang(price)
   }, [price]);
 
-///kategori barang
-const [kategoribarang, setKategoriBarang] = useState([]);
+  ///kategori barang
+  const [kategoribarang, setKategoriBarang] = useState([]);
 
   useEffect(() => {
     getKategoriBarang();
@@ -187,9 +191,9 @@ const [kategoribarang, setKategoriBarang] = useState([]);
   }
   const filteredItems = barang.filter(items => items.kategori === props.kategori);
 
-  const filterResult=(items)=>{
-    const result=barang.filter((curtData)=>{
-      return curtData.kategori===items;
+  const filterResult = (items) => {
+    const result = barang.filter((curtData) => {
+      return curtData.kategori === items;
     });
     setKategoriBarang()
   }
@@ -354,7 +358,7 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                                             <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{items.name}</a>
                                           </h4>
                                           <div className="price_box">
-                                            <span  className="current_price">Rp. {numberWithComma(items.price)} </span>
+                                            <span className="current_price">Rp. {numberWithComma(items.price)} </span>
                                           </div>
                                         </div>
                                         <div className="add_to_cart">
@@ -528,7 +532,7 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                         return (
                           <ul id="generateKategori">
                             <div className="border-divider" style={{}} />
-                            <li><a  onClick={()=>filterResult()} style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
+                            <li><a onClick={() => filterResult()} style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
                           </ul>
                         )
                       })
