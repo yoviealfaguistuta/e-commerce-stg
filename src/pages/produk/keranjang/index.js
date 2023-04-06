@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, Component } from "react";
+import React, { Fragment, useState, useEffect, Component, useRef } from "react";
 import { Layout } from "../../../layout";
 import kategoribanner from "../../../assets/img/product/kategori-banner.png";
 import like from "../../../assets/img/logo/like-click.svg"
@@ -14,12 +14,15 @@ import Figure from 'react-bootstrap/Figure';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import { RxDividerVertical } from 'react-icons/rx';
+import { FiTrash2 } from 'react-icons/fi';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
+import { IoIosArrowForward } from "react-icons/io";
+
 
 
 
@@ -105,11 +108,15 @@ const Keranjang = () => {
   ///kodepromo
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const [openForm, setopenForm] = useState('none');
+  const [count, setCount] = useState(0);
+
+
+
+
+
   ///tuliscatatan
 
   function CustomToggle({ children, eventKey }) {
@@ -117,19 +124,9 @@ const Keranjang = () => {
       console.log('totally custom!'),
     );
 
-    //plusminus
-    const [count, setCount] = useState(0);
 
-    function tambah() {
-      setCount(count + 1);
-      console.log(tambah)
-    }
 
-    function kurang() {
-      if (count > 0) {
-        setCount(count - 1);
-      }
-    }
+
 
     return (
       <Button
@@ -151,6 +148,22 @@ const Keranjang = () => {
       setopenForm('none')
     }
   }
+
+  //plusminus
+
+
+
+  function plus() {
+    setCount(count + 1);
+
+  }
+
+  function min() {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  }
+
   return (
     <Layout>
       <div>
@@ -173,45 +186,51 @@ const Keranjang = () => {
                     <div className="keranjang">
                       <h4>Keranjang</h4>
                       <Form.Check label=" Pilih Semua" />
+                      {/* <a style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 970, marginLeft: 80}} >hapus</a> */}
                       <div>
                       </div>
-                      <Card style={{ paddingLeft: 30, margin: 0 }}>
 
-                        <Form.Check style={{ paddingLeft: 22, fontSize: 14, fontWeight: 'bold' }} label="TokoIni" />
-                        <a style={{ paddingLeft: 21, marginTop: -10, color: '#7B8FA1', fontSize: 13 }}>Bandar Lampung</a>
+                      <Card>
+                      
+                          <Form.Check style={{ fontSize: 14, fontWeight: 'bold' }} label="TokoIni" />
+                            <a style={{ color: '#7B8FA1', fontSize: 13 ,paddingLeft:30}}>Bandar Lampung</a>
+                        <div className="row">
+                          <div className="col-2">
+                            <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
+                              <div className="col-2">  <Form.Check /></div>
 
-                        <Form.Check />
-                        <Figure>
-                          <Figure.Image style={{ height: 100, width: 120, paddingLeft: 30, marginTop: -5, }}
-                            src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
-                          </Figure.Image>
-                        </Figure>
-                        <p style={{ paddingLeft: 130, fontSize: 14, marginTop: -90 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
-                        <p style={{ paddingLeft: 130, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
+                              <Figure>
+                                <Figure.Image style={{ height: 100, width: 120 }}
+                                  src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
+                                </Figure.Image>
+                              </Figure>
+                            </div>
 
-                        <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
-                        <Form>
-                          <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                          </Form.Group>
-                        </Form>
+                          </div>
+                          <div className="col-8">
+                            <p style={{ fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
+                            <p style={{ fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
 
-                        <Stack direction="row" spacing={1} style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}>
-                          <IconButton aria-label="delete">
-                            <DeleteIcon />
-                          </IconButton>
-                        </Stack>
-                        <a style={{ fontSize: 15, color: '#7B8FA1', paddingLeft: 600, marginLeft: 100, marginTop: -25, marginBottom: 30 }}> <RxDividerVertical /></a>
-                        <a style={{ paddingLeft: 455, color: '#7B8FA1', marginLeft: 108, marginTop: -25, fontSize: 13, marginBottom: 40 }}>Sudah ada di wishlist</a>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 730, marginLeft: 90, marginTop: -28 }}> <AiOutlineMinusCircle /></a>
-                        <a style={{ fontSize: 20, color: '#7B8FA1', paddingLeft: 780, marginLeft: 90, marginTop: -30 }}> <AiFillPlusCircle /></a>
-
-
-                        {/* <div>
-                          <p>Jumlah barang: {count}</p>
-                          <button onClick={tambah}>Tambah</button>
-                          <button onClick={kurang}>Kurang</button>
-                        </div> */}
+                          </div>
+                          <div className="row">
+                            <div className="col-6">
+                              <a onClick={() => openForms()} style={{ color: '#5D9C59', fontSize: 14,paddingLeft:30 }}>Tulis Catatan</a>
+                              <Form>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                  <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
+                                </Form.Group>
+                              </Form>
+                            </div>
+                            <div className="col-6">
+                              <a style={{ color: '#7B8FA1', fontSize: 13 }}>Sudah ada di wishlist</a>
+                              <a style={{ fontSize: 25, color: '#7B8FA1', fontWeight: 'bold' }}> <RxDividerVertical /></a>
+                              <a style={{ fontSize: 20, color: '#7B8FA1' }}> <FiTrash2 /></a>
+                              <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiOutlineMinusCircle /></a>
+                              {count}
+                              <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1' }}> <AiFillPlusCircle /></a>
+                            </div>
+                          </div>
+                        </div>
                       </Card>
                     </div>
                   </div>
@@ -222,9 +241,11 @@ const Keranjang = () => {
                 <aside className="sidebar_widget">
                   <div className="widget_list widget_categories">
                     <div>
-                      <Button style={{ paddingLeft: 50, paddingRight: 60, marginRight: -12 }} variant="light" onClick={handleShow}>
+                      <Card style={{ paddingLeft: 50, paddingRight: 50, marginRight: -12, margin: 10 }} variant="light" onClick={handleShow}>
+
                         Makin Hemat Pakai Promo
-                      </Button>
+
+                      </Card>
 
                       <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
@@ -250,7 +271,8 @@ const Keranjang = () => {
                       </Modal>
                       <Card>
                         <h3 style={{ margin: 10 }} >Ringkasan belanja</h3>
-                        <p style={{ margin: 5 }}>Total Harga</p>
+                        <a style={{ margin: 10 }}>Total Barang (0 harga)</a>
+                        <a></a>
                       </Card>
                       <Card>
                         {/* <p>Total Diskon</p> */}
@@ -279,10 +301,9 @@ const Keranjang = () => {
 
 
 
-    </Layout>
+    </Layout >
 
   );
 };
 
 export default Keranjang;
-
