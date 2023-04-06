@@ -10,6 +10,8 @@ import '../../../assets/css/style.css';
 import '../../../assets/css/plugins.css';
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -17,7 +19,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const Detail = () => {
 
   const [DataUser, setUserData] = useState({
-    backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/1')`,
+    backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original')`,
     backgroundPosition: '0% 0%',
     backgroundSize: 800
   });
@@ -26,7 +28,7 @@ const Detail = () => {
     const { left, top, width, height } = e.target.getBoundingClientRect()
     const x = (e.pageX - left - 170) / width * 450
     const y = (e.pageY - top - 490) / height * 450
-    setUserData({ backgroundSize: 800, backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original/1')` })
+    setUserData({ backgroundSize: 800, backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original')` })
   }
 
   // const [imageIndex, setImageIndex] = useState(0);
@@ -84,11 +86,25 @@ const Detail = () => {
       });
   }
 
+  ///format number
+  const numberWithComma = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
 
+  //count barang
+  const [quantity, setQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value);
+    setQuantity(newQuantity);
+    setTotalPrice(newQuantity * detailBarang.price);
+  };
 
   return (
 
     <Layout>
+
       <>
         {
           (detailBarang.length !== 0) ?
@@ -122,7 +138,7 @@ const Detail = () => {
                         <div className="col-lg-5 col-md-6">
                           <div className="product-details-tab">
                             <div id="img-1" className="zoomWrapper single-zoom">
-                              <figure className='figure-img' onMouseMove={(e) => handleMouseMove(e)} style={DataUser}>
+                              <figure className='figure-img' onMouseMove={(e) => handleMouseMove(e)} style={DataUser}  >
 
                                 {
                                   detailBarang.images && detailBarang.images.map((gambar, indexGambar) => {
@@ -209,7 +225,7 @@ const Detail = () => {
                                 <a id="namaBarang">{detailBarang.name}</a>
                               </h3>
                               <div className="price_box">
-                                <span className="current_price" id="hargaBarang">Rp. {detailBarang.price}</span>
+                                <span className="current_price" id="hargaBarang">Rp. {numberWithComma(detailBarang.price)}</span>
                               </div>
                               <div className="border-divider" />
                               <div className="product_desc">
@@ -263,8 +279,8 @@ const Detail = () => {
                               </div>
                               <div className="product_variant quantity">
                                 <label>quantity</label>
-                                <input id="jumlah" min={1} max={100} defaultValue={1} type="number" fdprocessedid="m48o36" />
-                                <button className="button" type="button" onclick="cartClick()" fdprocessedid="und3ge">add to cart</button>
+                                <input id="jumlah" min={1} max={100} defaultValue={quantity} onChange={handleQuantityChange} type="number" fdprocessedid="m48o36" />
+                                <Button  type="submit" variant='primary' fdprocessedid="und3ge">add to cart</Button>
                               </div>
                               <div className="border-divider" />
                               <div className="row mt-2">
@@ -272,7 +288,7 @@ const Detail = () => {
                                   <span className="content-detail-title">Total:</span>
                                 </div>
                                 <div className="col-md-10">
-                                  <span className="content-detail-price-main" id="total">Rp. {detailBarang.price}</span>
+                                  <span className="content-detail-price-main" id="total">Rp. {numberWithComma(totalPrice)}</span>
                                 </div>
                               </div>
                               <div className="border-divider" />
@@ -396,7 +412,7 @@ const Detail = () => {
                     </div>
                     <div className="product_carousel product_style product_column1 small_p_container owl-carousel owl-loaded owl-drag" id="generateProdukSerupa">
                       <div className="owl-stage-outer">
-                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', display: 'flex', flexDirection: 'row',overflow: 'scroll' }}>
+                        <div className="owl-stage" style={{ transform: 'translate3d(0px, 0px, 0px)', transition: 'all 0s ease 0s', display: 'flex', flexDirection: 'row', overflow: 'scroll' }}>
                           {
                             Barangmurah.map((items, index) => {
                               return (
@@ -436,11 +452,11 @@ const Detail = () => {
                                           }</a>
                                         <div className="label_product"><span className="label_sale">Sale</span></div>
                                       </div>
-                                      <div className="product_content">
-                                        <div className="product_content_inner">
-                                          <h4 className="product_name" style={{ height: '60px' }} >{items.name}</h4>
+                                      <div className="product_content" >
+                                        <div className="product_content_inner" style={{}} >
+                                          <h4 className="product_name" style={{ height: '60px', textAlign: 'center', }} >{items.name}</h4>
                                           <div className="price_box">
-                                            <span className="current_price" style={{ fontSize: 15 }}>Rp. {items.price}</span></div>
+                                            <span className="current_price" style={{ fontSize: 15 }}>Rp. {numberWithComma(items.price)}</span></div>
                                         </div>
                                       </div>
                                     </figure>
