@@ -15,7 +15,6 @@ import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, useSearchParams } from "react-router-dom";
-import {Switch,Route} from 'react-router-dom';
 
 
 
@@ -187,6 +186,17 @@ const [kategoribarang, setKategoriBarang] = useState([]);
   }
   const filteredItems = barang.filter(items => items.kategori === props.kategori);
 
+  const filterResult=(items)=>{
+    const result=barang.filter((curtData)=>{
+      return curtData.kategori===items;
+    });
+    setKategoriBarang()
+  }
+
+  ///format number
+  const numberWithComma = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
 
   return (
     <Layout>
@@ -339,7 +349,7 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                                             <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{items.name}</a>
                                           </h4>
                                           <div className="price_box">
-                                            <span className="current_price">Rp. {items.price}</span>
+                                            <span  className="current_price">Rp. {numberWithComma(items.price)} </span>
                                           </div>
                                         </div>
                                         <div className="add_to_cart">
@@ -449,7 +459,7 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                                           <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>{items.name}</a>
                                         </h4>
                                         <div className="price_box">
-                                          <span className="current_price" >Rp. {items.price}</span>
+                                          <span className="current_price" >Rp. {numberWithComma(items.price)}</span>
                                         </div>
                                         <div className="product_desc">
                                           <ul>
@@ -513,7 +523,7 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                         return (
                           <ul id="generateKategori">
                             <div className="border-divider" style={{}} />
-                            <li><a href="https://microdatastoreapi.cooljarsoft.com/kategori-barang/4" onclick="generateBarang(10,1) " style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
+                            <li><a  onClick={()=>filterResult()} style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
                           </ul>
                         )
                       })
@@ -530,10 +540,10 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                         min={0}
                         max={20000000}
                       />
-                      <p className="filter">Rp{priceRange[0]} - Rp{priceRange[1]}</p>
-                      <button className="btn-filter" style={{}} type="button" placeholder="Filter" onClick={(e) => submitHarga(e)}>
+                      <p className="filter">Rp{numberWithComma(priceRange[0])} - Rp{numberWithComma(priceRange[1])}</p>
+                      {/* <button className="btn-filter" style={{}} type="button" placeholder="Filter" onClick={(e) => submitHarga(e)}>
                         Filter
-                      </button>
+                      </button> */}
                       {/* <input type="text" id="amount" value={priceRange} onChange={e => setPriceRange(e.target.value)} /> */}
                     </form>
 
