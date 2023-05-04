@@ -5,31 +5,19 @@ import like from "../../../assets/img/logo/like-click.svg"
 import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
-import { BsDot } from 'react-icons/bs';
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
-import Slider from '@mui/material/Slider';
 import '../../../assets/css/Checkout.css';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import BRI from "../../../assets/img/logo/BRI.png";
-import BNI from "../../../assets/img/logo/BNI.png";
-import BCA from "../../../assets/img/logo/BCA.png";
-import Mandiri from "../../../assets/img/logo/Mandiri.png";
-import Alfamart from "../../../assets/img/logo/Alfamart.png";
-import Indomaret from "../../../assets/img/logo/Indomaret.png";
-import Accordion from 'react-bootstrap/Accordion';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import Figure from 'react-bootstrap/Figure';
 import Nav from 'react-bootstrap/Nav';
 import { IoChevronForward } from "react-icons/io5";
-import { AiFillPlusCircle } from 'react-icons/ai';
-import { AiOutlineMinusCircle } from 'react-icons/ai';
-
+import Barang from "../../../components/Barang";
+import KodePromo from "../../../components/KodePromo";
+import Pembayaran from "../../../components/Pembayaran";
 
 const Checkout = () => {
 
@@ -158,56 +146,7 @@ const Checkout = () => {
       desc: desc
     });
   };
-  ///tuliscatatan
 
-  function CustomToggle({ children, eventKey }) {
-    const decoratedOnClick = useAccordionButton(eventKey, () =>
-      console.log('totally custom!'),
-    );
-
-    return (
-      <Button
-        type="button"
-        variant="white"
-        style={{ paddingLeft: 21, marginTop: -10, color: '#5D9C59', fontSize: 15 }}
-        onClick={decoratedOnClick}
-      >
-        {children}
-      </Button>
-    );
-  }
-
-  ///kodepromo
-  const [openForm, setopenForm] = useState('none');
-  const [show3, setShow3] = useState(false);
-
-  const handleClose3 = () => setShow3(false);
-  const handleShow3 = () => setShow3(true);
-
-
-  //plusminus
-  const [count, setCount] = useState(0);
-
-  function plus() {
-    setCount(count + 1);
-    console.log(count + 1)
-  }
-
-  function min() {
-    console.log('min')
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  }
-
-  const handleForm = () => {
-    if (openForm === 'none') {
-      setopenForm('')
-      return
-    }
-    setopenForm('none')
-
-  }
 
 
   return (
@@ -227,42 +166,7 @@ const Checkout = () => {
                   </div>
 
                   {/* //JENIS BARANG */}
-                  <Card style={{ paddingLeft: 30, margin: 0 }}>
-                    <div className="row">
-                      <div className="col-2">
-                        <Figure>
-                          <Figure.Image
-                            src="https://tse4.mm.bing.net/th?id=OIP.2paaXoyhspUguo3iIMZ2kAHaHa&pid=Api&P=0">
-                          </Figure.Image>
-                        </Figure>
-                      </div>
-                      <div className="col-10">
-                        <p style={{ paddingLeft: 130, fontSize: 14 }}>Robot M205 Wireless Mouse Optical 2.4G & Tombol Sakelar DPI - Robot M205 Robot M205</p>
-                        <p style={{ paddingLeft: 130, fontSize: 14, fontWeight: 'bold' }}>RP65.000</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-8">
-                        <a onClick={() => handleForm()} style={{ color: '#5D9C59', fontSize: 14, paddingLeft: 20 }}>Tulis Catatan</a>
-                        <Form>
-                          <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control style={{ width: 250, display: openForm, fontSize: 13 }} type="Note" placeholder="Pastikan tidak ada data pribadi" />
-                          </Form.Group>
-                        </Form>
-                      </div>
-                      <div className="col-4">
-                        <div style={{ display: 'flex', alignContent: 'center', textAlign: 'center' }}>
-                          <a onClick={() => min()} style={{ fontSize: 20, color: '#7B8FA1', display: 'flex', alignContent: 'center', textAlign: 'center', }}> <AiOutlineMinusCircle /></a>
-                          {count}
-                          <a onClick={() => plus()} style={{ fontSize: 20, color: '#7B8FA1', display: 'flex', alignContent: 'center', textAlign: 'center' }}> <AiFillPlusCircle /></a>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-
-                  </Card>
+                <Barang ischeckout={true}/>
                 </div>
 
                 <h5 style={{ marginTop: 20 }}>Pengirimana Dan Pembayaran</h5>
@@ -274,12 +178,7 @@ const Checkout = () => {
                       <li style={{ paddingBottom: 8, fontSize: 14, fontWeight: 700, color: '#6D7588' }} ><b>Utama</b></li>
                       <li style={{ paddingBottom: 8, fontSize: 14 }}><b> Fadil Ainuddin</b>(0895616710043) </li>
                       <li style={{ paddingBottom: 12, fontSize: 14 }}>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</li>
-                      {/* <li style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</li> */}
-
-                      {/* <Nav className="me-auto">
-                        <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest}>Share</Nav.Link>
-                        <Nav.Link className="nav a" style={{ color: "#0d6efd" }} onClick={ubahAlamat} href="#features">Ubah Alamat</Nav.Link>
-                      </Nav> */}
+                 
                     </ul>
 
                     <Card.Text style={{ marginLeft: 1070 }}>
@@ -314,113 +213,8 @@ const Checkout = () => {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-
                 {/* PEMBAYARAN DAN PENGIRIMAN */}
-                <CardGroup>
-                  <Card>
-                    <Card.Body>
-                      <h6>Pilih Pengiriman</h6>
-                      {selectedPengiriman && (
-                        <div>
-                          <p style={{ marginTop: 10, fontSize: 20, fontWeight: "bold" }}>{selectedPengiriman.nama}</p>
-                        </div>
-                      )}
-                      {selectedPengiriman && (
-                        <div>
-                          <p style={{ marginTop: 10, fontSize: 14 }}>{selectedPengiriman.desc}</p>
-                        </div>
-                      )}
-
-                      <Card.Text style={{ marginLeft: 500 }}>
-                        <Button variant="outline-white" onClick={handleShow1}><IoChevronForward /></Button>
-
-                        <Modal show={show1} onHide={handleClose1}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>Pilih Pengiriman</Modal.Title>
-                          </Modal.Header>
-                          <div style={{ height: 150, overflowY: "scroll", paddingLeft: 60, paddingRight: 60 }}>
-                            <Card >
-                              <Button variant="white" onClick={() => handlePengirimanClick('Next Day (Rp 30.000)', 'Estiminasi Tiba Esok')} >
-                                <h3 style={{ fontSize: 18, paddingRight: 430 }} >Next Day (Rp 30.000)</h3>
-                                <span style={{ fontSize: 14, paddingRight: 430 }}>Estiminasi Tiba Esok</span>
-                              </Button>
-                              <Button variant="white" onClick={() => handlePengirimanClick('Instan (Rp 27.000-31.000)', 'Tiba Dalam 2 Jam')} >
-                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Instan (Rp 27.000-31.000)</h3>
-                                <span style={{ fontSize: 14, paddingRight: 400 }}>Tiba Dalam 2 Jam</span>
-                              </Button>
-                              <Button variant="white" onClick={() => handlePengirimanClick('Reguler (Rp 16.500-21.500)', 'Estiminasi tiba 21-22 maret 2023')}>
-                                <h3 style={{ fontSize: 18, paddingRight: 380 }} >Reguler (Rp 16.500-21.500)</h3>
-                                <span style={{ fontSize: 14, paddingRight: 380 }}>Estiminasi tiba 21-22 maret 2023 </span>
-                              </Button><Button variant="white" onClick={() => handlePengirimanClick('Kargo(Rp 25.500-30.500)', 'Estiminasi Tiba 24-25 maret 2023')}>
-                                <h3 style={{ fontSize: 18, paddingRight: 400 }} >Kargo(Rp 25.500-30.500)</h3>
-                                <span style={{ fontSize: 14, paddingRight: 400 }}>Estiminasi Tiba 24-25 maret 2023</span>
-                              </Button>
-                            </Card>
-                          </div>
-                        </Modal>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                  <Card>
-                    <Card.Body>
-                      <h6>Pilih Pembayaran</h6>
-                      {selectedImage && (
-                        <div>
-                          <img style={{ marginRight: 500, height: 40, width: 60 }} src={selectedImage} />
-                        </div>
-                      )}
-                      {selectedBRI && (
-                        <div>
-                          <p style={{ marginTop: 10 }}>{selectedBRI}</p>
-                        </div>
-                      )}
-
-                      <Card.Text style={{ marginLeft: 500 }}>
-                        <Button variant="outline-white" onClick={handleShow}><IoChevronForward /></Button>
-
-                        <Modal show={show} onHide={handleClose}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>Pilih Pembayaran</Modal.Title>
-                          </Modal.Header>
-                          <div style={{ height: 150, overflowY: "scroll", paddingLeft: 60, paddingRight: 60 }}>
-                            <h6>Transfer Bank</h6>
-                            <Card style={{ paddingLeft: 50, paddingRight: 50 }}>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={BRI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BRI</p>
-                              </Button>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={BNI} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BNI</p>
-                              </Button>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={Mandiri} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank Mandiri</p>
-                              </Button>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={BCA} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Bank BCA</p>
-                              </Button>
-                            </Card>
-                            <h6>Tunai di Gerai Retail</h6>
-                            <Card>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={Alfamart} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p style={{ marginTop: -30 }}>Alfamart</p>
-                              </Button>
-                              <Button variant="white">
-                                <img onClick={handleImageClick} src={Indomaret} style={{ marginRight: 500, height: 25, width: 40 }}></img>
-                                <p onClick={handleBRIClick} style={{ marginTop: -30 }}>Indomaret</p>
-                              </Button>
-                            </Card>
-                          </div>
-                        </Modal>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </CardGroup>
-
-
+                <Pembayaran/>
                 {/* Tambah Alamat */}
                 <Modal show={request} onHide={closeRequest} animation={false}>
                   <Card style={{}}>
@@ -463,7 +257,6 @@ const Checkout = () => {
                     </Card.Body>
                   </Card>
                 </Modal>
-
                 {/* ubah alamat */}
                 <Modal show={editalamat} onHide={closeEdit} animation={false}>
                   <Card >
@@ -501,55 +294,7 @@ const Checkout = () => {
               </div>
               {/* Filter */}
               <div className="col-lg-3 col-md-12">
-                <aside className="sidebar_widget">
-                  <div className="widget_list widget_categories">
-                    <div>
-                      <Card style={{ paddingLeft: 50, paddingRight: 50, marginRight: -12, margin: 10 }} variant="light" onClick={handleShow3}>
-
-                        Makin Hemat Pakai Promo
-
-                      </Card>
-
-                      <Modal show={show3} onHide={handleClose3}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>Pakai Promo</Modal.Title>
-
-                        </Modal.Header>
-                        <Modal.Body>
-                          <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                              <Form.Control
-                                type="name"
-                                placeholder="Masukkan kode promo"
-                                autoFocus
-                              />
-                            </Form.Group>
-                            <Button variant="light" type="submit">
-                              Terapkan
-                            </Button>
-                          </Form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                        </Modal.Footer>
-                      </Modal>
-                      <Card>
-                        <h3 style={{ margin: 10 }} >Ringkasan belanja</h3>
-                        <a style={{ margin: 10 }}>Total Barang (0 harga)</a>
-                        <a></a>
-                      </Card>
-                      <Card>
-                        {/* <p>Total Diskon</p> */}
-                        <h3 style={{ margin: 10 }} >Total Harga</h3>
-                        <Button style={{ margin: 10 }} variant="success" size="sm" active>
-                          Total
-                        </Button>{' '}</Card>
-
-                    </div>
-                  </div>
-                  <div className="widget_list tags_widget">
-                  </div>
-                </aside>
-
+              <KodePromo/>
               </div>
             </div>
           </div>
@@ -571,21 +316,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-function ProdukList() {
-  return (
-    <div>
-      <h1>Produk List</h1>
-      {/* Daftar produk */}
-    </div>
-  );
-}
-
-function SingleProduk() {
-  return (
-    <div>
-      <h1>Single Produk</h1>
-      {/* Detail produk */}
-    </div>
-  );
-}

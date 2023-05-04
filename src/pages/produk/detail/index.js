@@ -5,6 +5,8 @@ import like from "../../../assets/img/logo/like-click.svg"
 import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
+
+
 import '../../../App.css';
 import '../../../assets/css/style.css';
 import '../../../assets/css/plugins.css';
@@ -31,33 +33,8 @@ const Detail = () => {
     setUserData({ backgroundSize: 800, backgroundPosition: `${x}% ${y}%`, backgroundImage: `url('https://microdatastoreapi.cooljarsoft.com/image-barang/original')` })
   }
 
-  // const [imageIndex, setImageIndex] = useState(0);
-  // const images = [likehover, like];
-
-  // const [cartIndex, setCart] = useState(0);
-  // const gambar = [carthover, cart];
-
-  // function handleClick() {
-  //   setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  // }
-  // function handleClick2() {
-  //   setCart((prevIndex) => (prevIndex + 1) % gambar.length);
-  // }
-
-  ///detail barang
-  const [detailBarang, setDetailBarang] = useState([]);
-  const [Barangmurah, setBarangmurah] = useState([]);
-
-
-
-  const { id_barang } = useParams();
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    getDetailBarang();
-    getBarangmurah();
-
-  }, []);
+  const [imageIndex, setImageIndex] = useState(0);
+  const images = [likehover, like];
 
   function getDetailBarang() {
     axios

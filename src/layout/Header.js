@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/logo/logo.svg";
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Icon from '../assets/img/icon/baseline_person_outline_white_24dp.png'
 
 
 
@@ -66,6 +63,17 @@ export const Header = () => {
 
     }
 
+
+    ///pencarian
+    const [keyword, setKeyword] = useState('');
+    const navigate = useNavigate();
+
+    function submitPencarian8(e) {
+        console.log('masuk')
+        navigate("/list?pencarian=" + keyword, { replace: true });
+
+    }
+
     const image = Cookies.get('image'); // Pacman
 
     return (
@@ -104,30 +112,32 @@ export const Header = () => {
                                 </div>
 
                                 <div className="search_container">
-                                    <div className="hover_category">
-                                        <select className="select_option" name="select" id="categori1">
-                                            <option selected value={1}>SEMUA JENIS BARANG</option>
-                                            <option value={2}>Accessories</option>
-                                            <option value={3}>Accessories &amp; More</option>
-                                            <option value={4}>Butters &amp; Eggs</option>
-                                            <option value={5}>Camera &amp; Video </option>
-                                            <option value={6}>Mornitors</option>
-                                            <option value={7}>Tablets</option>
-                                            <option value={8}>Laptops</option>
-                                            <option value={9}>Handbags</option>
-                                            <option value={10}>Headphone &amp; Speaker</option>
-                                            <option value={11}>Herbs &amp; botanicals</option>
-                                            <option value={12}>Vegetables</option>
-                                            <option value={13}>Shop</option>
-                                            <option value={14}>Laptops &amp; Desktops</option>
-                                            <option value={15}>Watchs</option>
-                                            <option value={16}>Electronic</option>
-                                        </select>
-                                    </div>
-                                    <div className="search_box">
-                                        <input placeholder="Search product..." type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
-                                        <button type="button" onClick={(e) => submitPencarian8(e)}>Search</button>
-                                    </div>
+                                    <form action="#">
+                                        <div className="hover_category">
+                                            <select className="select_option" name="select" id="categori1">
+                                                <option selected value={1}>SEMUA JENIS BARANG</option>
+                                                <option value={2}>Accessories</option>
+                                                <option value={3}>Accessories &amp; More</option>
+                                                <option value={4}>Butters &amp; Eggs</option>
+                                                <option value={5}>Camera &amp; Video </option>
+                                                <option value={6}>Mornitors</option>
+                                                <option value={7}>Tablets</option>
+                                                <option value={8}>Laptops</option>
+                                                <option value={9}>Handbags</option>
+                                                <option value={10}>Headphone &amp; Speaker</option>
+                                                <option value={11}>Herbs &amp; botanicals</option>
+                                                <option value={12}>Vegetables</option>
+                                                <option value={13}>Shop</option>
+                                                <option value={14}>Laptops &amp; Desktops</option>
+                                                <option value={15}>Watchs</option>
+                                                <option value={16}>Electronic</option>
+                                            </select>
+                                        </div>
+                                        <div className="search_box">
+                                            <input placeholder="Search product..." type="text" />
+                                            <button type="submit">Search</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div id="menu" className="text-left ">
                                     <ul className="offcanvas_main_menu">

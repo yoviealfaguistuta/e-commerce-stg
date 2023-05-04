@@ -22,10 +22,18 @@ import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+<<<<<<< HEAD
 import LocationMap from "./LocationMap";
 import { width } from "@mui/system";
 import Switch from "react-bootstrap/Switch";
 import { Form } from "react-bootstrap";
+=======
+import Accordion from 'react-bootstrap/Accordion';
+import LocationMap from "./LocationMap";
+import { width } from "@mui/system";
+import Switch from "react-bootstrap/Switch";
+import { Form} from "react-bootstrap";
+>>>>>>> mutiara
 
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
@@ -41,6 +49,7 @@ import { SettingsSystemDaydreamTwoTone } from "@mui/icons-material";
 const Profile = (props) => {
   ///scrolll
   const [scrollPosition, setScrollPosition] = useState(0);
+<<<<<<< HEAD
 
   useEffect(() => {
     function hScroll() {
@@ -285,6 +294,209 @@ const Profile = (props) => {
     });
   }
 
+=======
+
+  useEffect(() => {
+    function hScroll() {
+      setScrollPosition(window.scrollY);
+    }
+
+    window.addEventListener('scroll', hScroll);
+    return () => window.removeEventListener('scroll', hScroll);
+  }, []);
+
+  const showScroll = scrollPosition <= 0;
+  const hideScroll = scrollPosition > 0;
+
+  ///sidebar
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [isOpen3, setIsOpen3] = useState(false);
+
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleClick2 = () => {
+    setIsOpen2(!isOpen2);
+  };
+  const handleClick3 = () => {
+    setIsOpen3(!isOpen3);
+  };
+
+
+  const [isFeatureActive, setIsFeatureActive] = useState(false);
+  const handleSwitchChange = () => {
+    setIsFeatureActive(!isFeatureActive);
+  };
+
+  ///Alamat data diri
+  const [isGrid, setIsGrid] = useState(true);
+  const [isList, setIsList] = useState(true);
+  const [ToogleAddress, setToogleAddress] = useState(true); // TRUE = SEMUA, FALSE = DARI TEMAN
+
+
+  const handleResetLayoutGrid = () => {
+    setIsGrid(true);
+    setIsList(true);
+  };
+
+  const handleResetLayoutList = () => {
+    setIsGrid(false);
+    setIsList(false);
+  };
+
+  ///edit nama
+
+  const [show, setShow] = useState(false);
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [name, setName] = useState("Mr Ai");
+  useEffect(() => {
+    const savedName = Cookies.get('name');
+    if (savedName) {
+      setName(savedName);
+    }
+
+  }, []);
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleSaveName = () => {
+    Cookies.set('name', name, { expires: 7 });
+  }
+
+  ///edit nohp
+  const [nomor, setNomor] = useState(false);
+
+  const closeNomor = () => setNomor(false);
+  const openNomor = () => setNomor(true);
+
+  ///email
+  const [email, setEmail] = useState(false);
+
+  const closeEmail = () => setEmail(false);
+  const openEmail = () => setEmail(true);
+
+  ///Ubah sandi
+  const [sandi, setSandi] = useState(false);
+  const closeSandi = () => setSandi(false);
+  const openSandi = () => setSandi(true);
+
+  ///verivikasi kode 
+  const [code, setCode] = useState(false);
+  const closeCode = () => setCode(false);
+  const openCode = () => setCode(true);
+
+  const codeRef1 = useRef(null);
+  const codeRef2 = useRef(null);
+  const codeRef3 = useRef(null);
+  const codeRef4 = useRef(null);
+
+  const handleChange = (e, index) => {
+    const newCode = [...code];
+    newCode[index] = e.target.value;
+    setCode(newCode);
+
+    // Move focus to the next input field
+    if (index < 3 && e.target.value !== '') {
+      switch (index) {
+        case 0:
+          codeRef2.current.focus();
+          break;
+        case 1:
+          codeRef3.current.focus();
+          break;
+        case 2:
+          codeRef4.current.focus();
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('Text');
+    const pastedCode = pastedData.split('').slice(0, 4);
+    setCode(pastedCode);
+
+    // Move focus to the last input field after pasting
+    codeRef4.current.focus();
+  };
+
+  ///Ovo 
+  const [ovo, setOvo] = useState(false);
+  const closeOvo = () => setOvo(false);
+  const openOvo = () => setOvo(true);
+
+  ///Gopay 
+  const [gopay, setGopay] = useState(false);
+  const closeGopay = () => setGopay(false);
+  const openGopay = () => setGopay(true);
+
+  ///Gopay->grab 
+  const [konek, setKonek] = useState(false);
+  const closeKonek = () => setKonek(false);
+  const openKonek = () => setKonek(true);
+
+  ///tambah alamat
+  const [data, setData] = useState([]);
+
+  const [formData, setFormData] = useState({
+      nama: "fadil ainuddin",
+      hp: "0895616710043",
+      jalan: "Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara",
+  });
+
+  useEffect(() => {
+      const cookieData = Cookies.get("crudData");
+      if (cookieData) {
+          setData(JSON.parse(cookieData));
+      }
+  }, []);
+
+  useEffect(() => {
+      Cookies.set("crudData", JSON.stringify(data));
+  }, [data]);
+
+  const handleInputChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleAddData = () => {
+      setData([...data, formData]);
+      setFormData({ nama: "", hp: "", jalan: "" });
+  };
+
+      ///tambah alamat
+      const [alamat, setAlamat] = useState(false);
+      const [tambahalamat, setTambahAlamat] = useState(false);
+      const [editalamat, setEditAlamat] = useState(false);
+  
+  
+      const closeAlamat = () => setAlamat(false);
+      const openAlamat = () => setAlamat(true);
+  
+      const closeTambah = () => setTambahAlamat(false);
+      const tambahAlamat = () => setTambahAlamat(true);
+  
+      const ubahAlamat = () => setEditAlamat(true);
+      const closeEdit = () => setEditAlamat(false);
+  
+      ///Request
+      const [request, setRequest] = useState(false);
+  
+      const closeRequest = () => setRequest(false);
+      const openRequest = () => setRequest(true);
+
+>>>>>>> mutiara
   return (
     <Layout>
       <div>
@@ -295,11 +507,19 @@ const Profile = (props) => {
                 {/* sidebar */}
                 <aside className="sidebar_widget">
                   <div className="row" >
+<<<<<<< HEAD
                     <div className="col-3"><img className="img-profil" src={image} alt="" />
                     </div>
                     <div className="col" style={{ padding: 0 }}>
                       <ul>
                         <li><a className="huruf">{user.firstName} {user.lastName}</a></li>
+=======
+                    <div className="col-3"><img className="img-profil" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" alt="profilePic" />
+                    </div>
+                    <div className="col" style={{ padding: 0 }}>
+                      <ul>
+                        <li><a className="huruf">Fadil Ainuddin</a></li>
+>>>>>>> mutiara
                         <li><Button className="but" ><img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/c02d2b09.svg" style={{ width: 12, padding: 0 }} ></img><span>Sambungkan ke Gojek</span></Button></li>
                       </ul>
                     </div>
@@ -382,7 +602,11 @@ const Profile = (props) => {
                 </aside>
                 <aside className="sidebar_widget collapsible">
                   <div className="widget_list widget_categories">
+<<<<<<< HEAD
 
+=======
+                   
+>>>>>>> mutiara
                   </div>
                 </aside>
               </div>
@@ -392,7 +616,11 @@ const Profile = (props) => {
               <div className="col-lg-9 col-md-12">
                 <div className="nama">
                   < img src={Profil} style={{ width: 20 }} alt="gopay" />
+<<<<<<< HEAD
                   <a style={{ paddingLeft: 5 }}>{user.firstName} {user.lastName}</a>
+=======
+                  <a style={{ paddingLeft: 5 }}>Fadil Ainuddin</a>
+>>>>>>> mutiara
                 </div>
                 {isGrid ? (
                   <div className="grid-layout">
@@ -416,7 +644,11 @@ const Profile = (props) => {
                       <div className="row">
                         <Col md={4}>
                           <Card className="card-profil" style={{ marginTop: 30 }}>
+<<<<<<< HEAD
                             <img variant="top" className="image" src={image} />
+=======
+                            <img variant="top" className="image" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" />
+>>>>>>> mutiara
 
                             <Card style={{ width: '18.6rem', marginTop: 10, height: 50, marginBottom: 10 }}>
                               <Card.Body style={{ paddingTop: 10 }} >
@@ -450,28 +682,48 @@ const Profile = (props) => {
                           <h6 className="data-diri" style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Biodata Diri</h6>
                           <div className="row data">
                             <div className="col-3"><span>Nama</span></div>
+<<<<<<< HEAD
                             <div className="col"><span>{user.firstName} {user.lastName}</span><button className="my-button" onClick={handleShow}><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+=======
+                            <div className="col"><span>{name}</span><button className="my-button" onClick={handleShow}><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+>>>>>>> mutiara
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Tanggal Lahir</span></div>
+<<<<<<< HEAD
                             <div className="col"><span>{user.birthDate}</span></div>
+=======
+                            <div className="col"><span>05 Oktober 2022</span></div>
+>>>>>>> mutiara
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Jenis Kelamain</span></div>
+<<<<<<< HEAD
                             <div className="col"><span>{user.gender}</span></div>
+=======
+                            <div className="col"><span>Pria</span></div>
+>>>>>>> mutiara
                           </div>
 
                           <h6 className="data-diri" style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Kontak</h6>
                           <div className="row data">
                             <div className="col-3"><span>Email</span></div>
+<<<<<<< HEAD
                             <div className="col"><span>{user.email}</span><span style={{ paddingLeft: 20, background: '#0d6efd' }}>Terverifikasi</span><button onClick={openEmail} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+=======
+                            <div className="col"><span>ainuddinfadil@gmail.com</span><span style={{ paddingLeft: 20, background:'#0d6efd' }}>Terverifikasi</span><button onClick={openEmail} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+>>>>>>> mutiara
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Nomor Hp</span></div>
+<<<<<<< HEAD
                             <div className="col"><span>{user.phone}</span><span style={{ paddingLeft: 20, background: '#0d6efd' }}>Terverifikasi</span><button onClick={openNomor} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+=======
+                            <div className="col"><span>0895616710043</span><span style={{ paddingLeft: 20,background:'#0d6efd' }}>Terverifikasi</span><button onClick={openNomor} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+>>>>>>> mutiara
 
                           </div>
 
@@ -560,6 +812,7 @@ const Profile = (props) => {
 
                         {
                           (ToogleAddress) ?
+<<<<<<< HEAD
 
                             <Card className="card-alamat alamat" style={{ paddingLeft: 10 }}>
                               <Col><span style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }}>Rumah</span></Col>
@@ -582,6 +835,30 @@ const Profile = (props) => {
                                     <img src={Share} style={{ height: 30 }} alt='share'></img>
                                   </div>
 
+=======
+                            
+                            <Card className="card-alamat alamat" style={{ paddingLeft: 10 }}>
+                              <Col><span style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }}>Rumah</span></Col>
+                              <Col style={{ paddingBottom: 10 }}><b>Fadil Ainuddin</b></Col>
+                              <Col style={{ paddingBottom: 10 }}><span>0895616710043</span></Col>
+                              <Col style={{ paddingBottom: 10 }}><span>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</span></Col>
+                              <Col style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</Col>
+
+                              <Nav className="me-auto">
+                                <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features"  onClick={openRequest} >Share</Nav.Link>
+                                <Nav.Link className="nav a" style={{ color: "#0d6efd" }} href="#features" onClick={ubahAlamat}>Ubah Alamat</Nav.Link>
+                              </Nav>
+                            </Card> :
+
+
+                            <Card className="card-alamat">
+                              <Card.Body>
+                                <div className="row">
+                                  <div className="col-1">
+                                    <img src={Share} style={{ height: 30 }} alt='share'></img>
+                                  </div>
+
+>>>>>>> mutiara
                                   <div className="col-9">
                                     <ul>
                                       <li><b>Minta alamat ke teman kamu</b></li>
@@ -589,7 +866,11 @@ const Profile = (props) => {
                                     </ul>
                                   </div>
                                   <div className="col">
+<<<<<<< HEAD
                                     <Button onClick={openRequest} variant="outline-primary" >Request</Button>
+=======
+                                    <Button  onClick={openRequest} variant="outline-primary" >Request</Button>
+>>>>>>> mutiara
                                   </div>
                                 </div>
                               </Card.Body>
@@ -618,7 +899,11 @@ const Profile = (props) => {
       <Modal show={show} onHide={handleClose} animation={false}>
 
         <Card >
+<<<<<<< HEAD
           <Card.Body onSubmit={updateProfile}>
+=======
+          <Card.Body>
+>>>>>>> mutiara
             <div onClick={handleClose} className="mini_cart_close" style={{ paddingLeft: 750 }}>
               <a href="javascript:void(0)">
                 <i class="ion-android-close"></i>
@@ -631,13 +916,21 @@ const Profile = (props) => {
             </Card.Text>
 
             <Card.Subtitle className="mb-2 text-muted">Nama</Card.Subtitle>
+<<<<<<< HEAD
             <Form.Control type="text" style={{ width: 600, height: 50 }} id="nameInput"  value={lastName} onChange={(e) => setLastName(e.target.value)} />
+=======
+            <Form.Control type="text" style={{ width: 600, height: 50 }} id="nameInput" value={name} onChange={handleNameChange} />
+>>>>>>> mutiara
             <Form.Text id="text" muted>
               Nama dapat dilihat oleh pengguna lainnya
             </Form.Text>
 
             <div className="d-grid gap-2" style={{ padding: 50 }}>
+<<<<<<< HEAD
               <Button type="submit" variant="primary" size="lg" style={{ marginBottom: -30, width: 500, alignItems: 'center' }}>
+=======
+              <Button onClick={handleSaveName} variant="primary" size="lg" style={{ marginBottom: -30, width: 500, alignItems: 'center' }}>
+>>>>>>> mutiara
                 Simpan
               </Button>
             </div>
@@ -668,6 +961,7 @@ const Profile = (props) => {
               <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
                 <div className="row">
                   <div className="col">
+<<<<<<< HEAD
                     <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
 
                   </div>
@@ -681,6 +975,21 @@ const Profile = (props) => {
                   </div>
                 </div>
 
+=======
+                  <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+
+                  </div>
+                  <div className="col" style={{width:300, paddingTop: 20}}>
+                  <b style={{ color: '#31353B', paddingTop: 20}}>SMS Ke</b>
+                  <div>
+                  <a style={{ color: '#31353B',fontSize: 13 }}>0895-6167-100-43</a>
+
+                </div>
+
+                  </div>
+                </div>
+              
+>>>>>>> mutiara
 
               </Button>
             </div>
@@ -963,11 +1272,19 @@ const Profile = (props) => {
           <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
           <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
             <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
+<<<<<<< HEAD
             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" name="nama" value={formData.nama}  />
             <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
             <Form.Control type="text" id="inputPassword5" name="hp" value={formData.hp}  />
             <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
             <Form.Control type="text" id="inputPassword5" name="jalan" value={formData.jalan}  />
+=======
+            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" name="nama" value={formData.nama} onChange={handleInputChange} />
+            <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
+            <Form.Control type="text" id="inputPassword5" name="hp" value={formData.hp} onChange={handleInputChange} />
+            <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
+            <Form.Control type="text" id="inputPassword5" name="jalan" value={formData.jalan} onChange={handleInputChange} />
+>>>>>>> mutiara
             <Form.Label style={{ fontWeight: 'bold' }} >Kota & Kecamatan</Form.Label>
             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
             <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>
