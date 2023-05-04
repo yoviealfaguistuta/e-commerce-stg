@@ -21,3 +21,5 @@ const DeskripsiSliderHome = ({title}) => {
         </div>
     )
 };
+
+export default DeskripsiSliderHome;
