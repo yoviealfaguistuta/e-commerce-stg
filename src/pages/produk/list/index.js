@@ -14,12 +14,8 @@ import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
 import axios from "axios";
-<<<<<<< HEAD
 import { Link, useSearchParams } from "react-router-dom";
 import SliderHome from "../../../components/SliderHome";
-=======
-import { useSearchParams } from "react-router-dom";
->>>>>>> fadil
 
 
 
