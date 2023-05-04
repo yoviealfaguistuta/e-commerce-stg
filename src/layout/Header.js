@@ -52,18 +52,6 @@ export const Header = () => {
     const imageIndex = Cookies.get('imageIndex') || 0;
     const cartIndex = Cookies.get('cartIndex') || 0;
 
-
-    ///pencarian
-    const [keyword, setKeyword] = useState('');
-    const navigate = useNavigate();
-
-    function submitPencarian8(e) {
-        console.log('masuk')
-        navigate("/list?pencarian=" + keyword, { replace: true });
-
-    }
-
-
     ///pencarian
     const [keyword, setKeyword] = useState('');
     const navigate = useNavigate();
