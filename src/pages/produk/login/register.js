@@ -1,11 +1,42 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useState } from "react";
 import logo from "../../../assets/img/logo/logo-dark.svg";
 import login_logo from "../../../assets/img/logo/login.svg";
 import facebook from "../../../assets/img/logo/facebook.svg";
 import google from "../../../assets/img/logo/google.svg";
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 
-function register() {
+
+
+function Register() {
+    const [username, setUsername] = React.useState('saya');
+    const [password, setPassword] = React.useState();
+    const [email, setEmail] = React.useState();
+    const [phone, setPhone] = React.useState();
+    const [address, setAddress] = React.useState();
+
+      let navigate = useNavigate();
+
+      
+
+      const addregister= (e) => {
+        e.preventDefault();
+        axios.post('https://dummyjson.com/users/add', {
+            username:username,
+            password:password,
+            email:email,
+            phone:phone,
+            address:address,
+        }).then(function (response) {
+            return navigate("/login");
+        }).catch(function (error) {
+
+        }).finally(function () {
+
+        });
+    }
     return (
         <>
             <div>
@@ -40,28 +71,28 @@ function register() {
                                     <div className="col-lg-6 col-md-6">
                                         <div className="account_form login">
                                             <h2>Register</h2>
-                                            <form action="javascript:redirect()" className="card_login">
+                                            <form action="javascript:redirect()" onSubmit={addregister} className="card_login">
                                                 <div className="row">
                                                     <div className="col-lg-12 col-md-6">
                                                         <p>
                                                             <label>Nama <span>*</span></label>
-                                                            <input type="text"/>
+                                                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                                                         </p>
                                                         <p>
                                                             <label>Alamat <span>*</span></label>
-                                                            <input type="text"/>
+                                                            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}/>
                                                         </p>
                                                         <p>
                                                             <label>No Hendphone <span>*</span></label>
-                                                            <input type="text" placeholder={+62} />
+                                                            <input type="text" placeholder={+62} value={phone} onChange={(e) => setPhone(e.target.value)} />
                                                         </p>
                                                         <p>
                                                             <label>E-mail <span>*</span></label>
-                                                            <input type="text" placeholder={""} />
+                                                            <input type="text" placeholder={""} value={email} onChange={(e) => setEmail(e.target.value)} />
                                                         </p>
                                                         <p>
                                                             <label>Password <span>*</span></label>
-                                                            <input type="text"  />
+                                                            <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
                                                         </p>
                                                         <div className="login_submit">                                            
                                                             <button type="submit">Register now</button>
@@ -129,4 +160,4 @@ function register() {
     );
 
 }
-export default register;
+export default Register;

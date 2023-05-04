@@ -25,12 +25,16 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import LocationMap from "./LocationMap";
 import { width } from "@mui/system";
 import Switch from "react-bootstrap/Switch";
-import { Form} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import { height, textAlign } from "@mui/system";
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { SettingsSystemDaydreamTwoTone } from "@mui/icons-material";
+
 
 
 
@@ -96,22 +100,22 @@ const Profile = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [name, setName] = useState("Mr Ai");
-  useEffect(() => {
-    const savedName = Cookies.get('name');
-    if (savedName) {
-      setName(savedName);
-    }
+  // const [name, setName] = useState("Mr Ai");
+  // useEffect(() => {
+  //   const savedName = Cookies.get('name');
+  //   if (savedName) {
+  //     setName(savedName);
+  //   }
 
-  }, []);
+  // }, []);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  }
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  // }
 
-  const handleSaveName = () => {
-    Cookies.set('name', name, { expires: 7 });
-  }
+  // const handleSaveName = () => {
+  //   Cookies.set('name', name, { expires: 7 });
+  // }
 
   ///edit nohp
   const [nomor, setNomor] = useState(false);
@@ -192,51 +196,94 @@ const Profile = (props) => {
   const [data, setData] = useState([]);
 
   const [formData, setFormData] = useState({
-      nama: "fadil ainuddin",
-      hp: "0895616710043",
-      jalan: "Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara",
+    nama: "fadil ainuddin",
+    hp: "0895616710043",
+    jalan: "Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara",
   });
 
   useEffect(() => {
-      const cookieData = Cookies.get("crudData");
-      if (cookieData) {
-          setData(JSON.parse(cookieData));
-      }
+    const cookieData = Cookies.get("crudData");
+    if (cookieData) {
+      setData(JSON.parse(cookieData));
+    }
   }, []);
 
   useEffect(() => {
-      Cookies.set("crudData", JSON.stringify(data));
+    Cookies.set("crudData", JSON.stringify(data));
   }, [data]);
 
-  const handleInputChange = (e) => {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleInputChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const handleAddData = () => {
-      setData([...data, formData]);
-      setFormData({ nama: "", hp: "", jalan: "" });
+    setData([...data, formData]);
+    setFormData({ nama: "", hp: "", jalan: "" });
   };
 
-      ///tambah alamat
-      const [alamat, setAlamat] = useState(false);
-      const [tambahalamat, setTambahAlamat] = useState(false);
-      const [editalamat, setEditAlamat] = useState(false);
-  
-  
-      const closeAlamat = () => setAlamat(false);
-      const openAlamat = () => setAlamat(true);
-  
-      const closeTambah = () => setTambahAlamat(false);
-      const tambahAlamat = () => setTambahAlamat(true);
-  
-      const ubahAlamat = () => setEditAlamat(true);
-      const closeEdit = () => setEditAlamat(false);
-  
-      ///Request
-      const [request, setRequest] = useState(false);
-  
-      const closeRequest = () => setRequest(false);
-      const openRequest = () => setRequest(true);
+  ///tambah alamat
+  const [alamat, setAlamat] = useState(false);
+  const [tambahalamat, setTambahAlamat] = useState(false);
+  const [editalamat, setEditAlamat] = useState(false);
+
+
+  const closeAlamat = () => setAlamat(false);
+  const openAlamat = () => setAlamat(true);
+
+  const closeTambah = () => setTambahAlamat(false);
+  const tambahAlamat = () => setTambahAlamat(true);
+
+  const ubahAlamat = () => setEditAlamat(true);
+  const closeEdit = () => setEditAlamat(false);
+
+  ///Request
+  const [request, setRequest] = useState(false);
+
+  const closeRequest = () => setRequest(false);
+  const openRequest = () => setRequest(true);
+
+  const image = Cookies.get('image'); // Pacman
+
+  ///detail barang
+  const [user, setUser] = useState([]);
+  const [lastName, setLastName] = React.useState();
+
+
+
+
+  const { id_user } = useParams();
+  let navigate = useNavigate();
+
+  React.useEffect(() => {
+        getProfile();
+    }, []);
+
+  function getProfile() {
+    axios
+      .get('https://dummyjson.com/users/' + 1)
+      .then(function (response) {
+        console.log('response :>> ', response.data);
+        setUser(response.data);
+        setLastName(response.data.lastName);
+      }).catch(function (error) {
+      }).finally(function () {
+      });
+  }
+
+
+  const updateProfile = (e) => {
+    e.preventDefault();
+    axios.post('https://dummyjson.com/users/' + 1, {
+      lastName: lastName,
+    }).then(function (response) {
+      return navigate("/");
+
+    }).catch(function (error) {
+
+    }).finally(function () {
+
+    });
+  }
 
   return (
     <Layout>
@@ -248,11 +295,11 @@ const Profile = (props) => {
                 {/* sidebar */}
                 <aside className="sidebar_widget">
                   <div className="row" >
-                    <div className="col-3"><img className="img-profil" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" alt="profilePic" />
+                    <div className="col-3"><img className="img-profil" src={image} alt="" />
                     </div>
                     <div className="col" style={{ padding: 0 }}>
                       <ul>
-                        <li><a className="huruf">Fadil Ainuddin</a></li>
+                        <li><a className="huruf">{user.firstName} {user.lastName}</a></li>
                         <li><Button className="but" ><img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/c02d2b09.svg" style={{ width: 12, padding: 0 }} ></img><span>Sambungkan ke Gojek</span></Button></li>
                       </ul>
                     </div>
@@ -335,7 +382,7 @@ const Profile = (props) => {
                 </aside>
                 <aside className="sidebar_widget collapsible">
                   <div className="widget_list widget_categories">
-                   
+
                   </div>
                 </aside>
               </div>
@@ -345,7 +392,7 @@ const Profile = (props) => {
               <div className="col-lg-9 col-md-12">
                 <div className="nama">
                   < img src={Profil} style={{ width: 20 }} alt="gopay" />
-                  <a style={{ paddingLeft: 5 }}>Fadil Ainuddin</a>
+                  <a style={{ paddingLeft: 5 }}>{user.firstName} {user.lastName}</a>
                 </div>
                 {isGrid ? (
                   <div className="grid-layout">
@@ -369,7 +416,7 @@ const Profile = (props) => {
                       <div className="row">
                         <Col md={4}>
                           <Card className="card-profil" style={{ marginTop: 30 }}>
-                            <img variant="top" className="image" src="https://images.tokopedia.net/img/cache/300/tPxBYm/2023/1/20/cf438cd7-a9f8-435f-910d-726100b587db.jpg" />
+                            <img variant="top" className="image" src={image} />
 
                             <Card style={{ width: '18.6rem', marginTop: 10, height: 50, marginBottom: 10 }}>
                               <Card.Body style={{ paddingTop: 10 }} >
@@ -403,28 +450,28 @@ const Profile = (props) => {
                           <h6 className="data-diri" style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Biodata Diri</h6>
                           <div className="row data">
                             <div className="col-3"><span>Nama</span></div>
-                            <div className="col"><span>{name}</span><button className="my-button" onClick={handleShow}><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+                            <div className="col"><span>{user.firstName} {user.lastName}</span><button className="my-button" onClick={handleShow}><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Tanggal Lahir</span></div>
-                            <div className="col"><span>05 Oktober 2022</span></div>
+                            <div className="col"><span>{user.birthDate}</span></div>
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Jenis Kelamain</span></div>
-                            <div className="col"><span>Pria</span></div>
+                            <div className="col"><span>{user.gender}</span></div>
                           </div>
 
                           <h6 className="data-diri" style={{ fontWeight: "bold", color: "#6D7588" }}>Ubah Kontak</h6>
                           <div className="row data">
                             <div className="col-3"><span>Email</span></div>
-                            <div className="col"><span>ainuddinfadil@gmail.com</span><span style={{ paddingLeft: 20, background:'#0d6efd' }}>Terverifikasi</span><button onClick={openEmail} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+                            <div className="col"><span>{user.email}</span><span style={{ paddingLeft: 20, background: '#0d6efd' }}>Terverifikasi</span><button onClick={openEmail} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
 
                           </div>
                           <div className="row data">
                             <div className="col-3"><span>Nomor Hp</span></div>
-                            <div className="col"><span>0895616710043</span><span style={{ paddingLeft: 20,background:'#0d6efd' }}>Terverifikasi</span><button onClick={openNomor} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
+                            <div className="col"><span>{user.phone}</span><span style={{ paddingLeft: 20, background: '#0d6efd' }}>Terverifikasi</span><button onClick={openNomor} className="my-button"><span style={{ paddingLeft: 20, color: '#0d6efd' }}>Ubah</span></button></div>
 
                           </div>
 
@@ -513,16 +560,16 @@ const Profile = (props) => {
 
                         {
                           (ToogleAddress) ?
-                            
+
                             <Card className="card-alamat alamat" style={{ paddingLeft: 10 }}>
                               <Col><span style={{ paddingBottom: 8, fontWeight: 700, color: '#6D7588' }}>Rumah</span></Col>
-                              <Col style={{ paddingBottom: 10 }}><b>Fadil Ainuddin</b></Col>
-                              <Col style={{ paddingBottom: 10 }}><span>0895616710043</span></Col>
-                              <Col style={{ paddingBottom: 10 }}><span>Gang Harun, Belakang SMA Muhammadiyah 1 way Jepara</span></Col>
+                              <Col style={{ paddingBottom: 10 }}><b>{user.firstName} {user.lastName}</b></Col>
+                              <Col style={{ paddingBottom: 10 }}><span>{user.phone}</span></Col>
+                              <Col style={{ paddingBottom: 10 }}><span>{user.address["address"]} {user.address["city"]}</span></Col>
                               <Col style={{ paddingBottom: 12, fontSize: 14 }}><img src={Location} style={{ width: 20 }} alt="gambar" />Sudah Pinpoint</Col>
 
                               <Nav className="me-auto">
-                                <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features"  onClick={openRequest} >Share</Nav.Link>
+                                <Nav.Link className="nav" style={{ color: "#0d6efd" }} href="#features" onClick={openRequest} >Share</Nav.Link>
                                 <Nav.Link className="nav a" style={{ color: "#0d6efd" }} href="#features" onClick={ubahAlamat}>Ubah Alamat</Nav.Link>
                               </Nav>
                             </Card> :
@@ -542,7 +589,7 @@ const Profile = (props) => {
                                     </ul>
                                   </div>
                                   <div className="col">
-                                    <Button  onClick={openRequest} variant="outline-primary" >Request</Button>
+                                    <Button onClick={openRequest} variant="outline-primary" >Request</Button>
                                   </div>
                                 </div>
                               </Card.Body>
@@ -571,7 +618,7 @@ const Profile = (props) => {
       <Modal show={show} onHide={handleClose} animation={false}>
 
         <Card >
-          <Card.Body>
+          <Card.Body onSubmit={updateProfile}>
             <div onClick={handleClose} className="mini_cart_close" style={{ paddingLeft: 750 }}>
               <a href="javascript:void(0)">
                 <i class="ion-android-close"></i>
@@ -584,13 +631,13 @@ const Profile = (props) => {
             </Card.Text>
 
             <Card.Subtitle className="mb-2 text-muted">Nama</Card.Subtitle>
-            <Form.Control type="text" style={{ width: 600, height: 50 }} id="nameInput" value={name} onChange={handleNameChange} />
+            <Form.Control type="text" style={{ width: 600, height: 50 }} id="nameInput"  value={lastName} onChange={(e) => setLastName(e.target.value)} />
             <Form.Text id="text" muted>
               Nama dapat dilihat oleh pengguna lainnya
             </Form.Text>
 
             <div className="d-grid gap-2" style={{ padding: 50 }}>
-              <Button onClick={handleSaveName} variant="primary" size="lg" style={{ marginBottom: -30, width: 500, alignItems: 'center' }}>
+              <Button type="submit" variant="primary" size="lg" style={{ marginBottom: -30, width: 500, alignItems: 'center' }}>
                 Simpan
               </Button>
             </div>
@@ -621,19 +668,19 @@ const Profile = (props) => {
               <Button className="element" size="lg" style={{ marginBottom: -30, width: 500, height: 100, paddingRight: 300 }}>
                 <div className="row">
                   <div className="col">
-                  <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
+                    <img src={Sms} style={{ paddingTop: 20, width: 50 }} alt></img>
 
                   </div>
-                  <div className="col" style={{width:300, paddingTop: 20}}>
-                  <b style={{ color: '#31353B', paddingTop: 20}}>SMS Ke</b>
-                  <div>
-                  <a style={{ color: '#31353B',fontSize: 13 }}>0895-6167-100-43</a>
+                  <div className="col" style={{ width: 300, paddingTop: 20 }}>
+                    <b style={{ color: '#31353B', paddingTop: 20 }}>SMS Ke</b>
+                    <div>
+                      <a style={{ color: '#31353B', fontSize: 13 }}>0895-6167-100-43</a>
 
-                </div>
+                    </div>
 
                   </div>
                 </div>
-              
+
 
               </Button>
             </div>
@@ -916,11 +963,11 @@ const Profile = (props) => {
           <h4 style={{ paddingLeft: 30 }}>Lengkapi detail alamat</h4>
           <Card.Body style={{ padding: 30, height: 400, overflow: 'scroll' }}>
             <Form.Label style={{ fontWeight: 'bold' }} >Nama Penerima</Form.Label>
-            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" name="nama" value={formData.nama} onChange={handleInputChange} />
+            <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" name="nama" value={formData.nama}  />
             <Form.Label style={{ fontWeight: 'bold' }}>Nomor HP</Form.Label>
-            <Form.Control type="text" id="inputPassword5" name="hp" value={formData.hp} onChange={handleInputChange} />
+            <Form.Control type="text" id="inputPassword5" name="hp" value={formData.hp}  />
             <Form.Label style={{ fontWeight: 'bold' }} >Label Alamat</Form.Label>
-            <Form.Control type="text" id="inputPassword5" name="jalan" value={formData.jalan} onChange={handleInputChange} />
+            <Form.Control type="text" id="inputPassword5" name="jalan" value={formData.jalan}  />
             <Form.Label style={{ fontWeight: 'bold' }} >Kota & Kecamatan</Form.Label>
             <Form.Control type="text" id="inputPassword5" aria-describedby="passwordHelpBlock" />
             <Form.Label style={{ fontWeight: 'bold' }}>Alamat Lengkap</Form.Label>

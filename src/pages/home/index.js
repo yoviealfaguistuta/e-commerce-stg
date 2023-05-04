@@ -10,16 +10,17 @@ import like from "../../assets/img/logo/like-click.svg"
 import likehover from "../../assets/img/logo/like-hover.svg"
 import cart from "../../assets/img/logo/cart-click.svg"
 import carthover from "../../assets/img/logo/cart-hover.svg"
-import Cookies from 'js-cookie';
-import ReactDOM from 'react-dom';
 import Countdown from 'react-countdown';
 import Slider from "react-slick";
 import SliderHome from "../../components/SliderHome";
 
 import toast, { Toaster } from 'react-hot-toast';
+import Cookies from 'universal-cookie';
+
 
 
 const Home = () => {
+    const [message, setMessage] = useState('');
 
     const [barang, setBarang] = useState([]);
     const [Barangmurah, setBarangmurah] = useState([]);
@@ -30,15 +31,20 @@ const Home = () => {
     }, []);
 
 
-    function getBarang() {
 
+
+    function getBarang() {
         const loading = toast.loading(`Memproses ...`);
+        const cookies = new Cookies();
+
 
         axios
             .get(process.env.REACT_APP_API_URL + '/barang?per-page=5')
             .then(function (response) {
                 console.log('response :>> ', response.data.items);
                 setBarang(response.data.items);
+                console.log(cookies.get('token')); // Pacman
+                
                 toast.success('Barang berhasil diproses');
             }).catch(function (error) {
                 toast.error('Barang tidak berhasil diproses, karena = ' + error);
@@ -116,6 +122,7 @@ const Home = () => {
 
     return (
         <Layout >
+            
             <div className='home_selection_bg'>
 
                 <div className="row">
