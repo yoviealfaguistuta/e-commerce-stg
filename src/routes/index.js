@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <Checkout />,
     },
     {
-        path: "/profile",
+        path: "/profile/:id_user",
         element: <Profile />,
     },
     

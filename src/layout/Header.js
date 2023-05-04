@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Icon from '../assets/img/icon/baseline_person_outline_white_24dp.png'
 
 
 
@@ -65,10 +66,11 @@ export const Header = () => {
 
     }
 
-
+    const image = Cookies.get('image'); // Pacman
 
     return (
         <>
+
             <div className="Offcanvas_menu">
                 <div className="container">
                     <div className="row">
@@ -123,9 +125,9 @@ export const Header = () => {
                                         </select>
                                     </div>
                                     <div className="search_box">
-                                                <input placeholder="Search product..." type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
-                                                <button type="button" onClick={(e) => submitPencarian8(e)}>Search</button>
-                                            </div>
+                                        <input placeholder="Search product..." type="text" value={keyword} onChange={e => setKeyword(e.target.value)} />
+                                        <button type="button" onClick={(e) => submitPencarian8(e)}>Search</button>
+                                    </div>
                                 </div>
                                 <div id="menu" className="text-left ">
                                     <ul className="offcanvas_main_menu">
@@ -372,6 +374,11 @@ export const Header = () => {
                                 </div>
                                 <div className="column3 col-lg-3 col-md-7 col-6">
                                     <div className="header_configure_area header_configure_four">
+                                        <div  className="header_wishlist">
+                                            <a href="/profile">
+                                                <img src={image} alt="" style={{ width: 35 }} ></img>
+                                            </a>
+                                        </div>
                                         <div onClick={toggleVisibilityWish} className="header_wishlist">
                                             <a href="javascript:void(0)">
                                                 <i className="ion-android-favorite-outline" />

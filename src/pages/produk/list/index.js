@@ -199,6 +199,7 @@ const List = (props) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   };
 
+  
   return (
     <Layout>
       <div>
@@ -253,10 +254,6 @@ const List = (props) => {
                     </div>
                   </div>
                 </div>
-                <SliderHome 
-                  gambar_1={'https://img.freepik.com/free-photo/grunge-paint-background_1409-1337.jpg'}
-                  gambar_2={'https://static.vecteezy.com/system/resources/thumbnails/002/276/716/small/abstract-geometric-background-in-flat-design-free-vector.jpg'}
-                />
                 <div className="shop_toolbar_wrapper">
                   <div className="shop_toolbar_btn">
                     <button onClick={handleResetLayoutGrid} data-role="grid_4" id="buttonResetLayoutGrid" type="button" className="btn-grid-4 active" data-toggle="tooltip" title={4} />
