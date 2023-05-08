@@ -4,20 +4,8 @@ import Form from 'react-bootstrap/Form';
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
-import Button from 'react-bootstrap/Button';
-import Figure from 'react-bootstrap/Figure';
-import Card from 'react-bootstrap/Card';
-import Modal from 'react-bootstrap/Modal';
-import { RxDividerVertical } from 'react-icons/rx';
-import { FiTrash2 } from 'react-icons/fi';
-import { AiFillPlusCircle } from 'react-icons/ai';
-import { AiOutlineMinusCircle } from 'react-icons/ai';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Stack from '@mui/material/Stack';
-import { IoIosArrowForward } from "react-icons/io";
-
+import KodePromo from "../../../components/KodePromo";
+import Barang from "../../../components/Barang";
 
 
 
