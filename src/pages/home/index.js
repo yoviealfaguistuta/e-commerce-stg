@@ -126,7 +126,7 @@ const Home = () => {
             <div className='home_selection_bg'>
 
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-7">
 
                         <SliderHome
                             title={'Cellphone'}
