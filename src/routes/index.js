@@ -10,8 +10,7 @@ import Detail from "../pages/produk/detail";
 import Login from "../pages/produk/login/login";
 import Register from "../pages/produk/login/register";
 import Pembayaran from "../pages/pembayaran";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+
 
 
 

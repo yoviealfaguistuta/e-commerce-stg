@@ -10,14 +10,17 @@ import like from "../../assets/img/logo/like-click.svg"
 import likehover from "../../assets/img/logo/like-hover.svg"
 import cart from "../../assets/img/logo/cart-click.svg"
 import carthover from "../../assets/img/logo/cart-hover.svg"
-import Cookies from 'js-cookie';
-import ReactDOM from 'react-dom';
 import Countdown from 'react-countdown';
 import Slider from "react-slick";
+import SliderHome from "../../components/SliderHome";
+
+import toast, { Toaster } from 'react-hot-toast';
+import Cookies from 'universal-cookie';
 
 
 
 const Home = () => {
+    const [message, setMessage] = useState('');
 
     const [barang, setBarang] = useState([]);
     const [Barangmurah, setBarangmurah] = useState([]);
@@ -28,22 +31,30 @@ const Home = () => {
     }, []);
 
 
+
+
     function getBarang() {
+        const loading = toast.loading(`Memproses ...`);
+        const cookies = new Cookies();
+
+
         axios
-            .get('https://microdatastoreapi.cooljarsoft.com/barang?per-page=5')
+            .get(process.env.REACT_APP_API_URL + '/barang?per-page=5')
             .then(function (response) {
                 console.log('response :>> ', response.data.items);
                 setBarang(response.data.items);
-
+                console.log(cookies.get('token')); // Pacman
+                
+                toast.success('Barang berhasil diproses');
             }).catch(function (error) {
-
+                toast.error('Barang tidak berhasil diproses, karena = ' + error);
             }).finally(function () {
-
+                toast.dismiss(loading)
             });
     }
     function getBarangmurah() {
         axios
-            .get('https://microdatastoreapi.cooljarsoft.com/barang?sort=price&per-page=6')
+            .get(process.env.REACT_APP_API_URL + '/barang?sort=price&per-page=6')
             .then(function (response) {
                 console.log('response :>> ', response.data.items);
                 setBarangmurah(response.data.items);
@@ -75,25 +86,19 @@ const Home = () => {
     function handleLike() {
         setJumlahLike(jumlahLike + 1);
     }
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        className: 'test2'
-    };
-    
+
+
     // Renderer callback with condition
-  const renderer = ({ days,hours, minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      
-    } else {
-      // Render a countdown
-      return (
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+
+        } else {
+            // Render a countdown
+            return (
                 <>
-                 <div className="single_countdown">
+                    <Toaster />
+                    <div className="single_countdown">
                         <div className="countdown_number">{days}</div>
                         <div className="countdown_title">days</div>
                     </div>
@@ -117,67 +122,17 @@ const Home = () => {
 
     return (
         <Layout >
+            
             <div className='home_selection_bg'>
 
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-7">
 
-                        <Slider {...settings}>
-
-                        <div className="owl-item cloned" style={{width:'378px'}}>
-                                        <div
-                                            className="single_slider d-flex align-items-center "
-                                            style={{ height:'378px', backgroundImage:  'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg")'}}
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>popular products</h3>
-                                                <h1>
-                                                    chellphone
-                                                    <br /> new model 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="/list"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="owl-item cloned" style={{width:'378px'}}>
-                                        <div
-                                            className="single_slider d-flex align-items-center "
-                                            style={{ height:'378px', backgroundImage:  'url("http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg")'}}
-                                        >
-                                            <div className="slider_content slider_c_four color_white">
-                                                <h3>popular products</h3>
-                                                <h1>
-                                                    chellphone
-                                                    <br /> new model 2019
-                                                </h1>
-                                                <p>
-                                                    discount
-                                                    <span> -30% off</span> this week
-                                                </p>
-                                                <a
-                                                    className="button"
-                                                    href="/list"
-                                                >
-                                                    DISCOVER NOW
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                            {/* <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg" alt="" /></a>
-                            <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg" alt="" /></a>
-                            <a href="/list"><img style={{ width: '680px' }} src="http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg" alt="" /></a> */}
-
-
-                        </Slider>
+                        <SliderHome
+                            title={'Cellphone'}
+                            gambar_1={'http://onlinestore.microdataindonesia.co.id/assets/img/slider/wallpapersden.com_astronaut-art-4k_3840x2274.jpg'}
+                            gambar_2={'http://onlinestore.microdataindonesia.co.id/assets/img/slider/valley-pine-trees-river-fox-wallpaper-preview.jpg'}
+                        />
 
                     </div>
 
@@ -477,70 +432,70 @@ const Home = () => {
                         {
                             barang.map((items, index) => {
                                 return (
-                                    <article className="single_product">
-                                        {['info,'].map((variant) => (
+                                    <article key={index} className="single_product">
+                                        {/* {['info,'].map((variant) => ( */}
 
-                                            <figure>
-                                                <div className="product_thumb">
+                                        <figure>
+                                            <div className="product_thumb">
 
-                                                    <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
-                                                        {
-                                                            items.images.map((gambar, indexGambar) => {
-                                                                return (
-                                                                    <>
-                                                                        {
-                                                                            (indexGambar == 0) ?
-                                                                                <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
-                                                                                : ""
-                                                                        }
-                                                                    </>
-                                                                )
-                                                            })
+                                                <a className="primary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
+                                                    {
+                                                        items.images.map((gambar, indexGambar) => {
+                                                            return (
+                                                                <>
+                                                                    {
+                                                                        (indexGambar == 0) ?
+                                                                            <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
+                                                                            : ""
+                                                                    }
+                                                                </>
+                                                            )
+                                                        })
 
-                                                        }</a>
+                                                    }</a>
 
-                                                    <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
-                                                        {
-                                                            items.images.map((gambar, indexGambar) => {
-                                                                return (
-                                                                    <>
-                                                                        {
-                                                                            (indexGambar == 0) ?
-                                                                                <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
-                                                                                : ""
-                                                                        }
-                                                                    </>
-                                                                )
-                                                            })
+                                                <a className="secondary_img" href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/7">
+                                                    {
+                                                        items.images.map((gambar, indexGambar) => {
+                                                            return (
+                                                                <>
+                                                                    {
+                                                                        (indexGambar == 0) ?
+                                                                            <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
+                                                                            : ""
+                                                                    }
+                                                                </>
+                                                            )
+                                                        })
 
-                                                        }
-                                                    </a>
+                                                    }
+                                                </a>
 
-                                                    <div className="label_product"><span className="label_sale">Sale</span></div>
-                                                    <div className="action_links">
-                                                        <ul>
-                                                            <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites">
-                                                                <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} /></a></li>
-                                                            <li className="compare"><a><img style={{ width: '500px' }} className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
-                                                            <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} />
-                                                                <a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart">
-                                                                    <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} /></a></li>
-                                                        </ul>
-                                                    </div>
+                                                <div className="label_product"><span className="label_sale">Sale</span></div>
+                                                <div className="action_links">
+                                                    <ul>
+                                                        <li className="wishlist"><input defaultValue={7} id="data-favorite-6252" type="hidden" name={6252} /><a id="click-favorite-6252" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                            <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} /></a></li>
+                                                        <li className="compare"><a><img style={{ width: '500px' }} className="icon-item-costum-compare-home" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" /></a></li>
+                                                        <li className="quick_button"><input defaultValue={7} id="data-cart-6252" type="hidden" name={6252} />
+                                                            <a id="click-cart-6252" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                                <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} /></a></li>
+                                                    </ul>
                                                 </div>
-                                                <div className="product_content">
-                                                    <div className="product_content_inner">
+                                            </div>
+                                            <div className="product_content">
+                                                <div className="product_content_inner">
 
-                                                        <h4 className="product_name" style={{ height: '60px' }} >{items.name}</h4>
-                                                        <div className="price_box"><span className="current_price" style={{ height: '50px' }}>{items.price}</span></div>
-                                                        <div className="countdown_text">
-                                                            <p><span>Hurry Up!</span> Offers ends in: </p>
-                                                        </div>
-                                                        <div className="product_timing">
-                                                            <div data-countdown="2021/12/15">
-                                                                <div className="countdown_area">
-                                                                <Countdown date={new Date().setDate(new Date().getDate() + 2)} renderer={renderer}/>
-                                                                    {/* <div className="single_countdown">
+                                                    <h4 className="product_name" style={{ height: '60px' }} >{items.name}</h4>
+                                                    <div className="price_box"><span className="current_price" style={{ height: '50px' }}>{items.price}</span></div>
+                                                    <div className="countdown_text">
+                                                        <p><span>Hurry Up!</span> Offers ends in: </p>
+                                                    </div>
+                                                    <div className="product_timing">
+                                                        <div data-countdown="2021/12/15">
+                                                            <div className="countdown_area">
+                                                                <Countdown date={new Date().setDate(new Date().getDate() + 2)} renderer={renderer} />
+                                                                {/* <div className="single_countdown">
                                                                         <div className="countdown_number">00</div>
                                                                         <div className="countdown_title">days</div>
                                                                     </div>
@@ -556,18 +511,19 @@ const Home = () => {
                                                                         <div className="countdown_number">00</div>
                                                                         <div className="countdown_title">secs</div>
                                                                     </div> */}
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="add_to_cart"><a href="/list" title="Checkout">Checkout</a></div>
-
                                                 </div>
-                                            </figure>
-                                        ))}
+                                                <div className="add_to_cart"><a href="/list" title="Checkout">Checkout</a></div>
+
+                                            </div>
+                                        </figure>
+                                        {/* ))} */}
                                     </article>
                                 )
-                            })}
+                            })
+                        }
 
                     </div>
                 </div>
