@@ -6,15 +6,13 @@ import List from "../pages/produk/list";
 import Keranjang from "../pages/produk/keranjang";
 import Profile from "../pages/produk/profile";
 import Checkout from "../pages/produk/checkout";
-
-
-
 import About from "../pages/produk/list/about";
 import Contact from "../pages/produk/list/contact";
 import Detail from "../pages/produk/detail";
 import Login from "../pages/produk/login/login";
 import Register from "../pages/produk/login/register";
 import Pembayaran from "../pages/pembayaran";
+import SliderHome from "../components/SliderHome";
 
 
 
@@ -41,7 +39,7 @@ const router = createBrowserRouter([
         element: <Checkout />,
     },
     {
-        path: "/profile",
+        path: "/profile/:id_user",
         element: <Profile />,
     },
     
@@ -64,6 +62,10 @@ const router = createBrowserRouter([
     {
         path: "/pembayaran",
         element: <Pembayaran />,
+    },
+    {
+        path: "/slider",
+        element: <SliderHome />,
     },
 ]);
 
