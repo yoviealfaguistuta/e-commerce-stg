@@ -1,6 +1,4 @@
-import {
-    createBrowserRouter,
-} from "react-router-dom";
+import {createBrowserRouter,} from "react-router-dom";
 import Home from "../pages/home";
 import List from "../pages/produk/list";
 import Keranjang from "../pages/produk/keranjang";
@@ -11,8 +9,7 @@ import Contact from "../pages/produk/list/contact";
 import Detail from "../pages/produk/detail";
 import Login from "../pages/produk/login/login";
 import Register from "../pages/produk/login/register";
-import Penawaran from "../components/Penawaran";
-import Pembayaran from "../components/Pembayaran";
+
 
 
 
@@ -38,7 +35,7 @@ const router = createBrowserRouter([
         element: <Checkout />,
     },
     {
-        path: "/profile",
+        path: "/profile/:id_user",
         element: <Profile />,
     },
     
@@ -57,14 +54,6 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />,
-    },
-    {
-        path: "/penawaran",
-        element: <Penawaran />,
-    },
-    {
-        path: "/pembayaran",
-        element: <Pembayaran />,
     },
 ]);
 

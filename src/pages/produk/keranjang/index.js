@@ -4,8 +4,12 @@ import Form from 'react-bootstrap/Form';
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
-import Barang from "../../../components/Barang";
 import KodePromo from "../../../components/KodePromo";
+import Barang from "../../../components/Barang";
+
+
+
+
 
 const Keranjang = () => {
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from "../../../layout";
 import kategoribanner from "../../../assets/img/product/kategori-banner.png";
@@ -7,16 +7,15 @@ import likehover from "../../../assets/img/logo/like-hover.svg"
 import cart from "../../../assets/img/logo/cart-click.svg"
 import carthover from "../../../assets/img/logo/cart-hover.svg"
 import { BsDot } from 'react-icons/bs';
+
 import '../../../assets/css/custom.css';
 import '../../../assets/css/plugins.css';
 import '../../../assets/css/style.css';
 import Slider from '@mui/material/Slider';
 import Cookies from 'js-cookie';
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
-import DaftarProduk from "../../../components/DaftarProduk";
-import ListProduk from "../../../components/ListProduk";
-
+import { Link, useSearchParams } from "react-router-dom";
+import SliderHome from "../../../components/SliderHome";
 
 
 
@@ -85,6 +84,46 @@ const List = (props) => {
   function handleLike() {
     setJumlahLike(jumlahLike + 1);
   }
+///detail product
+const [detailProduct, setDetailProduct] = useState();
+
+useEffect(() => {
+  getDetailProduct();
+}, []);
+
+function getDetailProduct() {
+  axios
+    .get('http://127.0.0.1:8000/api/product/1')
+    .then(function (response) {
+      console.log('response :>> ', response.data);
+      setDetailProduct(response.data);
+    })
+    .catch(function (error) {
+    })
+    .finally(function () {
+    });
+}
+
+  ///product
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  function getProduct() {
+    axios
+      .get('http://127.0.0.1:8000/api/product')
+      .then(function (response) {
+        console.log('response :>> ', response.data.data);
+        setProduct(response.data.data);
+      })
+      .catch(function (error) {
+      })
+      .finally(function () {
+      });
+  }
+
 
   ///barang
   const [barang, setBarang] = useState([]);
@@ -152,22 +191,22 @@ const List = (props) => {
   };
 
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function submitHarga(e) {
-      navigate("/list?harga=" + priceRange, { replace: true });
+  function submitHarga(e) {
+    navigate("/list?harga=" + priceRange, { replace: true });
 
   }
- 
+
   let price = searchParams.get("harga")
 
   useEffect(() => {
     console.log("harga ", price);
-    getBarang( price)
+    getBarang(price)
   }, [price]);
 
-///kategori barang
-const [kategoribarang, setKategoriBarang] = useState([]);
+  ///kategori barang
+  const [kategoribarang, setKategoriBarang] = useState([]);
 
   useEffect(() => {
     getKategoriBarang();
@@ -188,9 +227,9 @@ const [kategoribarang, setKategoriBarang] = useState([]);
   }
   const filteredItems = barang.filter(items => items.kategori === props.kategori);
 
-  const filterResult=(items)=>{
-    const result=barang.filter((curtData)=>{
-      return curtData.kategori===items;
+  const filterResult = (items) => {
+    const result = barang.filter((curtData) => {
+      return curtData.kategori === items;
     });
     setKategoriBarang()
   }
@@ -200,24 +239,28 @@ const [kategoribarang, setKategoriBarang] = useState([]);
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   };
 
+
   return (
     <Layout>
       <div>
+      <div> <a>{detailProduct && detailProduct.data.name['name']}</a></div>
+
         <div className="breadcrumbs_area">
           <div className="container">
-
+            {/* {console.log('product 6', product)} */}
             <div className="row">
               <div className="col-12">
                 <div className="breadcrumb_content">
-                  {barang.map((items, index) => (
+                  {product && product.data.map((data, index) => (
                     index === 0 && (
-                      <ul id="title_breadcumb" key={items.id}>
+                      <ul id="title_breadcumb" key={data.id}>
                         <li><a href='/'>home</a></li>
-                        <li>{items.jenisName}</li>
-                        <li>{items.kategoriName}</li>
+                        <li>{data.type_name}</li>
+                        <li>{data.category_name}</li>
                       </ul>
                     )
                   ))}
+                  {/* halaman ke-{product != null ? product.current_page : null} */}
                 </div>
               </div>
             </div>
@@ -273,13 +316,186 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                 >
                 </div>
 
-
                 {/* List daftar produk */}
                 {isGrid ? (
-                  <DaftarProduk/>
+                  <div className="grid-layout">
+                    <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
+                      {/* {product && product.data.map((data, index) */}
+
+                      {
+                        product && product.data.filter((data) => data.price >= priceRange[0] && data.price <= priceRange[1])
+                          .map((data) => {
+                            return (
+                              <div className="col-lg-3 col-md-4 col-12 ">
+                                {['Info',].map((variant) => (
+                                  <article className="single_product">
+                                    <figure>
+                                      <div className="product_thumb">
+                                        <a className="primary_img" href={'/detail/' + data.id}>
+
+                                          <img src={data.thumbnail} />
+
+                                        </a>
+                                        <a className="secondary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
+                                        </a>
+                                        <div className="label_product">
+                                          <span className="label_sale">Sale</span>
+                                        </div>
+                                        <div className="action_links">
+                                          <ul>
+                                            <li className="wishlist">
+                                              <input defaultValue={9} id="data-favorite-3977" type="hidden" name={3977} />
+                                              <a id="click-favorite-3977" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
+                                              </a>
+                                            </li>
+                                            <li className="compare">
+                                              <a>
+                                                <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                              </a>
+                                            </li>
+                                            <li className="quick_button">
+                                              <input defaultValue={9} id="data-cart-3977" type="hidden" name={3977} />
+                                              <a id="click-cart-3977" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                      <div className="product_content grid_content">
+                                        <div className="product_content_inner">
+                                          <h4 className="product_name" style={{ height: '50px' }}>
+                                            <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{data.name}</a>
+                                          </h4>
+                                          <div className="price_box">
+                                            <span className="current_price">Rp. {numberWithComma(data.price)} </span>
+                                          </div>
+                                        </div>
+                                        <div className="add_to_cart">
+                                          <a href="/checkout/" title="Add to cart">Checkout</a>
+                                        </div>
+                                      </div>
+
+                                    </figure>
+                                  </article>
+                                ))}
+
+                              </div>
+                            )
+                          })
+
+                      }
+
+                    </div>
+                  </div>
 
                 ) : (
-                  <ListProduk/>
+                  <div className="list-layout">
+                    {/* tombol list single produk */}
+                    <div className="row no-gutters shop_wrapper grid_list" id="generateBarang">
+                      {
+                        product && product.data.filter((data) => data.price >= priceRange[0] && data.price <= priceRange[1])
+                          .map((data) => {
+                            return (
+                              <div className="col-12">
+                                {['Info',].map((variant) => (
+
+                                  <article className="single_product">
+                                    <figure>
+                                      <div className="product_thumb">
+                                        <a className="primary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
+                                        </a>
+                                        <a className="secondary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
+                                        </a>
+                                        <div className="label_product">
+                                          <span className="label_sale">Sale</span>
+                                        </div>
+                                        <div className="action_links">
+                                          <ul>
+                                            <li className="wishlist">
+                                              <input defaultValue={9} id="data-favorite-8621" type="hidden" name={8621} />
+                                              <a id="click-favorite-8621" onclick="favorite(this)" data="[object Object]" className="click-favorites">
+                                                <img className="icon-item-costum-like image-favorite-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/like-hover.svg" alt="like" />
+                                              </a>
+                                            </li>
+                                            <li className="compare">
+                                              <a>
+                                                <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare-hover.svg" alt="compare" />
+                                              </a>
+                                            </li>
+                                            <li className="quick_button">
+                                              <input defaultValue={9} id="data-cart-8621" type="hidden" name={8621} />
+                                              <a id="click-cart-8621" onclick="cart(this)" data="[object Object]" className="click-cart">
+                                                <img className="icon-item-costum-cart image-cart-8621" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/cart-hover.svg" alt="like" />
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                      <div className="product_content grid_content">
+                                        <div className="product_content_inner">
+                                          <h4 className="product_name" style={{ height: '50px' }}>
+                                            <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9"></a>
+                                          </h4>
+                                          <div className="price_box">
+                                            <span className="current_price" >Rp. 31.500</span>
+                                          </div>
+                                        </div>
+                                        <div className="add_to_cart">
+                                          <a href="/checkout/" title="Add to cart">Checkout</a>
+                                        </div>
+                                      </div>
+                                      <div className="product_content list_content">
+                                        <h4 className="product_name">
+                                          <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>{data.name}</a>
+                                        </h4>
+                                        <div className="price_box">
+                                          <span className="current_price" >Rp. {numberWithComma(data.price)}</span>
+                                        </div>
+                                        <div className="product_desc">
+                                          <ul>
+                                            <div className="row mt-2" id="shortDescription">
+                                              {
+                                                product && product.data.map((data, index) => 
+                                                  <div className='col-md-6'>
+                                                    <li className="wrapper-list-kategori" >
+                                                      <BsDot size={30} />{data.short_description}
+                                                    </li>
+                                                  </div>
+
+                                                )
+                                              }
+                                            </div>
+                                          </ul>
+                                        </div>
+                                        <div className="add-cart-costum" style={{ paddingLeft: '17px' }}>
+                                          <a href="/checkout/" title="Add to cart">Checkout</a>
+                                          <a id="click-favorite-8621" onclick="favorite(this)" className="click-favorites">
+                                            <img src={images[imageIndex]} style={{ width: "25px" }} alt="gambar" onClick={handleClick} />
+                                          </a>
+                                          <a title="Add to cart">
+                                            <img className="icon-item-costum-compare" src="http://onlinestore.microdataindonesia.co.id/assets/img/icon/compare.svg" alt="compare" />
+                                          </a>
+                                          <a id="click-cart-8621" onclick="cart(this)" className="click-cart">
+                                            <img src={gambar[cartIndex]} style={{ width: "25px" }} alt="image" onClick={handleClick2} />
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </figure>
+                                  </article>
+                                ))}
+                              </div>
+                            )
+                          })
+
+                      }
+
+                    </div>
+                  </div>
                 )}
 
                 {/* Button */}
@@ -298,11 +514,11 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                   <div className="widget_list widget_categories">
                     <h3>Product categories</h3>
                     {
-                      barang.map((items, index) => {
+                      product && product.data.map((data, index) => {
                         return (
                           <ul id="generateKategori">
                             <div className="border-divider" style={{}} />
-                            <li><a  onClick={()=>filterResult()} style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
+                            <li><a onClick={() => filterResult()} style={{ fontWeight: "440" }}>{data.category_name}</a></li>
                           </ul>
                         )
                       })
@@ -320,11 +536,12 @@ const [kategoribarang, setKategoriBarang] = useState([]);
                         max={20000000}
                       />
                       <p className="filter">Rp{numberWithComma(priceRange[0])} - Rp{numberWithComma(priceRange[1])}</p>
-                      /* <button className="btn-filter" style={{}} type="button" placeholder="Filter" onClick={(e) => submitHarga(e)}>
+                      {/* <button className="btn-filter" style={{}} type="button" placeholder="Filter" onClick={(e) => submitHarga(e)}>
                         Filter
-                      </button>
-                      <input type="text" name="text" id="amount" />
+                      </button> */}
+                      {/* <input type="text" id="amount" value={priceRange} onChange={e => setPriceRange(e.target.value)} /> */}
                     </form>
+
                   </div>
                   <div className="widget_list tags_widget">
                     <h3>Product tags</h3>
