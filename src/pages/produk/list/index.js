@@ -84,6 +84,46 @@ const List = (props) => {
   function handleLike() {
     setJumlahLike(jumlahLike + 1);
   }
+///detail product
+const [detailProduct, setDetailProduct] = useState();
+
+useEffect(() => {
+  getDetailProduct();
+}, []);
+
+function getDetailProduct() {
+  axios
+    .get('http://127.0.0.1:8000/api/product/1')
+    .then(function (response) {
+      console.log('response :>> ', response.data);
+      setDetailProduct(response.data);
+    })
+    .catch(function (error) {
+    })
+    .finally(function () {
+    });
+}
+
+  ///product
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  function getProduct() {
+    axios
+      .get('http://127.0.0.1:8000/api/product')
+      .then(function (response) {
+        console.log('response :>> ', response.data.data);
+        setProduct(response.data.data);
+      })
+      .catch(function (error) {
+      })
+      .finally(function () {
+      });
+  }
+
 
   ///barang
   const [barang, setBarang] = useState([]);
@@ -203,21 +243,24 @@ const List = (props) => {
   return (
     <Layout>
       <div>
+      <div> <a>{detailProduct && detailProduct.data.name['name']}</a></div>
+
         <div className="breadcrumbs_area">
           <div className="container">
-
+            {/* {console.log('product 6', product)} */}
             <div className="row">
               <div className="col-12">
                 <div className="breadcrumb_content">
-                  {barang.map((items, index) => (
+                  {product && product.data.map((data, index) => (
                     index === 0 && (
-                      <ul id="title_breadcumb" key={items.id}>
+                      <ul id="title_breadcumb" key={data.id}>
                         <li><a href='/'>home</a></li>
-                        <li>{items.jenisName}</li>
-                        <li>{items.kategoriName}</li>
+                        <li>{data.type_name}</li>
+                        <li>{data.category_name}</li>
                       </ul>
                     )
                   ))}
+                  {/* halaman ke-{product != null ? product.current_page : null} */}
                 </div>
               </div>
             </div>
@@ -277,48 +320,24 @@ const List = (props) => {
                 {isGrid ? (
                   <div className="grid-layout">
                     <div className="row no-gutters shop_wrapper grid_4" id="generateBarang">
+                      {/* {product && product.data.map((data, index) */}
 
                       {
-                        barang.filter((items) => items.price >= priceRange[0] && items.price <= priceRange[1])
-                          .map((items) => {
+                        product && product.data.filter((data) => data.price >= priceRange[0] && data.price <= priceRange[1])
+                          .map((data) => {
                             return (
                               <div className="col-lg-3 col-md-4 col-12 ">
                                 {['Info',].map((variant) => (
                                   <article className="single_product">
                                     <figure>
                                       <div className="product_thumb">
-                                        <a className="primary_img" href={'/detail/' + items.id}>
-                                          {
-                                            items.images.map((gambar, indexGambar) => {
-                                              return (
-                                                <>
-                                                  {
-                                                    (indexGambar == 0) ?
-                                                      <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
-                                                      : ""
-                                                  }
-                                                </>
-                                              )
-                                            })
+                                        <a className="primary_img" href={'/detail/' + data.id}>
 
-                                          }
+                                          <img src={data.thumbnail} />
 
                                         </a>
-                                        <a className="secondary_img" href={'/detail/' + items.id}>
-                                          {
-                                            items.images.map((gambar, indexGambar) => {
-                                              return (
-                                                <>
-                                                  {
-                                                    (indexGambar == 0) ?
-                                                      <img id="testload" className="image1-barang" src={gambar.thumb} alt="gambar" />
-                                                      : ""
-                                                  }
-                                                </>
-                                              )
-                                            })
-
-                                          }
+                                        <a className="secondary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
                                         </a>
                                         <div className="label_product">
                                           <span className="label_sale">Sale</span>
@@ -348,10 +367,10 @@ const List = (props) => {
                                       <div className="product_content grid_content">
                                         <div className="product_content_inner">
                                           <h4 className="product_name" style={{ height: '50px' }}>
-                                            <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{items.name}</a>
+                                            <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9">{data.name}</a>
                                           </h4>
                                           <div className="price_box">
-                                            <span className="current_price">Rp. {numberWithComma(items.price)} </span>
+                                            <span className="current_price">Rp. {numberWithComma(data.price)} </span>
                                           </div>
                                         </div>
                                         <div className="add_to_cart">
@@ -377,8 +396,8 @@ const List = (props) => {
                     {/* tombol list single produk */}
                     <div className="row no-gutters shop_wrapper grid_list" id="generateBarang">
                       {
-                        barang.filter((items) => items.price >= priceRange[0] && items.price <= priceRange[1])
-                          .map((items) => {
+                        product && product.data.filter((data) => data.price >= priceRange[0] && data.price <= priceRange[1])
+                          .map((data) => {
                             return (
                               <div className="col-12">
                                 {['Info',].map((variant) => (
@@ -386,37 +405,11 @@ const List = (props) => {
                                   <article className="single_product">
                                     <figure>
                                       <div className="product_thumb">
-                                        <a className="primary_img" href={'/detail/' + items.id}>
-                                          {
-                                            items.images.map((gambar, indexGambar) => {
-                                              return (
-                                                <>
-                                                  {
-                                                    (indexGambar == 0) ?
-                                                      <img id="testload" className="image1-barang" src={gambar.original} alt="gambar" />
-                                                      : ""
-                                                  }
-                                                </>
-                                              )
-                                            })
-
-                                          }
+                                        <a className="primary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
                                         </a>
-                                        <a className="secondary_img" href={'/detail/' + items.id}>
-                                          {
-                                            items.images.map((gambar, indexGambar) => {
-                                              return (
-                                                <>
-                                                  {
-                                                    (indexGambar == 0) ?
-                                                      <img id="testload" className="image1-barang" src={gambar.thumb} alt="gambar" />
-                                                      : ""
-                                                  }
-                                                </>
-                                              )
-                                            })
-
-                                          }
+                                        <a className="secondary_img" href={'/detail/' + data.id}>
+                                        <img src={data.thumbnail} />
                                         </a>
                                         <div className="label_product">
                                           <span className="label_sale">Sale</span>
@@ -458,19 +451,19 @@ const List = (props) => {
                                       </div>
                                       <div className="product_content list_content">
                                         <h4 className="product_name">
-                                          <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>{items.name}</a>
+                                          <a href="http://onlinestore.microdataindonesia.co.id/detail/detail_barang/9" style={{ paddingLeft: '10px' }}>{data.name}</a>
                                         </h4>
                                         <div className="price_box">
-                                          <span className="current_price" >Rp. {numberWithComma(items.price)}</span>
+                                          <span className="current_price" >Rp. {numberWithComma(data.price)}</span>
                                         </div>
                                         <div className="product_desc">
                                           <ul>
                                             <div className="row mt-2" id="shortDescription">
                                               {
-                                                items.short_description.map((short_description) =>
+                                                product && product.data.map((data, index) => 
                                                   <div className='col-md-6'>
                                                     <li className="wrapper-list-kategori" >
-                                                      <BsDot size={30} />{short_description}
+                                                      <BsDot size={30} />{data.short_description}
                                                     </li>
                                                   </div>
 
@@ -521,11 +514,11 @@ const List = (props) => {
                   <div className="widget_list widget_categories">
                     <h3>Product categories</h3>
                     {
-                      barang.map((items, index) => {
+                      product && product.data.map((data, index) => {
                         return (
                           <ul id="generateKategori">
                             <div className="border-divider" style={{}} />
-                            <li><a onClick={() => filterResult()} style={{ fontWeight: "440" }}>{items.kategoriName}</a></li>
+                            <li><a onClick={() => filterResult()} style={{ fontWeight: "440" }}>{data.category_name}</a></li>
                           </ul>
                         )
                       })

@@ -11,7 +11,6 @@ import likehover from "../../assets/img/logo/like-hover.svg"
 import cart from "../../assets/img/logo/cart-click.svg"
 import carthover from "../../assets/img/logo/cart-hover.svg"
 import Countdown from 'react-countdown';
-import Slider from "react-slick";
 import SliderHome from "../../components/SliderHome";
 
 import toast, { Toaster } from 'react-hot-toast';
