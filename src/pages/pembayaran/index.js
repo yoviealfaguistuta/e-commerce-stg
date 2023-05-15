@@ -1,11 +1,13 @@
-import { Button, Card} from "react-bootstrap";
-import React, { Fragment, useState} from "react";
+import { Button, Card, Container } from "react-bootstrap";
+import React, { Fragment, useState, useEffect } from "react";
 import { Layout } from "../../layout";
 import ListGroup from 'react-bootstrap/ListGroup';
 import BRI from "../../assets/img/logo/BRI.png";
+import ReactDOM from 'react-dom';
 import Countdown from 'react-countdown';
 import Form from 'react-bootstrap/Form';
 import { IoIosArrowDown } from "react-icons/io";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const Pembayaran = () => {
 
@@ -54,23 +56,27 @@ const Pembayaran = () => {
   const [isi, setisi] = useState('1234567890');
 
   const Completionist = () => <span>You are good to go!</span>;
+
+  // Renderer callback with condition
   const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
+      // Render a completed state
       return <Completionist />;
     } else {
+      // Render a countdown
       return (
         <>
           <div className="single_countdown">
             <div className="countdown_number">{hours}</div>
-            <div className="countdown_title">Jam</div>
+            <div className="countdown_title">days</div>
           </div>
           <div className="single_countdown">
             <div className="countdown_number">{minutes}</div>
-            <div className="countdown_title">Menit</div>
+            <div className="countdown_title">days</div>
           </div>
           <div className="single_countdown">
             <div className="countdown_number">{seconds}</div>
-            <div className="countdown_title">Detik</div>
+            <div className="countdown_title">days</div>
           </div>
         </>
       )
@@ -81,11 +87,27 @@ const Pembayaran = () => {
     <Layout>
       <div style={{ padding: "100px 500px" }}>
         <div className="row">
-          <div style={{ paddingLeft: 100}}>
+          <div className="row">
             <h2>Selesaikan Pembayaran Dalam</h2>
             <div className="product_timing">
               <div className="countdown_area">
                 <Countdown date={new Date().setDate(new Date().getDate() + 1)} renderer={renderer} />
+                {/* <div className="single_countdown">
+                    <div className="countdown_number">00</div>
+                    <div className="countdown_title">days</div>
+                  </div>
+                  <div className="single_countdown">
+                    <div className="countdown_number">00</div>
+                    <div className="countdown_title">hours</div>
+                  </div>
+                  <div className="single_countdown">
+                    <div className="countdown_number">00</div>
+                    <div className="countdown_title">mins</div>
+                  </div>
+                  <div className="single_countdown">
+                    <div className="countdown_number">00</div>
+                    <div className="countdown_title">secs</div>
+                  </div> */}
               </div>
             </div>
             <p>Batas Akhir Pembayaran</p>
